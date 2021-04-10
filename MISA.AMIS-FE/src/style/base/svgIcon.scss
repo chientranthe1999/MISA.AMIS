@@ -1,0 +1,81 @@
+/*
+ * Khai báo các class cho svg icon
+*/
+
+.svg-icon {
+    width: 24px;
+    height: 24px;
+    // Vì import vào file App.vue -> đường dẫn tính từ file App.vue
+    background-image: url(./assets/icon/Sprites.64af8f61.svg);
+    background-repeat: no-repeat;
+}
+
+.svg-icon-48 {
+    width: 48px;
+    height: 48px;
+}
+
+.svg-icon-16 {
+    width: 16px;
+    height: 16px;
+}
+
+.svg-icon-14 {
+    width: 14px;
+    height: 14px;
+}
+
+// icon search
+.svg-search {
+    background-position: -992px -360px;
+}
+
+// icon dấu 3 chám có vòng tròn
+.svg-ellipsis {
+    background-position: -568px -30px;
+}
+
+// icon bánh răng cưa
+.svg-cog {
+    background-position: -675px -30px;
+}
+
+// icon message
+.svg-message {
+    background-position: -899px -30px;
+}
+
+.svg-help {
+    background-position: -731px -30px;
+}
+
+.svg-notification {
+    background-position: -788px -30px;
+}
+
+// chevron-down small
+.svg-s-chevron-down {
+    background-position: -1076px -32px;
+}
+
+// chevron-left small
+.svg-s-chevron-left {
+    background-position: -224px -360px;
+}
+
+// chevron-down large
+.svg-l-chevron-down {
+    background-position: -1128px -360px;
+}
+
+.svg-s-arrow-down {
+    background-position: -848px -359px;
+}
+
+.svg-warning {
+    background-position: -592px -456px;
+}
+
+.svg-toggle {
+    background-position: -843px -30px;
+}

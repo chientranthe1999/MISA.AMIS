@@ -4,6 +4,7 @@ $hdark: #e5e5e5;
     height: calc(100vh - 61px);
     width: 100%;
     padding: 0 20px;
+    background-color: #f4f5f8;
     /*------------------ Content top ------------------*/
     &__top {
         $height: 80px;
@@ -108,7 +109,7 @@ $hdark: #e5e5e5;
             flex: 1;
             text-align: center;
             min-width: 360px;
-            >span {
+            > span {
                 display: inline-block;
                 cursor: pointer;
             }

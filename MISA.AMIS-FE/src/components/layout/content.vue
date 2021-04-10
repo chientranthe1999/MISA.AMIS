@@ -3,9 +3,8 @@
     <div class="content">
         <!-- Content top -->
         <div class="content__top">
-            <h3 class="content__top-header">Quản lý lao động</h3>
+            <h3 class="content__top-header">Nhân viên</h3>
             <div class="content__top-btn">
-                <div class="btn-syn btn">Đồng bộ từ HRM</div>
                 <div class="btn-add btn" @click="showModal">
                     <span><i class="fas fa-user-plus"></i></span>
                     <span>Thêm lao động</span>
@@ -13,22 +12,7 @@
             </div>
         </div>
         <!-- Content middle -->
-        <div class="content__middle">
-            <div class="content__middle-input">
-                <input class="search-name search-bar" placeholder="Tìm kiếm theo mã nhân viên, họ tên" />
-                <input class="search-department search-bar" placeholder="Chọn bộ phận phòng ban" />
-                <input class="search-status search-bar" placeholder="Trạng thái tham gia bảo hiểm xã hội" />
-            </div>
-
-            <div class="content__middle-btn">
-                <div class="btn-download btn">
-                    <i class="fas fa-download"></i>
-                </div>
-                <div class="btn-reload btn" @click="this.reload">
-                    <i class="fas fa-sync-alt"></i>
-                </div>
-            </div>
-        </div>
+        <div class="content__middle"></div>
 
         <!-- Content main -->
         <div class="content__main">
@@ -44,11 +28,7 @@
                 </thead>
 
                 <tbody>
-                    <tr
-                        v-for="customer in dataBinding"
-                        :key="customer.CustomerId"
-                        @dblclick="trOnClick(customer.CustomerId)"
-                    >
+                    <tr v-for="customer in dataBinding" :key="customer.CustomerId" @dblclick="trOnClick(customer.CustomerId)">
                         <td>{{ customer.CustomerCode }}</td>
                         <td>{{ customer.FullName }}</td>
                         <td>{{ customer.Gender }}</td>
@@ -80,12 +60,7 @@
             <div class="text-right"><b>10</b> nhân viên/trang</div>
         </div>
 
-        <EmployeePopupAdd
-            :modalStatus="modalStatus"
-            :customer="selectedCustomer"
-            @closeModal="hideModal"
-            @reload="reload"
-        />
+        <EmployeePopupAdd :modalStatus="modalStatus" :customer="selectedCustomer" @closeModal="hideModal" @reload="reload" />
     </div>
     <!-- End content -->
 </template>

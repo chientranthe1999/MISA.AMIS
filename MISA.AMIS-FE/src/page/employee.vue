@@ -3,14 +3,9 @@
         <Sidebar />
         <div class="right-swapper">
             <Header />
-            <Content
-                :dataBinding="this.employeeList"
-                :isLoading="this.isLoading"
-                :rowTitle="this.rowTitle"
-                :reload="this.reload"
-            />
+            <Content :dataBinding="this.employeeList" :isLoading="this.isLoading" :rowTitle="this.rowTitle" :reload="this.reload" />
         </div>
-        <BaseSuccessMessage />
+        <!-- <BaseSuccessMessage /> -->
     </div>
 </template>
 
@@ -75,6 +70,6 @@
 <style lang="scss">
     .right-swapper {
         float: left;
-        width: calc(100% - 221px);
+        width: calc(100% - 180px);
     }
 </style>

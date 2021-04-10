@@ -5,8 +5,6 @@
 
 import Vue from 'vue';
 
-import BaseCombobox from '@/components/common/BaseCombobox';
-Vue.component('BaseCombobox', BaseCombobox);
 
 import BaseLoader from '@/components/common/BaseLoader';
 Vue.component('BaseLoader', BaseLoader);

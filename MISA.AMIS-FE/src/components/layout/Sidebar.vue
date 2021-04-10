@@ -2,51 +2,17 @@
     <!-- Side Bar -->
     <div class="sidebar">
         <!-- Sidebar top  -->
-        <div class="sidebar__top">
+        <div class="sidebar__top d-flex">
+            <div class="svg-icon more-app"></div>
             <img src="../../assets/logo.svg" alt="" />
         </div>
         <!-- Sidebar main -->
         <div class="sidebar__main">
-            <div class="sidebar__main-list">
+            <div class="sidebar__main-list" v-for="sideBarItem in sideBarItems" :key="sideBarItem.title">
                 <div class="sidebar__main-list-img">
-                    <i class="far fa-file-alt"></i>
+                    <div class="img-icon svg-icon" :style="{ backgroundPosition: sideBarItem.iconPosition }"></div>
                 </div>
-                <p class="sidebar__main-list-text">Lập hồ sơ điện tử</p>
-            </div>
-
-            <div class="sidebar__main-list">
-                <div class="sidebar__main-list-img">
-                    <i class="far fa-file-pdf"></i>
-                </div>
-                <p class="sidebar__main-list-text">Lập hồ sơ giấy</p>
-            </div>
-
-            <div class="sidebar__main-list">
-                <div class="sidebar__main-list-img">
-                    <i class="fas fa-signal"></i>
-                </div>
-                <p class="sidebar__main-list-text">Theo dõi chi</p>
-            </div>
-
-            <div class="sidebar__main-list">
-                <div class="sidebar__main-list-img">
-                    <i class="fas fa-chart-pie"></i>
-                </div>
-                <p class="sidebar__main-list-text">Theo dõi đóng</p>
-            </div>
-
-            <div class="sidebar__main-list active">
-                <div class="sidebar__main-list-img">
-                    <i class="fas fa-tasks"></i>
-                </div>
-                <p class="sidebar__main-list-text">Quản lý lao động</p>
-            </div>
-
-            <div class="sidebar__main-list">
-                <div class="sidebar__main-list-img">
-                    <i class="fas fa-cog"></i>
-                </div>
-                <p class="sidebar__main-list-text">Thiết lập</p>
+                <p class="sidebar__main-list-text">{{ sideBarItem.title }}</p>
             </div>
         </div>
     </div>
@@ -54,63 +20,31 @@
 </template>
 
 <script>
-export default {
-    name: "sidebar",
-};
+    export default {
+        name: 'sidebar',
+        data() {
+            return {
+                sideBarItems: [
+                    { iconPosition: '-30px -1628px', title: 'Tổng quan', iconPositionActive: '' },
+                    { iconPosition: '-73px -1628px', title: 'Tiền mặt', iconPositionActive: '' },
+                    { iconPosition: '-117px -1628px', title: 'Tiền gửi', iconPositionActive: '' },
+                    { iconPosition: '-161px -1628px', title: 'Mua hàng', iconPositionActive: '' },
+                    { iconPosition: '-204px -1628px', title: 'Bán hàng', iconPositionActive: '' },
+                    { iconPosition: '-291px -1628px', title: 'Kho', iconPositionActive: '' },
+                    { iconPosition: '-336px -1628px', title: 'Công cụ dụng cụ', iconPositionActive: '' },
+                    { iconPosition: '-378px -1630px', title: 'Tài sản cố định', iconPositionActive: '' },
+                    { iconPosition: '-423px -1630px', title: 'Thuế', iconPositionActive: '' },
+                    { iconPosition: '-467px -1628px', title: 'Giá thành', iconPositionActive: '' },
+                    { iconPosition: '-510px -1628px', title: 'Tổng hợp', iconPositionActive: '' },
+                    { iconPosition: '-378px -1659px', title: 'Ngân sách', iconPositionActive: '' },
+                    { iconPosition: '-547px -1628px', title: 'Báo cáo', iconPositionActive: '' },
+                    { iconPosition: '-204px -1664px', title: 'Phân tích tài chính', iconPositionActive: '' },
+                ],
+            };
+        },
+    };
 </script>
 
 <style scoped lang="scss">
-.sidebar {
-    width: 220px;
-    height: 100vh;
-    background-color: #fff;
-    border-right: 1px solid #e5e5e5;
-    float: left;
-
-    /*--------------- sidebar top ---------------*/
-
-    &__top {
-        height: 60px;
-        padding: 10px;
-        > img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    /*--------------- sidebar main ---------------*/
-
-    &__main {
-        $height: 40px;
-        &-list {
-            height: $height;
-            width: 100%;
-            padding-left: 24px;
-            color: rgba(0, 0, 0, 0.8);
-            line-height: $height;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            &-img {
-                margin: auto 0;
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-            }
-        }
-        &-list:hover {
-            background-color: #e5e5e5;
-            color: #000;
-        }
-
-        &-list.active {
-            background-color: #019160;
-            color: #fff;
-            i {
-                color: #fff;
-            }
-        }
-    }
-}
-
+    @import '@/style/layout/Sidebar.scss';
 </style>

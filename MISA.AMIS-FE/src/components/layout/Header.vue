@@ -1,26 +1,49 @@
 <template>
     <!-- Header -->
     <div class="header">
-        <div class="header__left">
-            <BaseCombobox
-                placeholder="Nhập vào xe của bạn"
-                :selectLists="selectLists"
-                :comboboxBorder="comboboxBorder"
-                fontSize="20px"
-                fontWeight="bold"
-            />
+        <!-- Header left-->
+        <div class="header__left d-center-flex">
+            <div class="header__toogle-btn svg-icon svg-toggle"></div>
+            <div class="header__company d-center-flex">
+                <p class="company-name">Công ty cổ phần XYZ</p>
+                <div class="svg-icon svg-l-chevron-down svg-icon-14"></div>
+            </div>
         </div>
+
+        <!-- Header right-->
         <div class="header__right">
-            <div class="user-avt"></div>
-            <div class="user-name">GC hihi</div>
-            <div class="user-action" @click="testRef"><i class="fas fa-ellipsis-h"></i></div>
+            <div class="header__search-box d-center-flex">
+                <input type="text" placeholder="Nhập vào từ khóa tìm kiếm" />
+                <div class="svg-icon svg-search svg-icon-16"></div>
+            </div>
+            <div class="header__function d-center-flex">
+                <div class="icon-swaper">
+                    <div class="svg-icon svg-ellipsis"></div>
+                </div>
+                <div class="icon-swaper">
+                    <div class="svg-icon svg-cog"></div>
+                </div>
+                <div class="icon-swaper">
+                    <div class="svg-icon svg-message"></div>
+                </div>
+                <div class="icon-swaper">
+                    <div class="svg-icon svg-help"></div>
+                </div>
+                <div class="icon-swaper">
+                    <div class="svg-icon svg-notification"></div>
+                </div>
+            </div>
+            <div class="header__user d-center-flex">
+                <div class="user-avt"></div>
+                <div class="user-name">Trần Thế Chiến</div>
+                <div class="svg-icon svg-icon-14 svg-s-chevron-down"></div>
+            </div>
         </div>
     </div>
     <!-- End header  -->
 </template>
 
 <script>
-    import BaseCombobox from '../common/BaseCombobox';
     export default {
         name: 'Header',
 
@@ -40,69 +63,9 @@
                 console.log(this.$refs.baseBox.inputValue);
             },
         },
-
-        components: {
-            BaseCombobox,
-        },
     };
 </script>
 
 <style lang="scss" scoped>
-    .header {
-        height: 60px;
-        width: 100%;
-        border-bottom: 1px solid #e5e5e5;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 20px;
-
-        &__left {
-            select {
-                font-size: 20px;
-                font-weight: 600;
-                width: auto;
-                padding-right: 10px;
-                margin-left: -5px;
-            }
-        }
-
-        &__right {
-            height: 40px;
-            max-width: 200px;
-            margin: auto 0;
-            display: flex;
-            align-items: center;
-
-            .user-avt {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background-image: url('../../assets/img/avt.png');
-                background-repeat: no-repeat;
-                background-size: cover;
-                border: 1px solid #e5e5e5;
-            }
-
-            .user-name {
-                text-align: center;
-                flex: 1;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                margin: 0 10px;
-            }
-
-            .user-action {
-                $kt: 40px;
-                width: $kt;
-                height: $kt;
-                line-height: $kt;
-                text-align: center;
-                font-size: 20px;
-                color: rgba(0, 0, 0, 0.5);
-                cursor: pointer;
-            }
-        }
-    }
+    @import '@/style/layout/Header.scss';
 </style>

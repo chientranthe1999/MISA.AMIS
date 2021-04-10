@@ -27,13 +27,7 @@
                         </div>
                         <div class="flex-1 input-swaper">
                             <p class="input-title" for="fullName">Họ và tên (<span>*</span>)</p>
-                            <input
-                                class="input"
-                                type="text"
-                                id="fullName"
-                                autocomplete="off"
-                                v-model="customer.FullName"
-                            />
+                            <input class="input" type="text" id="fullName" autocomplete="off" v-model="customer.FullName" />
                         </div>
                     </div>
 
@@ -44,25 +38,13 @@
                         </div>
                         <div class="flex-1 input-swaper">
                             <p class="input-title" for="">Phân loại khách hàng (<span>*</span>)</p>
-                            <BaseCombobox
-                                :selectLists="selectLists"
-                                comboboxPadding="0 0 0 20px"
-                                comboboxWidth="100%"
-                                fontSize="14px"
-                            />
                         </div>
                     </div>
 
                     <div class="flex-1 d-flex">
                         <div class="flex-1 input-swaper">
                             <p class="input-title" for="dateOfBirth">Ngày sinh</p>
-                            <input
-                                class="input"
-                                type="date"
-                                id="dateOfBirth"
-                                ref="dateOfBirth"
-                                v-model="customer.DateOfBirth"
-                            />
+                            <input class="input" type="date" id="dateOfBirth" ref="dateOfBirth" v-model="customer.DateOfBirth" />
                         </div>
                         <div class="flex-1 input-swaper input-gender">
                             <p class="input-title" for="">Giới tính (<span>*</span>)</p>
@@ -94,13 +76,7 @@
                     </div>
                     <div class="flex-1 input-swaper">
                         <p class="input-title" for="">Số điện thoại (<span>*</span>)</p>
-                        <input
-                            class="input"
-                            type="text"
-                            placeholder=""
-                            id="phoneNumber"
-                            v-model="customer.PhoneNumber"
-                        />
+                        <input class="input" type="text" placeholder="" id="phoneNumber" v-model="customer.PhoneNumber" />
                     </div>
                 </div>
                 <div class="d-flex">
@@ -110,12 +86,7 @@
                     </div>
                     <div class="flex-1 input-swaper">
                         <p class="input-title" for="">Mã số thuế</p>
-                        <input
-                            v-model="customer.CompanyTaxCode"
-                            class="input"
-                            type="text"
-                            placeholder="Mã số thuế công ty"
-                        />
+                        <input v-model="customer.CompanyTaxCode" class="input" type="text" placeholder="Mã số thuế công ty" />
                     </div>
                 </div>
                 <div class="flex-1 input-swaper">
