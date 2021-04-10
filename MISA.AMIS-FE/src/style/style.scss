@@ -1,0 +1,107 @@
+@use './base/base-color' as color;
+@import './base/reset.scss';
+@import './base/btn.scss';
+
+/*-------- Table format --------*/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+s th,
+td {
+    padding: 10px 16px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+table,
+th,
+td {
+    border-bottom: 1px solid color.$border-input;
+}
+
+th {
+    text-align: center;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: #e5e5e5;
+}
+
+.fixed-header th {
+    height: 42px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: -1px;
+    background-color: #fff;
+}
+
+
+/*-------- Font Import --------*/
+
+@font-face {
+    font-family: GoogleSan;
+    src: url("./assets/font/GoogleSans-Regular.ttf");
+}
+
+
+/*-------- CSS for page layout --------*/
+
+.right-swapper {
+    float: left;
+    width: calc(100% - 221px);
+}
+
+
+/*-------- CSS text-align --------*/
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+
+/*-------- display CSS --------*/
+
+.d-flex {
+    display: flex;
+}
+
+.d-block {
+    display: block;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+
+/*-------- Input CSS --------*/
+
+.input {
+    border: 1px solid color.$border-input;
+    border-radius: 4px;
+    margin-right: 20px;
+    padding: 0 10px;
+    height: 40px;
+}
+
+.input:focus {
+    border-color: color.$main;
+}
+
+.input.error:focus {
+    border-color: #ff4747;
+}
