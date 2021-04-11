@@ -2,105 +2,116 @@
     <div class="employee-popup" id="employee-popup" :class="{ active: modalStatus }">
         <BaseLoader :isShow="isShow" />
         <div class="popup__content">
-            <div id="close-btn" @click="deleteErrorWhenClose"><i class="fas fa-times"></i></div>
-            <h3 class="popup__title">Thông tin khách hàng</h3>
-            <!-- Popup top -->
-            <div class="popup__content-top d-flex">
-                <div class="customer-avt flex-1">
-                    <div></div>
-                    <p>Thêm ảnh ở đây nheeee....</p>
+            <!-- Popup header -->
+            <div class="popup__content-header d-center-flex">
+                <div class="header-right d-center-flex">
+                    <p class="header-title">Thông tin nhân viên</p>
+                    <div class="type-chose"><input type="checkbox" /> Là khách hàng <input type="checkbox" /> Là nhà cung cấp</div>
                 </div>
-                <div class="flex-2">
-                    <div class="flex-1 d-flex">
-                        <div class="flex-1 input-swaper">
-                            <p class="input-title" for="customerCode">Mã khách hàng (<span>*</span>)</p>
-                            <input
-                                class="input"
-                                type="text"
-                                id="customerCode"
-                                value-required
-                                @blur="validateCustomerCode"
-                                @focus="deleteErrorWhenFocus"
-                                autocomplete="off"
-                                v-model="customer.CustomerCode"
-                            />
+
+                <div class="header-left d-flex">
+                    <div class="svg-icon svg-help" title="Giúp"></div>
+                    <div class="svg-icon svg-close" title="Đóng" @click="deleteErrorWhenClose"></div>
+                </div>
+            </div>
+
+            <!-- The rest of the popup -->
+            <div class="popup__content-down">
+                <!-- Input -->
+                <div class="popup__content-input">
+                    <!-- Input top -->
+                    <div class="top d-flex">
+                        <div class="input-section-left input-section">
+                            <div class="d-center-flex grid-col">
+                                <div class="input-swapper col-4">
+                                    <div class="input-label">Mã <span>*</span></div>
+                                    <input type="text" name="" tabindex="1" />
+                                </div>
+                                <div class="input-swapper col-6">
+                                    <div class="input-label">Tên <span>*</span></div>
+                                    <input type="text" name="" tabindex="1" />
+                                </div>
+                            </div>
+                            <div class="input-swapper">
+                                <div class="input-label">Đơn vị <span>*</span></div>
+                                <input type="text" name="" tabindex="1" />
+                            </div>
+                            <div class="input-swapper">
+                                <div class="input-label">Chức danh</div>
+                                <input type="text" name="" tabindex="1" />
+                            </div>
                         </div>
-                        <div class="flex-1 input-swaper">
-                            <p class="input-title" for="fullName">Họ và tên (<span>*</span>)</p>
-                            <input class="input" type="text" id="fullName" autocomplete="off" v-model="customer.FullName" />
+
+                        <div class="input-section-right input-section">
+                            <div class="d-center-flex grid-col">
+                                <div class="input-swapper col-4">
+                                    <div class="input-label">Ngày sinh</div>
+                                    <input type="date" name="" tabindex="1" />
+                                </div>
+                                <div class="input-swapper col-6">
+                                    <div class="input-label">Giới tính</div>
+                                    <input type="text" name="" tabindex="1" />
+                                </div>
+                            </div>
+                            <div class="d-center-flex grid-col">
+                                <div class="input-swapper col-6">
+                                    <div class="input-label">Số CMND</div>
+                                    <input type="text" name="" tabindex="1" />
+                                </div>
+                                <div class="input-swapper col-4">
+                                    <div class="input-label">Ngày cấp</div>
+                                    <input type="date" name="" tabindex="1" />
+                                </div>
+                            </div>
+                            <div class="input-swapper">
+                                <div class="input-label">Nơi cấp</div>
+                                <input type="text" name="" tabindex="1" />
+                            </div>
                         </div>
                     </div>
+                    <!-- Input bottom  -->
+                    <div class="bottom">
+                        <div class="tab-input">
+                            <div class="tab-input__title">
+                                <div class="title-list active">Liên hệ</div>
+                                <div class="title-list">Tài khoản ngân hàng</div>
+                            </div>
+                            <div class="tab-input__content">
+                                <div class="input-swapper">
+                                    <div class="input-label">Địa chỉ</div>
+                                    <input type="text" name="" tabindex="1" />
+                                </div>
 
-                    <div class="flex-1 d-flex">
-                        <div class="flex-1 input-swaper">
-                            <p class="input-title" for="numberCode">Mã thẻ thành viên</p>
-                            <input class="input" type="text" id="numberCode" v-model="customer.MemberCardCode" />
-                        </div>
-                        <div class="flex-1 input-swaper">
-                            <p class="input-title" for="">Phân loại khách hàng (<span>*</span>)</p>
-                        </div>
-                    </div>
-
-                    <div class="flex-1 d-flex">
-                        <div class="flex-1 input-swaper">
-                            <p class="input-title" for="dateOfBirth">Ngày sinh</p>
-                            <input class="input" type="date" id="dateOfBirth" ref="dateOfBirth" v-model="customer.DateOfBirth" />
-                        </div>
-                        <div class="flex-1 input-swaper input-gender">
-                            <p class="input-title" for="">Giới tính (<span>*</span>)</p>
-                            <div class="radio-swapper d-flex">
-                                <BaseRatio value="1" name="gender" :isChecked="true">Nam</BaseRatio>
-                                <BaseRatio value="0" name="gender">Nữ</BaseRatio>
-                                <BaseRatio value="2" name="gender">Khác</BaseRatio>
+                                <div class="grid-col">
+                                    <div class="input-swapper">
+                                        <div class="input-label col-1-4">ĐT di động</div>
+                                        <input type="text" name="" tabindex="1" />
+                                    </div>
+                                    <div class="input-swapper">
+                                        <div class="input-label col-1-4">ĐT cố định</div>
+                                        <input type="text" name="" />
+                                    </div>
+                                    <div class="input-swapper">
+                                        <div class="input-label col-1-4">Email</div>
+                                        <input type="text" name="" tabindex="1" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Popup middle -->
-            <div class="popup__content-middle">
-                <div class="d-flex">
-                    <div class="flex-2 input-swaper">
-                        <p class="input-title" for="email">Email (<span>*</span>)</p>
-                        <input
-                            class="input"
-                            type="text"
-                            placeholder="example@domain.com"
-                            id="email"
-                            value-required
-                            @blur="validateEmail"
-                            @focus="deleteErrorWhenFocus"
-                            ref="email"
-                            v-model="customer.Email"
-                        />
-                    </div>
-                    <div class="flex-1 input-swaper">
-                        <p class="input-title" for="">Số điện thoại (<span>*</span>)</p>
-                        <input class="input" type="text" placeholder="" id="phoneNumber" v-model="customer.PhoneNumber" />
-                    </div>
-                </div>
-                <div class="d-flex">
-                    <div class="flex-2 input-swaper">
-                        <p class="input-title" for="">Tên Công Ty</p>
-                        <input class="input" type="text" placeholder="" />
-                    </div>
-                    <div class="flex-1 input-swaper">
-                        <p class="input-title" for="">Mã số thuế</p>
-                        <input v-model="customer.CompanyTaxCode" class="input" type="text" placeholder="Mã số thuế công ty" />
-                    </div>
-                </div>
-                <div class="flex-1 input-swaper">
-                    <p class="input-title" for="">Địa chỉ</p>
-                    <input v-model="customer.Address" class="input" type="text" placeholder="Địa chỉ" />
-                </div>
-            </div>
 
-            <!-- Popup bottom -->
-            <div class="popup__content-bottom d-flex">
-                <div id="cancel-btn" class="btn">Hủy</div>
-                <div id="delete-btn" class="btn" data-id="">Xóa</div>
-                <div id="save-btn" class="btn d-flex" data-id="" @click="createNewCustomer">
-                    <span><i class="far fa-save"></i></span> Save
+                <div class="divider"></div>
+
+                <!-- Button -->
+                <div class="popup__content-btn d-flex">
+                    <div class="btn-left">
+                        <div class="btn cancel-btn" tabindex="1">Hủy</div>
+                    </div>
+                    <div class="btn-right d-flex">
+                        <div class="btn save-btn" title="Cất (Ctr + S)" tabindex="1">Cất</div>
+                        <div class="btn add-save-btn" title="Cất và thêm" tabindex="1">Cất và thêm</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,18 +158,6 @@
         },
 
         methods: {
-            // /**
-            //  * Kiểm tra xem trường dữ liệu có trống ko
-            //  * @param {Object} selectedDom: item
-            //  * @author: Chiến Nobi 07/04/2021
-            //  */
-            // checkEmpty(selectedDom) {
-            //     var mustRequired = selectedDom.hasAttribute('value-required');
-            //     if (selectedDom.value == '' && mustRequired) {
-            //         selectedDom.classList.add('value-error');
-            //     } else selectedDom.classList.remove('value-error');
-            // },
-
             /**
              * Lấy danh sách nhóm khách hàng
              */
@@ -256,13 +255,7 @@
             // Xóa thông báo lỗi khi đóng cửa sổ
             deleteErrorWhenClose() {
                 this.$emit('closeModal');
-
-                var errorNodes = document.querySelectorAll('.data-append');
                 var inputs = document.querySelectorAll('input');
-                // Xóa Node thông báo lỗi
-                errorNodes.forEach((item) => {
-                    item.remove();
-                });
 
                 // Xóa viền lỗi
                 inputs.forEach((item) => {
@@ -306,5 +299,5 @@
 </script>
 
 <style lang="scss">
-    @import '../../style/layout/EmployeePopUpAdd';
+    @import '@/style/layout/EmployeePopUpAdd';
 </style>

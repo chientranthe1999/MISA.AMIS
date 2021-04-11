@@ -3,12 +3,14 @@
     <div class="content">
         <!-- Content top -->
         <div class="content__top">
-            <h3 class="content__top-header">Nhân viên</h3>
-            <div class="content__top-btn">
-                <div class="btn-add btn" @click="showModal">
-                    <span><i class="fas fa-user-plus"></i></span>
-                    <span>Thêm lao động</span>
-                </div>
+            <div class="first-line d-center-flex">
+                <h3 class="content__top-header">Nhân viên</h3>
+                <div class="btn-add btn" @click="showModal">Thêm</div>
+            </div>
+
+            <div class="second-line d-center-flex">
+                <div class="svg-icon svg-icon-16 svg-s-chevron-left"></div>
+                <p>Tất cả danh mục</p>
             </div>
         </div>
         <!-- Content middle -->
@@ -17,6 +19,11 @@
         <!-- Content main -->
         <div class="content__main">
             <div class="loader" :class="{ active: isLoading }"></div>
+            <!-- Search box -->
+            <div class="content-search-box d-center-flex search-box">
+                <input type="text" placeholder="Tìm theo mã, tên nhân viên" />
+                <div class="svg-icon svg-search svg-icon-16"></div>
+            </div>
             <!-- Table -->
             <table>
                 <thead class="fixed-header">
@@ -36,28 +43,47 @@
                         <td>{{ customer.PhoneNumber }}</td>
                         <td>{{ formatDate(customer.DateOfBirth) }}</td>
                         <td style="max-width: 250px;">{{ customer.Address }}</td>
+                        <td class="">
+                            <div class="d-center-flex user-action">
+                                <p>Sửa</p>
+                                <div class="icon-swapper">
+                                    <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="more-action">
+                                <div class="action-list">Nhân bản</div>
+                                <div class="action-list">Xóa</div>
+                                <div class="action-list">Ngừng sử dụng</div>
+                            </div> -->
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <!-- Content bottom -->
         <div class="content__bottom">
-            <div class="text-left">Hiển thị <b>1-10/1000</b> nhân viên</div>
-            <div class="pagination-bar">
-                <span class="first-page move-btn"><i class="fas fa-angle-double-left"></i></span>
-                <span class="pre-page move-btn"><i class="fas fa-angle-left"></i></span>
+            <div class="text-left">Tổng số: <b>115</b> Bản ghi</div>
 
-                <span class="pagination-number active">1</span>
-                <span class="pagination-number">2</span>
-                <span class="pagination-number">3</span>
-                <span class="pagination-number">4</span>
-                <span class="pagination-number">5</span>
-                <span class="pagination-number">6</span>
+            <div class="text-right d-center-flex">
+                <div class="number-perpage d-center-flex">
+                    <div class="input-number">
+                        <input type="text" readonly value="20 bản ghi trên trang" />
+                    </div>
+                    <div class="more-option">
+                        <div class="svg-icon svg-icon-16 svg-s-arrow-down"></div>
+                    </div>
+                </div>
 
-                <span class="next-page move-btn"><i class="fas fa-angle-right"></i></span>
-                <span class="last-page move-btn"><i class="fas fa-angle-double-right"></i></span>
+                <div class="pagination d-center-flex">
+                    <div class="pre">Trước</div>
+                    <div class="page-number">1</div>
+                    <div class="page-number">2</div>
+                    <div class="page-number">3</div>
+                    <div class="page-number">4</div>
+                    <div class="next">Sau</div>
+                </div>
             </div>
-            <div class="text-right"><b>10</b> nhân viên/trang</div>
         </div>
 
         <EmployeePopupAdd :modalStatus="modalStatus" :customer="selectedCustomer" @closeModal="hideModal" @reload="reload" />

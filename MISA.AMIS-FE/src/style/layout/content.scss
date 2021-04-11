@@ -1,137 +1,148 @@
 $green: #019160;
 $hdark: #e5e5e5;
+@use '../base/baseColor.scss' as color;
 .content {
-    height: calc(100vh - 61px);
+    height: calc(100vh - 48px);
     width: 100%;
     padding: 0 20px;
     background-color: #f4f5f8;
     /*------------------ Content top ------------------*/
     &__top {
-        $height: 80px;
-        display: flex;
-        justify-content: space-between;
-        height: 80px;
-        align-items: center;
-        &-header {
-            font-size: 25px;
+        padding: 22px 0 16px 0;
+
+        .first-line {
+            height: 36px;
+            width: 100%;
+            justify-content: space-between;
         }
-        &-btn {
-            display: flex;
-            .btn {
-                padding: 10px 15px;
-                font-size: 18px;
+
+        .second-line {
+            color: color.$blue;
+            cursor: pointer;
+        }
+
+        &-header {
+            font-size: 24px;
+        }
+
+        .btn {
+            font-size: 13px;
+            height: 36px;
+            padding: 10px 14px;
+        }
+        .btn-add {
+            background-color: color.$main;
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+    }
+    /*------------------ Content middle ------------------*/
+
+    /*------------------ Content main ------------------*/
+    &__main {
+        height: calc(100vh - 240px);
+        overflow: auto;
+        position: relative;
+        padding: 16px 30px 0 16px;
+        background-color: #fff;
+
+        // search-box
+        .content-search-box {
+            margin-bottom: 20px;
+        }
+
+        // Hành động xóa, nhân bản, ngừng sử dụng
+        .user-action {
+            justify-content: center;
+            position: relative;
+
+            > p {
+                color: color.$blue;
+                font-weight: 700;
+                cursor: pointer;
+                margin: 0 4px;
             }
-            .btn-syn {
-                color: $green;
-                margin-right: 10px;
+
+            .icon-swapper {
+                width: auto;
+                cursor: pointer;
+                padding: 8px 10px;
+
+                .svg-icon {
+                    margin: 0 auto;
+                }
             }
-            .btn-add {
-                background-color: $green;
-                color: white;
-                span:first-child {
-                    margin-right: 3px;
+
+            .more-action {
+                position: absolute;
+                top: 0;
+                border: 1px solid color.$base-bd-color;
+                z-index: 2;
+                background-color: #fff;
+
+                .action-list {
+                    height: 30px;
+                    padding: 5px 10px;
                 }
             }
         }
     }
-    /*------------------ Content middle ------------------*/
-    &__middle {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        &-input {
-            flex: 9;
-            display: flex;
-            flex-wrap: nowrap;
-            .search-bar {
-                height: 40px;
-                border: 1px solid #bbbbbb;
-                padding: 10px 16px;
-                border-radius: 4px;
-                font-size: 16px;
-                margin-right: 20px;
-            }
-            .search-bar:focus {
-                border-color: $green;
-                outline: $green;
-            }
-            .search-name {
-                min-width: 370px;
-                flex: 2;
-                padding-left: 40px;
-                background-image: url('../../assets/icon/search-icon.png');
-                background-position: 10px;
-                background-repeat: no-repeat;
-                background-size: 20px;
-            }
-            .search-department {
-                width: 300px;
-                flex: 1.5;
-            }
-            .search-status {
-                flex: 1.5;
-            }
-        }
-        &-btn {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            .btn {
-                width: 40px;
-                height: 40px;
-                line-height: 30px;
-                text-align: center;
-            }
-            .btn-download {
-                margin-right: 10px;
-            }
-        }
-    }
-    /*------------------ Content main ------------------*/
-    &__main {
-        height: calc(100vh - 261px);
-        overflow: auto;
-        position: relative;
-    }
     /*------------------ Content bottom ------------------*/
     &__bottom {
-        height: 60px;
+        min-height: 48px;
         display: flex;
-        padding: 15px 15px 0 15px;
+        align-items: center;
+        background-color: #fff;
+        padding: 0 16px;
+
         .text-left {
-            flex: 0.8;
+            margin-right: auto;
         }
+
         .text-right {
-            flex: 0.8;
-            text-align: right;
-        }
-        .pagination-bar {
-            flex: 1;
-            text-align: center;
-            min-width: 360px;
-            > span {
-                display: inline-block;
-                cursor: pointer;
+            // flex: 0.8;
+            // text-align: right;
+            .number-perpage {
+                border: 1px solid color.$base-bd-color;
+                height: 32px;
+                margin: 0 16px;
+                .input-number {
+                    padding: 6px 0 6px 12px;
+                    flex: 1;
+                }
+
+                .more-option {
+                    height: 30px;
+                    width: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+
+                .more-option:hover {
+                    background-color: #e0e0e0;
+                }
             }
-            .pagination-number {
-                $hw: 30px;
-                width: $hw;
-                height: $hw;
-                border-radius: 50%;
-                background-color: #e5e5e5;
-                border: 1px solid #bbbbbb;
-                text-align: center;
-                line-height: $hw;
-                margin: 0 4px;
-            }
-            .pagination-number.active {
-                background-color: $green;
-                color: #fff;
-                font-weight: 600;
-            }
-            .move-btn {
-                font-size: 20px;
-                margin: 0 10px;
+
+            .pagination {
+                .pre {
+                    margin-right: 16px;
+                }
+
+                .page-number {
+                    width: 20px;
+                    height: 20px;
+                    line-height: 20px;
+                    border: 1px solid #e0e0e0;
+                    text-align: center;
+                    margin-right: 8px;
+                }
+
+                .next {
+                    margin-left: 8px;
+                }
             }
         }
     }

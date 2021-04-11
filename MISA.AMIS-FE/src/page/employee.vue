@@ -28,6 +28,7 @@
                     { titleCode: 'PhoneNumber', title: 'Số điện thoại' },
                     { titleCode: 'DateOfBirth', title: 'Ngày sinh' },
                     { titleCode: 'Address', title: 'Địa chỉ' },
+                    { titleCode: 'Status', title: 'Trạng thái' },
                 ],
             };
         },

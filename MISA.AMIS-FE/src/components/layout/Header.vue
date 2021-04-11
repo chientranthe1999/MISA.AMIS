@@ -12,7 +12,7 @@
 
         <!-- Header right-->
         <div class="header__right">
-            <div class="header__search-box d-center-flex">
+            <div class="header__search-box d-center-flex search-box">
                 <input type="text" placeholder="Nhập vào từ khóa tìm kiếm" />
                 <div class="svg-icon svg-search svg-icon-16"></div>
             </div>
