@@ -9,22 +9,18 @@ $hdark: #e5e5e5;
     /*------------------ Content top ------------------*/
     &__top {
         padding: 22px 0 16px 0;
-
         .first-line {
             height: 36px;
             width: 100%;
             justify-content: space-between;
         }
-
         .second-line {
             color: color.$blue;
             cursor: pointer;
         }
-
         &-header {
             font-size: 24px;
         }
-
         .btn {
             font-size: 13px;
             height: 36px;
@@ -38,68 +34,53 @@ $hdark: #e5e5e5;
         }
     }
     /*------------------ Content middle ------------------*/
-
     /*------------------ Content main ------------------*/
     &__main {
-        height: calc(100vh - 240px);
+        height: calc(100vh - 186px);
+        display: flex;
+        flex-direction: column;
         overflow: auto;
         position: relative;
         padding: 16px 30px 0 16px;
         background-color: #fff;
-
         // search-box
         .content-search-box {
             margin-bottom: 20px;
+            width: 240px;
         }
-
         // Hành động xóa, nhân bản, ngừng sử dụng
         .user-action {
             justify-content: center;
-            position: relative;
-
-            > p {
+            >p {
                 color: color.$blue;
                 font-weight: 700;
                 cursor: pointer;
                 margin: 0 4px;
             }
-
             .icon-swapper {
                 width: auto;
                 cursor: pointer;
                 padding: 8px 10px;
-
                 .svg-icon {
                     margin: 0 auto;
                 }
             }
-
-            .more-action {
-                position: absolute;
-                top: 0;
-                border: 1px solid color.$base-bd-color;
-                z-index: 2;
-                background-color: #fff;
-
-                .action-list {
-                    height: 30px;
-                    padding: 5px 10px;
-                }
-            }
+        }
+        .main-table {
+            height: calc(100vh - 218px);
+            overflow: auto;
         }
     }
     /*------------------ Content bottom ------------------*/
     &__bottom {
-        min-height: 48px;
+        min-height: 46px;
         display: flex;
         align-items: center;
         background-color: #fff;
         padding: 0 16px;
-
         .text-left {
             margin-right: auto;
         }
-
         .text-right {
             // flex: 0.8;
             // text-align: right;
@@ -111,7 +92,6 @@ $hdark: #e5e5e5;
                     padding: 6px 0 6px 12px;
                     flex: 1;
                 }
-
                 .more-option {
                     height: 30px;
                     width: 30px;
@@ -120,17 +100,14 @@ $hdark: #e5e5e5;
                     justify-content: center;
                     cursor: pointer;
                 }
-
                 .more-option:hover {
                     background-color: #e0e0e0;
                 }
             }
-
             .pagination {
                 .pre {
                     margin-right: 16px;
                 }
-
                 .page-number {
                     width: 20px;
                     height: 20px;
@@ -139,7 +116,6 @@ $hdark: #e5e5e5;
                     text-align: center;
                     margin-right: 8px;
                 }
-
                 .next {
                     margin-left: 8px;
                 }
@@ -148,19 +124,20 @@ $hdark: #e5e5e5;
     }
 }
 
-// Loading icon CSS
-.loader {
-    width: 300px;
-    height: 300px;
-    background-image: url(../../assets/icon/loading-icon-3.gif);
-    background-size: cover;
+// CSS cho thêm menu xóa người dùng
+.data-more-action {
     position: absolute;
-    right: 50%;
-    top: 50%;
-    transform: translate(50%, -50%);
-    display: none;
-}
-
-.active {
-    display: block;
+    top: 0;
+    border: 1px solid color.$base-bd-color;
+    background-color: #fff;
+    border-radius: 2px;
+    .action-list {
+        height: 30px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    .action-list:hover {
+        color: color.$text-green-color;
+        background-color: color.$bg-action-hover;
+    }
 }

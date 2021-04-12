@@ -33,12 +33,12 @@
                     <!-- Input top -->
                     <div class="top d-flex">
                         <div class="input-section-left input-section">
-                            <div class="d-center-flex grid-col">
-                                <div class="input-swapper col-4">
+                            <div class="d-center-flex c-grid-col">
+                                <div class="input-swapper v-col-4">
                                     <div class="input-label">Mã <span>*</span></div>
                                     <input type="text" name="" tabindex="1" />
                                 </div>
-                                <div class="input-swapper col-6">
+                                <div class="input-swapper v-col-6">
                                     <div class="input-label">Tên <span>*</span></div>
                                     <input type="text" name="" tabindex="1" />
                                 </div>
@@ -54,12 +54,12 @@
                         </div>
 
                         <div class="input-section-right input-section">
-                            <div class="d-center-flex grid-col">
-                                <div class="input-swapper col-4">
+                            <div class="d-center-flex c-grid-col">
+                                <div class="input-swapper v-col-4">
                                     <div class="input-label">Ngày sinh</div>
                                     <input type="date" name="" tabindex="1" />
                                 </div>
-                                <div class="input-swapper col-6 gender-swapper">
+                                <div class="input-swapper v-col-6 gender-swapper">
                                     <div class="input-label">Giới tính</div>
                                     <div class="d-center-flex gender">
                                         <label for="female">
@@ -87,12 +87,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-center-flex grid-col">
-                                <div class="input-swapper col-6">
+                            <div class="d-center-flex c-grid-col">
+                                <div class="input-swapper v-col-6">
                                     <div class="input-label">Số CMND</div>
                                     <input type="text" name="" tabindex="1" />
                                 </div>
-                                <div class="input-swapper col-4">
+                                <div class="input-swapper v-col-4">
                                     <div class="input-label">Ngày cấp</div>
                                     <input type="date" name="" tabindex="1" />
                                 </div>
@@ -116,17 +116,17 @@
                                     <input type="text" name="" tabindex="1" />
                                 </div>
 
-                                <div class="grid-col">
+                                <div class="c-grid-col">
                                     <div class="input-swapper">
-                                        <div class="input-label col-1-4">ĐT di động</div>
+                                        <div class="input-label v-col-1-4">ĐT di động</div>
                                         <input type="text" name="" tabindex="1" />
                                     </div>
                                     <div class="input-swapper">
-                                        <div class="input-label col-1-4">ĐT cố định</div>
+                                        <div class="input-label v-col-1-4">ĐT cố định</div>
                                         <input type="text" name="" />
                                     </div>
                                     <div class="input-swapper">
-                                        <div class="input-label col-1-4">Email</div>
+                                        <div class="input-label v-col-1-4">Email</div>
                                         <input type="text" name="" tabindex="1" />
                                     </div>
                                 </div>

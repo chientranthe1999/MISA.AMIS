@@ -41,28 +41,34 @@ thead th {
     border-right: 1px solid color.$t-bd-color;
     padding: 5px 10px;
     height: 45px;
+    background-color: #eceef1;
 }
 
 thead th:last-child {
     border-right: none;
 }
 
-// tr:hover {
-//     cursor: pointer;
-//     background-color: #e5e5e5;
-// }
-// .fixed-header th {
-//     height: 42px;
-//     position: sticky;
-//     position: -webkit-sticky;
-//     top: -1px;
-//     background-color: #fff;
-// }
+tr:hover {
+    cursor: pointer;
+    background-color: #e5e5e5;
+}
+
+.fixed-header th {
+    // height: 42px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: -1px;
+    border-bottom: 1px solid color.$t-bd-color;
+    border-right: 1px solid color.$t-bd-color;
+    padding: 5px 10px;
+}
+
 
 /*-------- Font Import --------*/
 
 @font-face {
     font-family: 'Open Sans local';
+    font-style: normal;
     src: url('./assets/font/notosans-regular.2cb88a13.woff2') format('woff2');
 }
 
@@ -136,21 +142,43 @@ thead th:last-child {
     border-color: #ff4747;
 }
 
+
+/*-------- Search Box CSS --------*/
+
 .search-box {
     height: 32px;
     margin-right: 20px;
     width: 200px;
-    border: 1px solid #ebedf0;
     border-radius: 4px;
     overflow: hidden;
     display: flex;
     align-items: center;
+    position: relative;
+    border-radius: 2px;
+    .search-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     input::placeholder {
         font-style: italic;
         font-size: 12px;
     }
     input {
         height: 100%;
+        width: 100%;
+        border: 1px solid #ebedf0;
         padding: 6px 10px;
+        padding-right: 30px;
     }
+}
+
+input:focus {
+    border-color: color.$main;
 }

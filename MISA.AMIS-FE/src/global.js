@@ -5,7 +5,6 @@
 
 import Vue from 'vue';
 
-
 import BaseLoader from '@/components/common/BaseLoader';
 Vue.component('BaseLoader', BaseLoader);
 

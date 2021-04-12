@@ -13,53 +13,79 @@
                 <p>Tất cả danh mục</p>
             </div>
         </div>
-        <!-- Content middle -->
-        <div class="content__middle"></div>
-
         <!-- Content main -->
         <div class="content__main">
-            <div class="loader" :class="{ active: isLoading }"></div>
+            <BaseLoader :isShow="isLoading" />
             <!-- Search box -->
             <div class="content-search-box d-center-flex search-box">
                 <input type="text" placeholder="Tìm theo mã, tên nhân viên" />
-                <div class="svg-icon svg-search svg-icon-16"></div>
+                <div class="search-icon">
+                    <div class="svg-icon svg-search svg-icon-16"></div>
+                </div>
             </div>
             <!-- Table -->
-            <table>
-                <thead class="fixed-header">
-                    <tr>
-                        <th v-for="item in rowTitle" :key="item.titleCode" :fieldname="item.titleCode">
-                            {{ item.title }}
-                        </th>
-                    </tr>
-                </thead>
+            <div class="main-table">
+                <table>
+                    <thead class="fixed-header">
+                        <tr>
+                            <th v-for="item in rowTitle" :key="item.titleCode" :fieldname="item.titleCode">
+                                {{ item.title }}
+                            </th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <tr v-for="customer in dataBinding" :key="customer.CustomerId" @dblclick="trOnClick(customer.CustomerId)">
-                        <td>{{ customer.CustomerCode }}</td>
-                        <td>{{ customer.FullName }}</td>
-                        <td>{{ customer.Gender }}</td>
-                        <td>{{ customer.Email }}</td>
-                        <td>{{ customer.PhoneNumber }}</td>
-                        <td>{{ formatDate(customer.DateOfBirth) }}</td>
-                        <td style="max-width: 250px;">{{ customer.Address }}</td>
+                    <tbody>
+                        <!-- <tr
+                            v-for="customer in dataBinding"
+                            :key="customer.CustomerId"
+                            @dblclick="trOnClick(customer.CustomerId)"
+                        >
+                            <td>{{ customer.CustomerCode }}</td>
+                            <td>{{ customer.FullName }}</td>
+                            <td>{{ customer.Gender }}</td>
+                            <td>{{ customer.Email }}</td>
+                            <td>{{ customer.PhoneNumber }}</td>
+                            <td>{{ formatDate(customer.DateOfBirth) }}</td>
+                            <td style="max-width: 250px;">{{ customer.Address }}</td>
+                            <td class="">
+                                <div class="d-center-flex user-action">
+                                    <p>Sửa</p>
+                                    <div class="icon-swapper">
+                                        <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down" @click="test">
+                                            <div class="data-more-action">
+                                                <div class="action-list">Nhân bản</div>
+                                                <div class="action-list">Xóa</div>
+                                                <div class="action-list">Ngừng sử dụng</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr> -->
+
                         <td class="">
                             <div class="d-center-flex user-action">
                                 <p>Sửa</p>
                                 <div class="icon-swapper">
-                                    <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
+                                    <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down" @click="test">
+                                        <div class="data-more-action">
+                                            <div class="action-list">Nhân bản</div>
+                                            <div class="action-list">Xóa</div>
+                                            <div class="action-list">Ngừng sử dụng</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <!-- <div class="more-action">
-                                <div class="action-list">Nhân bản</div>
-                                <div class="action-list">Xóa</div>
-                                <div class="action-list">Ngừng sử dụng</div>
-                            </div> -->
                         </td>
-                    </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="data-more-action">
+                <div class="action-list">Nhân bản</div>
+                <div class="action-list">Xóa</div>
+                <div class="action-list">Ngừng sử dụng</div>
+            </div>
         </div>
         <!-- Content bottom -->
         <div class="content__bottom">
@@ -86,7 +112,12 @@
             </div>
         </div>
 
-        <EmployeePopupAdd :modalStatus="modalStatus" :customer="selectedCustomer" @closeModal="hideModal" @reload="reload" />
+        <EmployeePopupAdd
+            :modalStatus="modalStatus"
+            :customer="selectedCustomer"
+            @closeModal="hideModal"
+            @reload="reload"
+        />
     </div>
     <!-- End content -->
 </template>
@@ -148,6 +179,10 @@
                     .catch((e) => {
                         console.log(e);
                     });
+            },
+
+            test(e) {
+                console.log(e);
             },
         },
         components: {

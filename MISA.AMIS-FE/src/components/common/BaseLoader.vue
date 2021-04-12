@@ -27,14 +27,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0, 0, 0, 0.2);
         z-index: 90;
+        background-color: #fff;
 
         .loading-icon {
-            width: 150px;
-            height: 150px;
-            background-image: url(../../assets/icon/loading-icon-3.gif);
+            width: 50px;
+            height: 50px;
+            background-image: url(../../assets/icon/loading.svg);
             background-size: cover;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
         }
     }
 </style>
