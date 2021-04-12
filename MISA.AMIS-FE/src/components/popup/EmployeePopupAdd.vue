@@ -6,7 +6,18 @@
             <div class="popup__content-header d-center-flex">
                 <div class="header-right d-center-flex">
                     <p class="header-title">Thông tin nhân viên</p>
-                    <div class="type-chose"><input type="checkbox" /> Là khách hàng <input type="checkbox" /> Là nhà cung cấp</div>
+                    <div class="type-choose d-center-flex">
+                        <label for="customer">
+                            <input type="checkbox" id="customer" value="0" v-model="genderValue" />
+                            <span class="square"></span>
+                            <span>Là khách hàng</span>
+                        </label>
+                        <label for="provider">
+                            <input type="checkbox" id="provider" value="1" v-model="genderValue" />
+                            <span class="square"></span>
+                            <span>Là nhà cung cấp</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="header-left d-flex">
@@ -48,9 +59,32 @@
                                     <div class="input-label">Ngày sinh</div>
                                     <input type="date" name="" tabindex="1" />
                                 </div>
-                                <div class="input-swapper col-6">
+                                <div class="input-swapper col-6 gender-swapper">
                                     <div class="input-label">Giới tính</div>
-                                    <input type="text" name="" tabindex="1" />
+                                    <div class="d-center-flex gender">
+                                        <label for="female">
+                                            <input
+                                                type="radio"
+                                                name="gender"
+                                                id="female"
+                                                value="0"
+                                                v-model="genderValue"
+                                            />
+                                            <span class="circle"></span>
+                                            <span class="input-lable">Nam</span>
+                                        </label>
+                                        <label for="male">
+                                            <input
+                                                type="radio"
+                                                name="gender"
+                                                id="male"
+                                                value="1"
+                                                v-model="genderValue"
+                                            />
+                                            <span class="circle"></span>
+                                            <span class="input-lable">Nữ</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-center-flex grid-col">
@@ -140,6 +174,8 @@
                 formMode: 'add',
                 // Ẩn hiện thanh loading
                 isShow: false,
+
+                genderValue: [],
             };
         },
 

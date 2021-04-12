@@ -46,23 +46,6 @@
 <script>
     export default {
         name: 'Header',
-
-        data() {
-            return {
-                selectLists: [
-                    { key: 1, value: 'GC Corporation' },
-                    { key: 2, value: 'Nhà hàng biển đông' },
-                ],
-
-                comboboxBorder: 'no-border',
-            };
-        },
-
-        methods: {
-            testRef: function() {
-                console.log(this.$refs.baseBox.inputValue);
-            },
-        },
     };
 </script>
 

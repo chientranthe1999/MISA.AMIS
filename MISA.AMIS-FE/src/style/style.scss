@@ -51,7 +51,6 @@ thead th:last-child {
 //     cursor: pointer;
 //     background-color: #e5e5e5;
 // }
-
 // .fixed-header th {
 //     height: 42px;
 //     position: sticky;
@@ -63,14 +62,18 @@ thead th:last-child {
 /*-------- Font Import --------*/
 
 @font-face {
-    font-family: notosans-bold;
-    src: url('./assets/font/notosans-bold.3ede5aff.woff2');
+    font-family: 'Open Sans local';
+    src: url('./assets/font/notosans-regular.2cb88a13.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: notosans;
-    src: url('./assets/font/notosans-regular.2cb88a13.woff2');
+    font-family: 'Open Sans local';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url('./assets/font/notosans-bold.3ede5aff.woff2') format('woff2');
 }
+
 
 /*-------- CSS for page layout --------*/
 
@@ -78,6 +81,7 @@ thead th:last-child {
     float: left;
     width: calc(100% - 180px);
 }
+
 
 /*-------- CSS text-align --------*/
 
@@ -88,6 +92,7 @@ thead th:last-child {
 .text-align-center {
     text-align: center;
 }
+
 
 /*-------- display CSS --------*/
 
@@ -111,6 +116,7 @@ thead th:last-child {
 .flex-2 {
     flex: 2;
 }
+
 
 /*-------- Input CSS --------*/
 
@@ -139,12 +145,10 @@ thead th:last-child {
     overflow: hidden;
     display: flex;
     align-items: center;
-
     input::placeholder {
         font-style: italic;
         font-size: 12px;
     }
-
     input {
         height: 100%;
         padding: 6px 10px;
