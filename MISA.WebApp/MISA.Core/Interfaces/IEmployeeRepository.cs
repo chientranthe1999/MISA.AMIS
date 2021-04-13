@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces
 {
-    public interface ICustomerRepository : IBaseRepository<Customer>
+    public interface IEmployeeRepository : IBaseRepository<Employee>
     {
         /// <summary>
-        /// Hàm tìm khách hàng theo mã khách hàng
+        /// Hàm tìm nhân viên theo mã nhân viên
         /// </summary>
-        /// <param name="customerCode">Mã khách hàng</param>
+        /// <param name="employeeCode">Mã khách hàng</param>
         /// <returns>
         /// - Đối tượng nếu tìm thấy
         /// </returns>
         /// CreatedBy: Chiến Nobi (05/04/2021)
-        public bool GetByCustomerCode(string customerCode);
+        public bool GetByEmployeeCode(string employeeCode);
     }
 }

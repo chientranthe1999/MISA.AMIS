@@ -1,20 +1,20 @@
 @use '../base/baseColor.scss' as color;
 .employee-popup {
     display: none;
+    visibility: none;
     position: fixed;
     top: 0;
     right: 0;
+    left: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100vh;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
     /*-------- Popup CSS Main--------*/
     .popup__content {
         background-color: #fff;
         border-radius: 5px;
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         overflow: hidden;
         width: 900px;
         height: 625px;
@@ -49,11 +49,11 @@
                         display: flex;
                         align-items: center;
                     }
-                    input[type='checkbox']:checked+.square {
-                        border-color: #2ca01c
+                    input[type='checkbox']:checked + .square {
+                        border-color: #2ca01c;
                     }
-                    input[type='checkbox']:checked+.square:after {
-                        content: "";
+                    input[type='checkbox']:checked + .square:after {
+                        content: '';
                         width: 18px;
                         height: 18px;
                         position: absolute;
@@ -68,7 +68,7 @@
                 height: 100%;
                 padding: 12px;
                 justify-content: space-between;
-                >div {
+                > div {
                     cursor: pointer;
                 }
             }
@@ -91,6 +91,10 @@
             input[type='text']:focus {
                 border-color: color.$main;
             }
+
+            input[type='date'] {
+                padding-right: 0;
+            }
             .input-swapper {
                 padding-bottom: 12px;
                 font-size: 12px;
@@ -99,7 +103,7 @@
                     font-weight: 700;
                     padding-bottom: 4px;
                     white-space: nowrap;
-                    >span {
+                    > span {
                         color: red;
                         font-size: 12px;
                     }
@@ -144,10 +148,10 @@
                         position: relative;
                         margin-right: 10px;
                     }
-                    input:checked+.circle {
+                    input:checked + .circle {
                         border-color: #2ca01c;
                     }
-                    input:checked+.circle::after {
+                    input:checked + .circle::after {
                         content: '';
                         display: inline-block;
                         width: 10px;
@@ -164,7 +168,7 @@
             // Input bottom
             .bottom {
                 .c-grid-col {
-                    >div {
+                    > div {
                         padding-right: 6px;
                     }
                 }
@@ -261,10 +265,10 @@
         border-radius: 50%;
         position: relative;
     }
-    input:checked+.circle {
+    input:checked + .circle {
         border-color: #019160;
     }
-    input:checked+.circle::after {
+    input:checked + .circle::after {
         content: '';
         display: inline-block;
         width: 12px;
@@ -308,7 +312,9 @@
         position: relative;
     }
 }
-
+.active {
+    display: flex;
+}
 // grid for displaying input in two colume
 .c-grid-col {
     display: flex;
@@ -320,5 +326,19 @@
     }
     .v-col-1-4 {
         width: 25%;
+    }
+}
+
+.cs-calender {
+    &-input {
+        position: relative;
+    }
+
+    .calender-icon {
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        background-color: #fff;
+        cursor: pointer;
     }
 }

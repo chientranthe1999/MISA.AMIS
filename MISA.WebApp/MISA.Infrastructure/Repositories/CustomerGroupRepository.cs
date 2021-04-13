@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MISA.Infrastructure.Repositories
 {
-    public class CustomerGroupRepository : BaseRepository<CustomerGroup>, ICustomerGroupRepository 
+    public class CustomerGroupRepository : BaseRepository<EmployeeAccountBank>, IEmployeeAccountBankRepository 
     {
     }
 }

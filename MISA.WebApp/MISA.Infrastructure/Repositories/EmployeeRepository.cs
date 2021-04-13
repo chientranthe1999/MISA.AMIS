@@ -14,13 +14,13 @@ namespace MISA.Infrastructure.Repositories
     /// 
     /// </summary>
     /// CreatedBy: Chiến Nobi (05/04/2021)
-    public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
+    public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
-        public bool GetByCustomerCode(string customerCode)
+        public bool GetByEmployeeCode(string employeeCode)
         {
-            var sqlQuery = $"Select CustomerCode from Customer Where CustomerCode = \"{customerCode}\"";
+            var sqlQuery = $"Select CustomerCode from Employee Where EmployeeCode = \"{employeeCode}\"";
 
-            var res = _dbConnection.Query<Customer>(sqlQuery, commandType: CommandType.Text).FirstOrDefault();
+            var res = _dbConnection.Query<Employee>(sqlQuery, commandType: CommandType.Text).FirstOrDefault();
 
             if (res != null) return true;
 

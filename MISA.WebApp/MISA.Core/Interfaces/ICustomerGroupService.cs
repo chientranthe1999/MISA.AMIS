@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces
 {
-    public interface ICustomerGroupService : IBaseService<CustomerGroup>
+    public interface ICustomerGroupService : IBaseService<EmployeeAccountBank>
     {
     }
 }

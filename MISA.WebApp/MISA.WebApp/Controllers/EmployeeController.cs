@@ -15,24 +15,24 @@ namespace MISA.WebApp.Controllers
     /// CreatedBy: Chiến Nobi (05/04/2021)
     /// </summary>
 
-    public class CustomerController : BaseEntityController<Customer>
+    public class EmployeeController : BaseEntityController<Employee>
     {
         #region Declare
-        ICustomerService _customerService;
+        IEmployeeService _employeeService;
         #endregion
 
         #region Constructor
-        public CustomerController(ICustomerService customerService) : base(customerService)
+        public EmployeeController(IEmployeeService employeeService) : base(employeeService)
         {
-            _customerService = customerService;
+            _employeeService = employeeService;
         }
         #endregion
 
         #region Method
         [HttpGet("by")]
-        public IActionResult GetCustomerByCode([FromQuery] string code)
+        public IActionResult GetByEmployeeCode([FromQuery] string code)
         {
-            var res = _customerService.getCustomerByCode(code);
+            var res = _employeeService.GetByEmployeeCode(code);
             return Ok(res);
         }
         #endregion

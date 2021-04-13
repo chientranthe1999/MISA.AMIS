@@ -51,7 +51,8 @@ $hdark: #e5e5e5;
         // Hành động xóa, nhân bản, ngừng sử dụng
         .user-action {
             justify-content: center;
-            >p {
+            position: relative;
+            > p {
                 color: color.$blue;
                 font-weight: 700;
                 cursor: pointer;
@@ -69,6 +70,71 @@ $hdark: #e5e5e5;
         .main-table {
             height: calc(100vh - 218px);
             overflow: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        thead {
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 12px;
+            background-color: #eceef1;
+        }
+
+        td {
+            border-bottom: 1px solid color.$t-bd-color;
+            border-right: 1px dotted color.$t-bd-color;
+            padding: 5px 10px;
+            height: 47px;
+        }
+
+        tr td:last-child {
+            border-right: none;
+        }
+
+        thead th {
+            border-bottom: 1px solid color.$t-bd-color;
+            border-right: 1px solid color.$t-bd-color;
+            padding: 5px 10px;
+            height: 45px;
+            background-color: #eceef1;
+        }
+
+        thead th:last-child {
+            border-right: none;
+        }
+
+        tr:hover {
+            cursor: pointer;
+            background-color: #e5e5e5;
+        }
+
+        .fixed-header th {
+            // height: 42px;
+            position: sticky;
+            position: -webkit-sticky;
+            top: -1px;
+            border-bottom: 1px solid color.$t-bd-color;
+            border-right: 1px solid color.$t-bd-color;
+            padding: 5px 10px;
+            z-index: 1;
+        }
+
+        tr:last-child {
+            position: sticky;
+            position: -webkit-sticky;
+            right: 0;
         }
     }
     /*------------------ Content bottom ------------------*/
@@ -125,12 +191,18 @@ $hdark: #e5e5e5;
 }
 
 // CSS cho thêm menu xóa người dùng
+
+.last-col {
+    overflow: visible !important;
+}
 .data-more-action {
     position: absolute;
     top: 0;
+    right: 0;
     border: 1px solid color.$base-bd-color;
     background-color: #fff;
     border-radius: 2px;
+    z-index: 2;
     .action-list {
         height: 30px;
         padding: 5px 10px;

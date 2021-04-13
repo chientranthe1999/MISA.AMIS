@@ -1,4 +1,4 @@
-import { customerApi } from '../api/customerApi';
+import { employeeApi } from '../api/employeeApi';
 
 const Validator = {
     /**
@@ -28,8 +28,8 @@ const Validator = {
      * @returns
      */
 
-    validateCustomerCode: async(customerCode) => {
-        var res = await customerApi.checkExistCustomerCode(customerCode);
+    validateCustomerCode: async (customerCode) => {
+        var res = await employeeApi.checkExistCustomerCode(customerCode);
         if (res.data) return false;
         else return true;
     },

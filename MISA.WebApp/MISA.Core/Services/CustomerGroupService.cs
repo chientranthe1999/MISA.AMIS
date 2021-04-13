@@ -8,13 +8,13 @@ namespace MISA.Core.Services
     /// Service xử lý các nghiệp vụ liên quan tới CustomerGroup
     /// </summary>
     /// CreatedBy: Chiến Nobi (07/04/2021)
-    public class CustomerGroupService : BaseService<CustomerGroup>, ICustomerGroupService
+    public class CustomerGroupService : BaseService<EmployeeAccountBank>, ICustomerGroupService
     {
         #region Declare
-        ICustomerGroupRepository _customerGroupRepository;
+        IEmployeeAccountBankRepository _customerGroupRepository;
         #endregion
 
-        public CustomerGroupService(ICustomerGroupRepository customerGroupRepository) : base(customerGroupRepository)
+        public CustomerGroupService(IEmployeeAccountBankRepository customerGroupRepository) : base(customerGroupRepository)
         {
             _customerGroupRepository = customerGroupRepository;
         }

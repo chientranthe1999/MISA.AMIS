@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import { customerApi } from '@/api/customerApi';
+    import { employeeApi } from '@/api/employeeApi';
 
     export default {
         name: 'Employee',
@@ -21,15 +21,17 @@
                 isLoading: true,
 
                 rowTitle: [
-                    { titleCode: 'CustomerCode', title: 'Mã khách hàng' },
-                    { titleCode: 'FullName', title: 'Họ tên' },
-                    { titleCode: 'Gender', title: 'Giới tính' },
-                    { titleCode: 'Email', title: 'Email' },
-                    { titleCode: 'PhoneNumber', title: 'Số điện thoại' },
-                    { titleCode: 'DateOfBirth', title: 'Ngày sinh' },
-                    { titleCode: 'Address', title: 'Địa chỉ' },
-                    { titleCode: 'Status', title: 'Trạng thái' },
+                    { titleCode: 'EmployeeCode', title: 'Mã nhân viên' },
+                    { titleCode: 'EmployeeName', title: 'Tên nhân viên' },
+                    { titleCode: 'EmployeePosition', title: 'Chức danh' },
+                    { titleCode: 'EmployeeDepartment', title: 'Tên đơn vị' },
+                    { titleCode: 'EmployeeAccountNumber', title: 'Số tài khoản' },
+                    { titleCode: 'BankName', title: 'Tên ngân hàng' },
+                    { titleCode: 'StateAccount', title: 'Trạng thái' },
+                    { titleCode: 'Function', title: 'Chức năng' },
                 ],
+
+                picker: '',
             };
         },
 
@@ -54,7 +56,7 @@
              * Lấy dữ liệu từ api
              */
             getData() {
-                customerApi
+                employeeApi
                     .getCustomers()
                     .then((res) => {
                         this.employeeList = res.data;

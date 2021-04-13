@@ -5,64 +5,6 @@
 
 /*-------- Table format --------*/
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th,
-td {
-    text-align: left;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-thead {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    background-color: #eceef1;
-}
-
-td {
-    border-bottom: 1px solid color.$t-bd-color;
-    border-right: 1px dotted color.$t-bd-color;
-    padding: 5px 10px;
-    height: 47px;
-}
-
-tr td:last-child {
-    border-right: none;
-}
-
-thead th {
-    border-bottom: 1px solid color.$t-bd-color;
-    border-right: 1px solid color.$t-bd-color;
-    padding: 5px 10px;
-    height: 45px;
-    background-color: #eceef1;
-}
-
-thead th:last-child {
-    border-right: none;
-}
-
-tr:hover {
-    cursor: pointer;
-    background-color: #e5e5e5;
-}
-
-.fixed-header th {
-    // height: 42px;
-    position: sticky;
-    position: -webkit-sticky;
-    top: -1px;
-    border-bottom: 1px solid color.$t-bd-color;
-    border-right: 1px solid color.$t-bd-color;
-    padding: 5px 10px;
-}
-
 
 /*-------- Font Import --------*/
 
@@ -80,14 +22,12 @@ tr:hover {
     src: local('Open Sans Bold'), local('OpenSans-Bold'), url('./assets/font/notosans-bold.3ede5aff.woff2') format('woff2');
 }
 
-
 /*-------- CSS for page layout --------*/
 
 .right-swapper {
     float: left;
     width: calc(100% - 180px);
 }
-
 
 /*-------- CSS text-align --------*/
 
@@ -98,7 +38,6 @@ tr:hover {
 .text-align-center {
     text-align: center;
 }
-
 
 /*-------- display CSS --------*/
 
@@ -123,7 +62,6 @@ tr:hover {
     flex: 2;
 }
 
-
 /*-------- Input CSS --------*/
 
 .input {
@@ -141,7 +79,6 @@ tr:hover {
 .input.error:focus {
     border-color: #ff4747;
 }
-
 
 /*-------- Search Box CSS --------*/
 

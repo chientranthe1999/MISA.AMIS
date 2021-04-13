@@ -15,7 +15,13 @@
         </div>
         <!-- Content main -->
         <div class="content__main">
-            <BaseLoader :isShow="isLoading" />
+            <!-- Menu -->
+            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }">
+                <div class="action-list">Nhân bản</div>
+                <div class="action-list">Xóa</div>
+                <div class="action-list">Ngừng sử dụng</div>
+            </div>
+            <!-- <BaseLoader :isShow="isLoading" /> -->
             <!-- Search box -->
             <div class="content-search-box d-center-flex search-box">
                 <input type="text" placeholder="Tìm theo mã, tên nhân viên" />
@@ -35,56 +41,25 @@
                     </thead>
 
                     <tbody>
-                        <!-- <tr
-                            v-for="customer in dataBinding"
-                            :key="customer.CustomerId"
-                            @dblclick="trOnClick(customer.CustomerId)"
-                        >
-                            <td>{{ customer.CustomerCode }}</td>
-                            <td>{{ customer.FullName }}</td>
-                            <td>{{ customer.Gender }}</td>
-                            <td>{{ customer.Email }}</td>
-                            <td>{{ customer.PhoneNumber }}</td>
-                            <td>{{ formatDate(customer.DateOfBirth) }}</td>
-                            <td style="max-width: 250px;">{{ customer.Address }}</td>
-                            <td class="">
+                        <tr v-for="employee in dataBinding" :key="employee.EmployeeId" @dblclick="trOnClick(employee.EmployeeId)">
+                            <td>{{ employee.EmployeeCode }}</td>
+                            <td>{{ employee.EmployeeName }}</td>
+                            <td>{{ employee.EmployeePosition }}</td>
+                            <td>{{ employee.EmployeeDepartment }}</td>
+                            <td>{{ employee.EmployeeAccountNumber }}</td>
+                            <td>{{ employee.BankName }}</td>
+                            <td>{{ employee.StateAccount }}</td>
+                            <td class="last-col">
                                 <div class="d-center-flex user-action">
                                     <p>Sửa</p>
-                                    <div class="icon-swapper">
-                                        <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down" @click="test">
-                                            <div class="data-more-action">
-                                                <div class="action-list">Nhân bản</div>
-                                                <div class="action-list">Xóa</div>
-                                                <div class="action-list">Ngừng sử dụng</div>
-                                            </div>
-                                        </div>
+                                    <div class="icon-swapper" @click="test">
+                                        <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
                             </td>
-                        </tr> -->
-
-                        <td class="">
-                            <div class="d-center-flex user-action">
-                                <p>Sửa</p>
-                                <div class="icon-swapper">
-                                    <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down" @click="test">
-                                        <div class="data-more-action">
-                                            <div class="action-list">Nhân bản</div>
-                                            <div class="action-list">Xóa</div>
-                                            <div class="action-list">Ngừng sử dụng</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
+                        </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <div class="data-more-action">
-                <div class="action-list">Nhân bản</div>
-                <div class="action-list">Xóa</div>
-                <div class="action-list">Ngừng sử dụng</div>
             </div>
         </div>
         <!-- Content bottom -->
@@ -112,12 +87,7 @@
             </div>
         </div>
 
-        <EmployeePopupAdd
-            :modalStatus="modalStatus"
-            :customer="selectedCustomer"
-            @closeModal="hideModal"
-            @reload="reload"
-        />
+        <EmployeePopupAdd :modalStatus="modalStatus" :employee="selectedEmployee" @closeModal="hideModal" />
     </div>
     <!-- End content -->
 </template>
@@ -125,7 +95,7 @@
 <script>
     import { formatDate } from '@/helper/formatTable.js';
     import EmployeePopupAdd from '../popup/EmployeePopupAdd';
-    import { customerApi } from '@/api/customerApi';
+    import { employeeApi } from '@/api/employeeApi';
 
     export default {
         name: 'Content',
@@ -134,7 +104,13 @@
             return {
                 dataList: '',
                 modalStatus: false,
-                selectedCustomer: {},
+                selectedEmployee: {},
+
+                showMenu: false,
+
+                menuTop: 0,
+
+                menuRight: 0,
             };
         },
 
@@ -156,7 +132,7 @@
              */
             hideModal() {
                 this.modalStatus = false;
-                this.selectedCustomer = {};
+                this.selectedEmployee = {};
             },
 
             /**
@@ -169,11 +145,12 @@
             /**
              * Khi click vào tr -> Hiển thị thông tin chi tiết khách hàng
              */
-            trOnClick(customerId) {
-                customerApi
-                    .getCustomerById(customerId)
+            trOnClick(employeeId) {
+                employeeApi
+                    .getEmployeeById(employeeId)
                     .then((res) => {
-                        this.selectedCustomer = res.data;
+                        this.selectedEmployee = res.data;
+                        console.log(this.selectedEmployee);
                         this.showModal();
                     })
                     .catch((e) => {
@@ -182,7 +159,10 @@
             },
 
             test(e) {
-                console.log(e);
+                this.showMenu = !this.showMenu;
+                var menuPosition = e.currentTarget.getBoundingClientRect();
+                this.menuTop = `${menuPosition.top - 114}px`;
+                this.menuRight = `${window.innerWidth - menuPosition.right - 55}px`;
             },
         },
         components: {

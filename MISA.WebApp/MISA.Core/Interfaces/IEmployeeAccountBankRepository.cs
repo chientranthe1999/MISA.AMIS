@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces
 {
-    public interface ICustomerService  : IBaseService<Customer>
+    public interface IEmployeeAccountBankRepository : IBaseRepository<EmployeeAccountBank>
     {
-        public bool getCustomerByCode(string customerCode);
     }
 }

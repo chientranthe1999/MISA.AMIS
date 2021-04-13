@@ -54,11 +54,11 @@ namespace MISA.WebApp
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
 
             services.AddScoped<ICustomerGroupService, CustomerGroupService>();
-            services.AddScoped<ICustomerGroupRepository, CustomerGroupRepository>();
+            services.AddScoped<IEmployeeAccountBankRepository, CustomerGroupRepository>();
 
 
         }
