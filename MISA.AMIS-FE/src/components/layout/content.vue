@@ -21,7 +21,7 @@
                 <div class="action-list">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
             </div>
-            <!-- <BaseLoader :isShow="isLoading" /> -->
+            <BaseLoader :isShow="isLoading" />
             <!-- Search box -->
             <div class="content-search-box d-center-flex search-box">
                 <input type="text" placeholder="Tìm theo mã, tên nhân viên" />
