@@ -1,8 +1,7 @@
 @use '../base/baseColor.scss' as color;
 .employee-popup {
-    display: none;
-    visibility: none;
     position: fixed;
+    display: flex;
     top: 0;
     right: 0;
     left: 0;
@@ -18,6 +17,7 @@
         overflow: hidden;
         width: 900px;
         height: 625px;
+        /*-------- Header--------*/
         &-header {
             height: 76px;
             .header-right {
@@ -49,10 +49,10 @@
                         display: flex;
                         align-items: center;
                     }
-                    input[type='checkbox']:checked + .square {
+                    input[type='checkbox']:checked+.square {
                         border-color: #2ca01c;
                     }
-                    input[type='checkbox']:checked + .square:after {
+                    input[type='checkbox']:checked+.square:after {
                         content: '';
                         width: 18px;
                         height: 18px;
@@ -68,7 +68,7 @@
                 height: 100%;
                 padding: 12px;
                 justify-content: space-between;
-                > div {
+                >div {
                     cursor: pointer;
                 }
             }
@@ -91,7 +91,6 @@
             input[type='text']:focus {
                 border-color: color.$main;
             }
-
             input[type='date'] {
                 padding-right: 0;
             }
@@ -103,12 +102,13 @@
                     font-weight: 700;
                     padding-bottom: 4px;
                     white-space: nowrap;
-                    > span {
+                    >span {
                         color: red;
                         font-size: 12px;
                     }
                 }
             }
+            // Input Top
             .top {
                 .input-section-left {
                     padding-right: 26px;
@@ -148,10 +148,10 @@
                         position: relative;
                         margin-right: 10px;
                     }
-                    input:checked + .circle {
+                    input:checked+.circle {
                         border-color: #2ca01c;
                     }
-                    input:checked + .circle::after {
+                    input:checked+.circle::after {
                         content: '';
                         display: inline-block;
                         width: 10px;
@@ -168,7 +168,7 @@
             // Input bottom
             .bottom {
                 .c-grid-col {
-                    > div {
+                    >div {
                         padding-right: 6px;
                     }
                 }
@@ -211,10 +211,12 @@
                 }
             }
         }
+        // Thanh ngăn
         .divider {
             border-top: 1px solid color.$base-bd-color;
             margin: 30px 0 20px 0;
         }
+        // Nút ấn dưới cùng
         &-btn {
             .btn {
                 padding: 8px 20px;
@@ -250,9 +252,6 @@
         border-radius: 5px;
         padding-left: 20px;
     }
-    .employee-popup.active {
-        display: block;
-    }
     label {
         display: flex;
         align-items: center;
@@ -265,10 +264,10 @@
         border-radius: 50%;
         position: relative;
     }
-    input:checked + .circle {
+    input:checked+.circle {
         border-color: #019160;
     }
-    input:checked + .circle::after {
+    input:checked+.circle::after {
         content: '';
         display: inline-block;
         width: 12px;
@@ -280,41 +279,15 @@
         top: 50%;
         transform: translate(50%, -50%);
     }
-    // Khi có lỗi ô input
-    .value-error {
-        border-color: #f65454;
-    }
-    .data-append {
-        position: absolute;
-        height: 40px;
-        width: 100%;
-        z-index: 1;
-        top: 105%;
-        border-radius: 4px;
-        font-size: 12px;
-        color: white;
-        padding-left: 15px;
-        line-height: 40px;
-        background-color: #f65454;
-        color: white;
-    }
-    .data-append::before {
-        content: '';
-        width: 0;
-        height: 0;
-        border: 8px solid transparent;
-        border-bottom: 8px solid #f65454;
-        display: block;
-        position: absolute;
-        top: -15px;
-    }
     .input-swaper {
         position: relative;
     }
 }
+
 .active {
     display: flex;
 }
+
 // grid for displaying input in two colume
 .c-grid-col {
     display: flex;
@@ -329,11 +302,11 @@
     }
 }
 
+// Customer Calender
 .cs-calender {
     &-input {
         position: relative;
     }
-
     .calender-icon {
         position: absolute;
         top: 1px;

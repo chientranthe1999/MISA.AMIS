@@ -1,10 +1,10 @@
 <template>
-    <div class="employee-popup" id="employee-popup" :class="{ active: modalStatus }">
+    <div class="employee-popup" id="employee-popup" v-if="modalStatus">
         <BaseLoader :isShow="showLoading" />
         <div class="popup__content">
             <!-- Popup header -->
             <div class="popup__content-header d-center-flex">
-                <div class="header-right d-center-flex">
+                <div class="header-right d-flex">
                     <p class="header-title">Thông tin nhân viên</p>
                     <div class="type-choose d-center-flex">
                         <!-- Checkbox -->
@@ -60,23 +60,41 @@
                                     <div class="input-label">Ngày sinh</div>
                                     <div class="cs-calender-input" v-click-outside="closeBirthdayCalender">
                                         <input type="date" name="" tabindex="1" v-model="birthDayPicker" />
-                                        <div class="calender-icon" @click="showDateOfBirthCalender = !showDateOfBirthCalender">
+                                        <div
+                                            class="calender-icon"
+                                            @click="showDateOfBirthCalender = !showDateOfBirthCalender"
+                                        >
                                             <div class="svg-icon svg-calender"></div>
                                         </div>
 
-                                        <BaseDatePicker :dateTime.sync="birthDayPicker" :isShow.sync="showDateOfBirthCalender" />
+                                        <BaseDatePicker
+                                            :dateTime.sync="birthDayPicker"
+                                            :isShow.sync="showDateOfBirthCalender"
+                                        />
                                     </div>
                                 </div>
                                 <div class="input-swapper v-col-6 gender-swapper">
                                     <div class="input-label">Giới tính</div>
                                     <div class="d-center-flex gender">
                                         <label for="female">
-                                            <input type="radio" name="gender" id="female" value="0" v-model="employee.Gender" />
+                                            <input
+                                                type="radio"
+                                                name="gender"
+                                                id="female"
+                                                value="0"
+                                                v-model="employee.Gender"
+                                            />
                                             <span class="circle"></span>
                                             <span class="input-lable">Nam</span>
                                         </label>
                                         <label for="male">
-                                            <input type="radio" name="gender" id="male" value="1" v-model="employee.Gender" />
+                                            <input
+                                                type="radio"
+                                                name="gender"
+                                                id="male"
+                                                value="1"
+                                                v-model="employee.Gender"
+                                            />
                                             <span class="circle"></span>
                                             <span class="input-lable">Nữ</span>
                                         </label>
@@ -92,11 +110,17 @@
                                     <div class="input-label">Ngày cấp</div>
                                     <div class="cs-calender-input">
                                         <input type="date" name="" tabindex="1" v-model="indentityDatePicker" />
-                                        <div class="calender-icon" @click="showIndentityDateCalender = !showIndentityDateCalender">
+                                        <div
+                                            class="calender-icon"
+                                            @click="showIndentityDateCalender = !showIndentityDateCalender"
+                                        >
                                             <div class="svg-icon svg-calender"></div>
                                         </div>
 
-                                        <BaseDatePicker :dateTime.sync="indentityDatePicker" :isShow.sync="showIndentityDateCalender" />
+                                        <BaseDatePicker
+                                            :dateTime.sync="indentityDatePicker"
+                                            :isShow.sync="showIndentityDateCalender"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -159,6 +183,7 @@
     import BaseDatePicker from '@/components/common/BaseDatePicker';
     import axios from 'axios';
     import { Validator } from '@/helper/validate';
+    import { DataFormater } from '@/helper/formatData';
 
     export default {
         name: 'EmployeePopupAdd',
@@ -179,7 +204,7 @@
 
                 genderValue: [],
                 // Giá trị của ngày sinh
-                birthDayPicker: '',
+                birthDayPicker: DataFormater.inputDateFormat('11/19/2008 00:00:00'),
                 // Giá trị của ngày cấp chứng minh thư nhân dân
                 indentityDatePicker: '',
                 // Show Birthday Calender
@@ -270,12 +295,6 @@
                     parentNode.appendChild(errorNode);
                 }
             },
-
-            /**
-             * Validate số điện thoại
-             * Có 10 hoặc 11 số
-             * Không được có chữ
-             */
 
             // helper _methods
             /**

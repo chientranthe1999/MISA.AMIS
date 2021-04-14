@@ -16,7 +16,12 @@
         <!-- Content main -->
         <div class="content__main">
             <!-- Menu -->
-            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }">
+            <div
+                class="data-more-action"
+                v-if="showMenu"
+                :style="{ top: menuTop, right: menuRight }"
+                v-click-outside="closeMenu"
+            >
                 <div class="action-list">Nhân bản</div>
                 <div class="action-list">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
@@ -41,18 +46,18 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="employee in dataBinding" :key="employee.EmployeeId" @dblclick="trOnClick(employee.EmployeeId)">
-                            <td>{{ employee.EmployeeCode }}</td>
-                            <td>{{ employee.EmployeeName }}</td>
-                            <td>{{ employee.EmployeePosition }}</td>
-                            <td>{{ employee.EmployeeDepartment }}</td>
-                            <td>{{ employee.EmployeeAccountNumber }}</td>
-                            <td>{{ employee.BankName }}</td>
-                            <td>{{ employee.StateAccount }}</td>
-                            <td class="last-col">
+                        <tr v-for="(employee, i) in dataBinding" :key="i" @dblclick="trOnClick(employee.EmployeeId)">
+                            <td style="width: 150px; min-width: 150px">{{ employee.EmployeeCode }}</td>
+                            <td style="width: 250px; min-width: 250px">{{ employee.EmployeeName }}</td>
+                            <td style="width: 150px; min-width: 150px">{{ employee.EmployeePosition }}</td>
+                            <td style="width: 250px; min-width: 250px">{{ employee.EmployeeDepartment }}</td>
+                            <td style="width: 150px; min-width: 150px">{{ employee.EmployeeAccountNumber }}</td>
+                            <td style="width: 250px; min-width: 250px">{{ employee.BankName }}</td>
+                            <td style="width: 180px; min-width: 180px">{{ employee.StateAccount }}</td>
+                            <td class="last-col" style="width: 100px; min-width: 100px">
                                 <div class="d-center-flex user-action">
-                                    <p>Sửa</p>
-                                    <div class="icon-swapper" @click="test">
+                                    <p @click="trOnClick(employee.EmployeeId)">Sửa</p>
+                                    <div class="icon-swapper" @click="showFunctionMenu">
                                         <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
@@ -93,7 +98,6 @@
 </template>
 
 <script>
-    import { formatDate } from '@/helper/formatTable.js';
     import EmployeePopupAdd from '../popup/EmployeePopupAdd';
     import { employeeApi } from '@/api/employeeApi';
 
@@ -103,7 +107,9 @@
         data() {
             return {
                 dataList: '',
+
                 modalStatus: false,
+
                 selectedEmployee: {},
 
                 showMenu: false,
@@ -111,6 +117,11 @@
                 menuTop: 0,
 
                 menuRight: 0,
+
+                // Số lượng bản ghi trên 1 trang
+                pageSize: 20,
+                // offset của bản ghi
+                offsetActive: 1,
             };
         },
 
@@ -122,11 +133,6 @@
         },
 
         methods: {
-            /**
-             * Các hàm helper
-             */
-            formatDate,
-
             /**
              * Ẩn modal thêm khách hàng
              */
@@ -158,11 +164,16 @@
                     });
             },
 
-            test(e) {
+            showFunctionMenu(e) {
                 this.showMenu = !this.showMenu;
                 var menuPosition = e.currentTarget.getBoundingClientRect();
                 this.menuTop = `${menuPosition.top - 114}px`;
                 this.menuRight = `${window.innerWidth - menuPosition.right - 55}px`;
+                console.log(e.target);
+            },
+
+            closeMenu() {
+                this.showMenu = false;
             },
         },
         components: {

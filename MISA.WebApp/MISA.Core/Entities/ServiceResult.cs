@@ -13,12 +13,12 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Thông báo cho dev
         /// </summary>
-        public string devMsg { get; set; } = "";
+        public string DevMsg { get; set; } = "";
 
         /// <summary>
         /// Thông báo cho người dùng
         /// </summary>
-        public string userMsg { get; set; } = "";
+        public string UserMsg { get; set; } = "";
 
         /// <summary>
         /// Mã lỗi
@@ -28,8 +28,12 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Dữ liệu trả về nếu có
         /// </summary>
-        public object Data { get; set; }
+        public object Data { get; set; } = new { };
 
+        /// <summary>
+        /// Log lỗi trên hệ thống
+        /// </summary>
+        public string TraceId { get; set; } = "";
         #endregion
     }
 }

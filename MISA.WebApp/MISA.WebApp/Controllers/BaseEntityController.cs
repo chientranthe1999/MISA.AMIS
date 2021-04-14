@@ -41,7 +41,7 @@ namespace MISA.WebApp.Controllers
         public IEnumerable<T> Get()
         {
             return _baseService.Get();
-        } 
+        }
 
         [HttpGet("{id}")]
         public T Get(Guid id)

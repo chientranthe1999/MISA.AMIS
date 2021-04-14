@@ -2,7 +2,7 @@
     <div class="cs-date-picker" v-if="isShow">
         <v-app>
             <v-row>
-                <v-date-picker v-model="datePickerValue" elevation="15"></v-date-picker>
+                <v-date-picker v-model="datePickerValue" elevation="15" no-title color="#2ca01c"></v-date-picker>
             </v-row>
         </v-app>
     </div>

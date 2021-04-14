@@ -3,7 +3,12 @@
         <Sidebar />
         <div class="right-swapper">
             <Header />
-            <Content :dataBinding="this.employeeList" :isLoading="this.isLoading" :rowTitle="this.rowTitle" :reload="this.reload" />
+            <Content
+                :dataBinding="this.employeeList"
+                :isLoading="this.isLoading"
+                :rowTitle="this.rowTitle"
+                :reload="this.reload"
+            />
         </div>
         <!-- <BaseSuccessMessage /> -->
     </div>
@@ -19,6 +24,12 @@
                 employeeList: [],
 
                 isLoading: true,
+
+                limmit: 20,
+
+                offset: 0,
+
+                pageNumber: 1,
 
                 rowTitle: [
                     { titleCode: 'EmployeeCode', title: 'Mã nhân viên' },

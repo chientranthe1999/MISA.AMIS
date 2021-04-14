@@ -32,15 +32,15 @@ namespace MISA.Core.Services
 
             if(isValid == true)
             {
-                _serviceResult.devMsg = Resouces.Message.AddSuccess;
-                _serviceResult.userMsg = Resouces.Message.AddSuccess;
+                _serviceResult.DevMsg = Resouces.Message.AddSuccess;
+                _serviceResult.UserMsg = Resouces.Message.AddSuccess;
                 _serviceResult.Data = _baseRepository.Add(t);
                 _serviceResult.MisaCode = MISACode.ISVALID;
             }
 
             else
             {
-                _serviceResult.userMsg = Resouces.Message.AddError;
+                _serviceResult.UserMsg = Resouces.Message.AddError;
                 _serviceResult.MisaCode = MISACode.NOTVALID;
             }
             return _serviceResult;
@@ -52,12 +52,12 @@ namespace MISA.Core.Services
             if(result == 0)
             {
                 _serviceResult.MisaCode = MISACode.NOTVALID;
-                _serviceResult.userMsg = Resouces.Message.DeleteError;
+                _serviceResult.UserMsg = Resouces.Message.DeleteError;
             }
             else
             {
-                _serviceResult.devMsg = Resouces.Message.DeleteSuccess;
-                _serviceResult.userMsg = Resouces.Message.DeleteSuccess;
+                _serviceResult.DevMsg = Resouces.Message.DeleteSuccess;
+                _serviceResult.UserMsg = Resouces.Message.DeleteSuccess;
                 _serviceResult.MisaCode = MISACode.SUCCESS;
                 _serviceResult.Data = result;
             }
@@ -65,7 +65,7 @@ namespace MISA.Core.Services
             return _serviceResult;
         }
 
-        public IEnumerable<T> Get()
+        public virtual IEnumerable<T> Get()
         {
             return _baseRepository.Get();
         }
@@ -105,8 +105,6 @@ namespace MISA.Core.Services
                 }
             }
 
-
-
             return isValid;
         }
 
@@ -119,6 +117,7 @@ namespace MISA.Core.Services
         {
             return true;
         }
+
         #endregion
     }
 }

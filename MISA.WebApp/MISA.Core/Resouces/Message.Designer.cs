@@ -124,6 +124,15 @@ namespace MISA.Core.Resouces {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Có lỗi xảy ra, vui lòng liên hệ MISA!!!.
+        /// </summary>
+        public static string ExceptionError {
+            get {
+                return ResourceManager.GetString("ExceptionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cập nhật dữ liệu thất bại.
         /// </summary>
         public static string UpdateError {

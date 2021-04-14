@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MISA.Core.Interfaces;
 using MISA.Core.Services;
+using MISA.CukCuk.Web.Middlewares;
 using MISA.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -72,6 +73,8 @@ namespace MISA.WebApp
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MISA.WebApp v1"));
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 

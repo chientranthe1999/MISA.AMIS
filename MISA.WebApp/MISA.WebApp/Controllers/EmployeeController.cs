@@ -35,6 +35,14 @@ namespace MISA.WebApp.Controllers
             var res = _employeeService.GetByEmployeeCode(code);
             return Ok(res);
         }
+
+        [HttpGet("page")]
+        public IEnumerable<Employee> Get([FromQuery] int offset, [FromQuery] int limmit)
+        {
+            var paging = new { offset = offset, limmit = limmit };
+            return  _employeeService.Get(paging);
+           
+        }
         #endregion
 
     }

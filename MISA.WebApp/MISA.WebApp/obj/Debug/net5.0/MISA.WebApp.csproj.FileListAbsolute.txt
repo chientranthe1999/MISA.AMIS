@@ -92,3 +92,4 @@ C:\Code\MISA.AMIS\MISA.WebApp\MISA.WebApp\obj\Debug\net5.0\MISA.WebApp.dll
 C:\Code\MISA.AMIS\MISA.WebApp\MISA.WebApp\obj\Debug\net5.0\ref\MISA.WebApp.dll
 C:\Code\MISA.AMIS\MISA.WebApp\MISA.WebApp\obj\Debug\net5.0\MISA.WebApp.pdb
 C:\Code\MISA.AMIS\MISA.WebApp\MISA.WebApp\obj\Debug\net5.0\MISA.WebApp.genruntimeconfig.cache
+C:\Code\MISA.AMIS\MISA.WebApp\MISA.WebApp\bin\Debug\net5.0\Newtonsoft.Json.dll

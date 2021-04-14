@@ -26,5 +26,11 @@ namespace MISA.Infrastructure.Repositories
 
             else return false;
         }
+
+        public IEnumerable<Employee> Get(Object paging)
+        {
+            var res = _dbConnection.Query<Employee>($"Proc_Get{_tableName}", paging, commandType: CommandType.StoredProcedure); ;
+            return res;
+        }
     }
 }

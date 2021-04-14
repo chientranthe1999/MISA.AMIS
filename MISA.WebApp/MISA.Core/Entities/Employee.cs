@@ -44,7 +44,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Phòng ban của nhân viên
         /// </summary>
-        public string EmployeeDepartment { get; set; }
+        public string EmployeeDepartmentId { get; set; }
 
         /// <summary>
         /// Mã số CMTND
@@ -89,9 +89,20 @@ namespace MISA.Core.Entities
         public string TeleNumber { get; set; }
         #endregion
 
+        /// <summary>
+        /// Tên của nhóm khách hàng
+        /// </summary>
         public string EmployeeAccountNumber { get; set; }
 
+        /// <summary>
+        /// Tên ngân hàng
+        /// </summary>
         public string BankName { get; set; }
+
+        /// <summary>
+        /// Trạng thái tài khoản: 0-Ngưng sử dụng, 1-Đang sử dụng
+        /// </summary>
+        public string StateAccount { get; set; }
     }
 }
 

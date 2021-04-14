@@ -33,9 +33,9 @@ namespace MISA.Infrastructure.Repositories
         #endregion
 
         #region Method
-        public IEnumerable<T> Get()
+        public virtual IEnumerable<T> Get()
         {
-            var res = _dbConnection.Query<T>($"Proc_Get{_tableName}", new { offset = 1, limmit = 10 }, commandType: CommandType.StoredProcedure);  ;
+            var res = _dbConnection.Query<T>($"Proc_Get{_tableName}s", commandType: CommandType.StoredProcedure);  ;
             return res;
         }
 

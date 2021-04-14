@@ -138,6 +138,9 @@
   <data name="EmptyCustomerGroupId" xml:space="preserve">
     <value>Nhóm khách hàng không được để trống</value>
   </data>
+  <data name="ExceptionError" xml:space="preserve">
+    <value>Có lỗi xảy ra, vui lòng liên hệ MISA!!!</value>
+  </data>
   <data name="UpdateError" xml:space="preserve">
     <value>Cập nhật dữ liệu thất bại</value>
   </data>

@@ -30,12 +30,12 @@ namespace MISA.Core.Services
             var isDuplicate = _employeeRepository.GetByEmployeeCode(t.EmployeeCode);
        
 
-            _serviceResult.devMsg = String.Empty;
+            _serviceResult.DevMsg = String.Empty;
 
             // Check CustomerCode không được trống
             if (String.IsNullOrEmpty(t.EmployeeCode))
             {
-                _serviceResult.devMsg += Resouces.Message.EmptyCustomerCode;
+                _serviceResult.DevMsg += Resouces.Message.EmptyCustomerCode;
                 isValid = false;
             }
 
@@ -49,7 +49,7 @@ namespace MISA.Core.Services
             // Check trùng mã
             if (isDuplicate)
             {
-                _serviceResult.devMsg += ", " + Resouces.Message.DuplicateCustomerCode;
+                _serviceResult.DevMsg += ", " + Resouces.Message.DuplicateCustomerCode;
                 isValid = false;
             }
             return isValid;
@@ -60,6 +60,12 @@ namespace MISA.Core.Services
             var res = _employeeRepository.GetByEmployeeCode(customerCode);
             return res;
         }
+
+        public IEnumerable<Employee> Get(object paging)
+        {
+            return _employeeRepository.Get(paging);
+        }
+
 
         #endregion
     }
