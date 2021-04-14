@@ -18,7 +18,7 @@ namespace MISA.Infrastructure.Repositories
     {
         public bool GetByEmployeeCode(string employeeCode)
         {
-            var sqlQuery = $"Select CustomerCode from Employee Where EmployeeCode = \"{employeeCode}\"";
+            var sqlQuery = $"Select EmployeeCode from Employee Where EmployeeCode = \"{employeeCode}\"";
 
             var res = _dbConnection.Query<Employee>(sqlQuery, commandType: CommandType.Text).FirstOrDefault();
 
@@ -29,7 +29,7 @@ namespace MISA.Infrastructure.Repositories
 
         public IEnumerable<Employee> Get(Object paging)
         {
-            var res = _dbConnection.Query<Employee>($"Proc_Get{_tableName}", paging, commandType: CommandType.StoredProcedure); ;
+            var res = _dbConnection.Query<Employee>($"Proc_Get{_tableName}", paging, commandType: CommandType.StoredProcedure);
             return res;
         }
     }

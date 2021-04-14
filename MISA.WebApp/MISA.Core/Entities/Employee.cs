@@ -42,9 +42,14 @@ namespace MISA.Core.Entities
         public int? Gender { get; set; }
 
         /// <summary>
-        /// Phòng ban của nhân viên
+        /// Mã Phòng ban của nhân viên
         /// </summary>
-        public string EmployeeDepartmentId { get; set; }
+        public Guid DepartmentId { get; set; }
+
+        /// <summary>
+        /// Tên phòng ban của nhân viên
+        /// </summary>
+        public string DepartmentName { get; set; }
 
         /// <summary>
         /// Mã số CMTND
@@ -56,7 +61,7 @@ namespace MISA.Core.Entities
         /// Ngày cấp
         /// </summary>
         [Required]
-        public string IdentityDate { get; set; }
+        public DateTime IdentityDate { get; set; }
 
         /// <summary>
         /// Nơi cấp mã số chứng minh
@@ -76,9 +81,9 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Nơi ở 
         /// </summary>
-        public string EmployeeAdress { get; set; }
+        public string Address { get; set; }
 
-        /// <summary>
+        /// <summary> 
         /// Số điện thoại di động
         /// </summary>
         public string PhoneNumber { get; set; }
@@ -86,13 +91,13 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Số điện thoại cố định
         /// </summary>
-        public string TeleNumber { get; set; }
+        public string TelephoneNumber { get; set; }
         #endregion
 
         /// <summary>
         /// Tên của nhóm khách hàng
         /// </summary>
-        public string EmployeeAccountNumber { get; set; }
+        public string BankAccountNumber { get; set; }
 
         /// <summary>
         /// Tên ngân hàng
@@ -100,9 +105,20 @@ namespace MISA.Core.Entities
         public string BankName { get; set; }
 
         /// <summary>
+        /// Tên chi nhánh 
+        /// </summary>
+        public string BankBranchName { get; set; }
+
+        /// <summary>
         /// Trạng thái tài khoản: 0-Ngưng sử dụng, 1-Đang sử dụng
         /// </summary>
-        public string StateAccount { get; set; }
+        public int? AccountState { get; set; }
+
+        /// <summary>
+        /// Tỉnh thành của ngân hàng
+        /// </summary>
+        public string BankProvinceName { get; set; }
+
     }
 }
 

@@ -19,7 +19,7 @@ namespace MISA.WebApp.Controllers
     [ApiController]
     public class BaseEntityController<T> : ControllerBase
     {
-        #region Declare;
+        #region Declare
         IBaseService<T> _baseService;
         #endregion
 
@@ -43,6 +43,11 @@ namespace MISA.WebApp.Controllers
             return _baseService.Get();
         }
 
+        /// <summary>
+        /// Hàm đối tượng theo ID
+        /// </summary>
+        /// <returns>Đối tượng tìm thấy hoặc null nếu ko tìm thấy</returns>
+        /// CreatedBy: Chiến Nobi (09/04/2021)
         [HttpGet("{id}")]
         public T Get(Guid id)
         {
@@ -70,6 +75,11 @@ namespace MISA.WebApp.Controllers
         //{
         //}
 
+        /// <summary>
+        /// Xóa bản ghi theo ID
+        /// </summary>
+        /// <param name="id">ID của đối tượng cần xóa</param>
+        /// <returns>Mã code 200 nếu xóa thành công hoặc 204 nếu ko tìm thấy ID cần xóa</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

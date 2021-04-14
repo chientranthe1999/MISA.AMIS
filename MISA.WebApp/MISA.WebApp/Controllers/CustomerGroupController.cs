@@ -8,17 +8,17 @@ namespace MISA.WebApp.Controllers
     /// API Danh mục Nhóm khách hàng
     /// </summary>
     /// CretedBy: Chiến Nobi (07/04/2021)
-    public class CustomerGroupController : BaseEntityController<EmployeeAccountBank>
-    {
-        #region Declare
-        ICustomerGroupService _customerGroupService;
-        #endregion
+    //public class CustomerGroupController : BaseEntityController<EmployeeAccountBank>
+    //{
+    //    #region Declare
+    //    ICustomerGroupService _customerGroupService;
+    //    #endregion
 
-        #region Constructor
-        public CustomerGroupController(ICustomerGroupService customerGroupService) : base(customerGroupService)
-        {
-            _customerGroupService = customerGroupService;
-        }
-        #endregion
-    }
+    //    #region Constructor
+    //    public CustomerGroupController(ICustomerGroupService customerGroupService) : base(customerGroupService)
+    //    {
+    //        _customerGroupService = customerGroupService;
+    //    }
+    //    #endregion
+    //}
 }

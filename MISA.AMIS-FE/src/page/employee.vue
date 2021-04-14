@@ -3,12 +3,7 @@
         <Sidebar />
         <div class="right-swapper">
             <Header />
-            <Content
-                :dataBinding="this.employeeList"
-                :isLoading="this.isLoading"
-                :rowTitle="this.rowTitle"
-                :reload="this.reload"
-            />
+            <Content :dataBinding="this.employeeList" :isLoading="this.isLoading" :rowTitle="this.rowTitle" :reload="this.reload" />
         </div>
         <!-- <BaseSuccessMessage /> -->
     </div>

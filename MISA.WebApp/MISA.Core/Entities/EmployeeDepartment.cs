@@ -15,7 +15,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// ID của phòng ban 
         /// </summary>
-        public int EmployeeDepartmentId { get; set; }
+        public Guid DepartmentId { get; set; }
 
         /// <summary>
         /// Tên phòng ban nhân viên
@@ -27,14 +27,6 @@ namespace MISA.Core.Entities
         /// </summary>
         public string Description { get; set; }
 
-        /// <summary>
-        /// Trách nhiệm của đơn vị
-        /// </summary>
-        public string Response { get; set; }
-
-        /// <summary>
-        /// Quyền lợi của đơn vị
-        /// </summary>
-        public string Profit { get; set; }
+        
     }
 }

@@ -15,7 +15,7 @@ namespace MISA.Infrastructure.Repositories
         #region DECLARE
         string _connectionString = "User Id=dev;" +
             "Password=12345678;" +
-            "Database = TEST.MISA.AMIS;" +
+            "Database = MF776_TTChien_AMIS;" +
             "Host=47.241.69.179;" +
             "Character Set = utf8";
 
@@ -46,7 +46,7 @@ namespace MISA.Infrastructure.Repositories
             dynamicParameters.Add(_idName, id);
 
             // Lấy dữ liệu từ database
-            var res = _dbConnection.Query<T>($"Proc_Get{_tableName}By{_tableName}Id", dynamicParameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var res = _dbConnection.Query<T>($"Proc_Get{_tableName}ById", dynamicParameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return res;
         }
 

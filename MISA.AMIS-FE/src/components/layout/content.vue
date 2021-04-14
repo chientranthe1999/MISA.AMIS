@@ -16,12 +16,7 @@
         <!-- Content main -->
         <div class="content__main">
             <!-- Menu -->
-            <div
-                class="data-more-action"
-                v-if="showMenu"
-                :style="{ top: menuTop, right: menuRight }"
-                v-click-outside="closeMenu"
-            >
+            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }" v-click-outside="closeMenu">
                 <div class="action-list">Nhân bản</div>
                 <div class="action-list">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
@@ -100,6 +95,7 @@
 <script>
     import EmployeePopupAdd from '../popup/EmployeePopupAdd';
     import { employeeApi } from '@/api/employeeApi';
+    import { DataFormater } from '@/helper/formatData';
 
     export default {
         name: 'Content',
@@ -156,7 +152,8 @@
                     .getEmployeeById(employeeId)
                     .then((res) => {
                         this.selectedEmployee = res.data;
-                        console.log(this.selectedEmployee);
+                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(this.selectedEmployee.DateOfBirth);
+                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(this.selectedEmployee.IdentityDate);
                         this.showModal();
                     })
                     .catch((e) => {

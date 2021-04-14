@@ -50,7 +50,7 @@
                             </div>
                             <div class="input-swapper">
                                 <div class="input-label">Chức danh</div>
-                                <input type="text" name="" tabindex="1" v-model="employee.EmployeePostion" />
+                                <input type="text" name="" tabindex="1" v-model="employee.EmployeePosition" />
                             </div>
                         </div>
 
@@ -59,42 +59,24 @@
                                 <div class="input-swapper v-col-4 cs-calender">
                                     <div class="input-label">Ngày sinh</div>
                                     <div class="cs-calender-input" v-click-outside="closeBirthdayCalender">
-                                        <input type="date" name="" tabindex="1" v-model="birthDayPicker" />
-                                        <div
-                                            class="calender-icon"
-                                            @click="showDateOfBirthCalender = !showDateOfBirthCalender"
-                                        >
+                                        <input type="date" name="" tabindex="1" v-model="employee.DateOfBirth" />
+                                        <div class="calender-icon" @click="showDateOfBirthCalender = !showDateOfBirthCalender">
                                             <div class="svg-icon svg-calender"></div>
                                         </div>
 
-                                        <BaseDatePicker
-                                            :dateTime.sync="birthDayPicker"
-                                            :isShow.sync="showDateOfBirthCalender"
-                                        />
+                                        <BaseDatePicker :dateTime.sync="employee.DateOfBirth" :isShow.sync="showDateOfBirthCalender" />
                                     </div>
                                 </div>
                                 <div class="input-swapper v-col-6 gender-swapper">
                                     <div class="input-label">Giới tính</div>
                                     <div class="d-center-flex gender">
                                         <label for="female">
-                                            <input
-                                                type="radio"
-                                                name="gender"
-                                                id="female"
-                                                value="0"
-                                                v-model="employee.Gender"
-                                            />
+                                            <input type="radio" name="gender" id="female" value="0" v-model="employee.Gender" tabindex="1" />
                                             <span class="circle"></span>
                                             <span class="input-lable">Nam</span>
                                         </label>
                                         <label for="male">
-                                            <input
-                                                type="radio"
-                                                name="gender"
-                                                id="male"
-                                                value="1"
-                                                v-model="employee.Gender"
-                                            />
+                                            <input type="radio" name="gender" id="male" value="1" v-model="employee.Gender" tabindex="1" />
                                             <span class="circle"></span>
                                             <span class="input-lable">Nữ</span>
                                         </label>
@@ -109,18 +91,12 @@
                                 <div class="input-swapper v-col-4 cs-calender">
                                     <div class="input-label">Ngày cấp</div>
                                     <div class="cs-calender-input">
-                                        <input type="date" name="" tabindex="1" v-model="indentityDatePicker" />
-                                        <div
-                                            class="calender-icon"
-                                            @click="showIndentityDateCalender = !showIndentityDateCalender"
-                                        >
+                                        <input type="date" name="" tabindex="1" v-model="employee.IdentityDate" />
+                                        <div class="calender-icon" @click="showIndentityDateCalender = !showIndentityDateCalender" tabindex="1">
                                             <div class="svg-icon svg-calender"></div>
                                         </div>
 
-                                        <BaseDatePicker
-                                            :dateTime.sync="indentityDatePicker"
-                                            :isShow.sync="showIndentityDateCalender"
-                                        />
+                                        <BaseDatePicker :dateTime.sync="employee.IdentityDate" :isShow.sync="showIndentityDateCalender" />
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +116,7 @@
                             <div class="tab-input__content">
                                 <div class="input-swapper">
                                     <div class="input-label">Địa chỉ</div>
-                                    <input type="text" name="" tabindex="1" v-model="employee.EmployeePostion" />
+                                    <input type="text" name="" tabindex="1" v-model="employee.Address" />
                                 </div>
 
                                 <div class="c-grid-col">
@@ -179,11 +155,10 @@
 </template>
 
 <script>
-    import { ErrorMessage } from '@/environment/message';
+    // import { ErrorMessage } from '@/environment/message';
     import BaseDatePicker from '@/components/common/BaseDatePicker';
     import axios from 'axios';
-    import { Validator } from '@/helper/validate';
-    import { DataFormater } from '@/helper/formatData';
+    // import { Validator } from '@/helper/validate';
 
     export default {
         name: 'EmployeePopupAdd',
@@ -202,11 +177,6 @@
                 // Ẩn hiện thanh loading
                 showLoading: false,
 
-                genderValue: [],
-                // Giá trị của ngày sinh
-                birthDayPicker: DataFormater.inputDateFormat('11/19/2008 00:00:00'),
-                // Giá trị của ngày cấp chứng minh thư nhân dân
-                indentityDatePicker: '',
                 // Show Birthday Calender
                 showDateOfBirthCalender: false,
                 // Show Calender ngày nhập chứng minh thư nhân dân
@@ -227,96 +197,7 @@
                 },
             },
         },
-
         methods: {
-            /**
-             * Lấy danh sách nhóm khách hàng
-             */
-            // async getCustomerGroup() {
-            //     var response = [];
-            //     var res = await axios.get('https://localhost:44388/api/v1/CustomerGroups');
-
-            //     res.data.forEach((element) => {
-            //         response.push({ key: element.CustomerGroupId, value: element.CustomerGroupName });
-            //     });
-
-            //     this.selectLists = [...response];
-            // },
-
-            /**
-             * Validate Email
-             */
-            validateEmail(e) {
-                var value = e.target.value;
-                var parentNode = e.target.parentNode;
-                var errorNode;
-                // Kiểm tra email có rỗng không
-                // Nếu không rỗng, kiểm tra định dạnh Email
-
-                if (Validator.validateEmpty(value)) {
-                    // Xóa viền đỏ khi không rỗng
-                    e.target.classList.remove('value-error');
-                    // Kiểm tra định dạng email
-                    if (!Validator.validateEmailFormat(value)) {
-                        errorNode = this.createErrorNode(ErrorMessage.errorEmailFormat);
-                        parentNode.appendChild(errorNode);
-                    }
-                } else {
-                    e.target.classList.add('value-error');
-                    errorNode = this.createErrorNode(ErrorMessage.doNotEmpty('Email'));
-                    parentNode.appendChild(errorNode);
-                }
-            },
-            /**
-             * Validate CustomerCode
-             * Không được empty
-             * Không được phép trùng
-             */
-            validateCustomerCode(e) {
-                var value = e.target.value;
-                var parentNode = e.target.parentNode;
-                var errorNode;
-
-                // Kiểm tra rỗng lỗi
-                if (Validator.validateEmpty(value)) {
-                    // Xóa viền đỏ khi không rỗng
-                    e.target.classList.remove('value-error');
-
-                    // Kiểm tra customerCode đã tồn tại chưa
-                    Validator.validateCustomerCode(value).then((res) => {
-                        if (!res) {
-                            errorNode = this.createErrorNode(ErrorMessage.duplicateCustomerCode);
-                            parentNode.appendChild(errorNode);
-                        }
-                    });
-                } else {
-                    e.target.classList.add('value-error');
-                    errorNode = this.createErrorNode(ErrorMessage.doNotEmpty('Mã khách hàng'));
-                    parentNode.appendChild(errorNode);
-                }
-            },
-
-            // helper _methods
-            /**
-             * Tạo ra thông báo lỗi
-             */
-            createErrorNode(msg) {
-                var errorNode = document.createElement('div');
-                errorNode.className = 'data-append';
-                errorNode.innerHTML = msg;
-                return errorNode;
-            },
-
-            // Xóa thông báo lỗi khi focus
-            deleteErrorWhenFocus(e) {
-                var parentNode = e.target.parentNode;
-                e.target.classList.remove('value-error');
-                var errorNode = parentNode.querySelector('.data-append');
-                if (errorNode != null) {
-                    parentNode.removeChild(errorNode);
-                }
-            },
-
             // Xóa thông báo lỗi khi đóng cửa sổ
             deleteErrorWhenClose() {
                 this.$emit('closeModal');
@@ -332,7 +213,6 @@
             async createNewCustomer() {
                 try {
                     this.isShow = true;
-                    this.customer.CustomerGroupId = '19165ed7-212e-21c4-0428-030d4265475f';
                     var res = await axios.post('https://localhost:44388/api/v1/Customers', this.customer);
                     this.isShow = false;
                     // Nếu trả về 201 thì thông báo cho người dùng thêm thành công
