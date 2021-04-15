@@ -58,7 +58,8 @@ namespace MISA.Infrastructure.Repositories
 
         public int Update(T t, Guid id)
         {
-            throw new NotImplementedException();
+            var rowAffected = _dbConnection.Execute($"Proc_Update{_tableName}", t, commandType: CommandType.StoredProcedure);
+            return rowAffected;
         }
 
         public int Delete(Guid id)

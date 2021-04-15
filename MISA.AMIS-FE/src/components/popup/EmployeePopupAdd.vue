@@ -38,13 +38,7 @@
                                 <div class="d-center-flex c-grid-col">
                                     <div class="input-swapper v-col-4">
                                         <div class="input-label">Mã <span>*</span></div>
-                                        <input
-                                            type="text"
-                                            name=""
-                                            tabindex="1"
-                                            v-model="employee.EmployeeCode"
-                                            ref="firstFocus"
-                                        />
+                                        <input type="text" name="" tabindex="1" v-model="employee.EmployeeCode" ref="firstFocus" />
                                     </div>
                                     <div class="input-swapper v-col-6">
                                         <div class="input-label">Tên <span>*</span></div>
@@ -66,9 +60,7 @@
                                                 class="data-list"
                                                 v-for="(department, i) in listDepartment"
                                                 :key="i"
-                                                @click="
-                                                    changeDepartment(department.DepartmentName, department.DepartmentId)
-                                                "
+                                                @click="changeDepartment(department.DepartmentName, department.DepartmentId)"
                                             >
                                                 {{ department.DepartmentName }}
                                             </div>
@@ -89,17 +81,11 @@
                                         <div class="input-label">Ngày sinh</div>
                                         <div class="cs-calender-input" v-click-outside="closeBirthdayCalender">
                                             <input type="date" name="" tabindex="1" v-model="employee.DateOfBirth" />
-                                            <div
-                                                class="calender-icon"
-                                                @click="showDateOfBirthCalender = !showDateOfBirthCalender"
-                                            >
+                                            <div class="calender-icon" @click="showDateOfBirthCalender = !showDateOfBirthCalender">
                                                 <div class="svg-icon svg-calender"></div>
                                             </div>
 
-                                            <BaseDatePicker
-                                                :dateTime.sync="employee.DateOfBirth"
-                                                :isShow.sync="showDateOfBirthCalender"
-                                            />
+                                            <BaseDatePicker :dateTime.sync="employee.DateOfBirth" :isShow.sync="showDateOfBirthCalender" />
                                         </div>
                                     </div>
                                     <!-- Giới tính -->
@@ -107,26 +93,12 @@
                                         <div class="input-label">Giới tính</div>
                                         <div class="d-center-flex gender">
                                             <label for="female">
-                                                <input
-                                                    type="radio"
-                                                    name="gender"
-                                                    id="female"
-                                                    value="0"
-                                                    v-model="employee.Gender"
-                                                    tabindex="1"
-                                                />
+                                                <input type="radio" name="gender" id="female" value="0" v-model="employee.Gender" tabindex="1" />
                                                 <span class="circle"></span>
                                                 <span class="input-lable">Nam</span>
                                             </label>
                                             <label for="male">
-                                                <input
-                                                    type="radio"
-                                                    name="gender"
-                                                    id="male"
-                                                    value="1"
-                                                    v-model="employee.Gender"
-                                                    tabindex="1"
-                                                />
+                                                <input type="radio" name="gender" id="male" value="1" v-model="employee.Gender" tabindex="1" />
                                                 <span class="circle"></span>
                                                 <span class="input-lable">Nữ</span>
                                             </label>
@@ -144,18 +116,11 @@
                                         <div class="input-label">Ngày cấp</div>
                                         <div class="cs-calender-input">
                                             <input type="date" name="" tabindex="1" v-model="employee.IdentityDate" />
-                                            <div
-                                                class="calender-icon"
-                                                @click="showIndentityDateCalender = !showIndentityDateCalender"
-                                                tabindex="1"
-                                            >
+                                            <div class="calender-icon" @click="showIndentityDateCalender = !showIndentityDateCalender" tabindex="1">
                                                 <div class="svg-icon svg-calender"></div>
                                             </div>
 
-                                            <BaseDatePicker
-                                                :dateTime.sync="employee.IdentityDate"
-                                                :isShow.sync="showIndentityDateCalender"
-                                            />
+                                            <BaseDatePicker :dateTime.sync="employee.IdentityDate" :isShow.sync="showIndentityDateCalender" />
                                         </div>
                                     </div>
                                 </div>
@@ -243,9 +208,10 @@
                 // Show Calender ngày nhập chứng minh thư nhân dân
                 showIndentityDateCalender: false,
 
+                // Danh sách các phòng ban
                 listDepartment: [],
 
-                // data to v-model
+                // Data to show Department Name
                 departmentName: '',
 
                 showDepartment: false,
@@ -281,12 +247,12 @@
             // Thêm mới người dùng khi nhấn Save
             async createNewCustomer() {
                 try {
-                    this.isShow = true;
+                    this.showLoading = true;
                     var res = await employeeApi.addNewEmployee(this.employee);
-                    this.isShow = false;
+                    this.showLoading = false;
                     // Nếu trả về 201 thì thông báo cho người dùng thêm thành công
                     if (res.status == 201) {
-                        this.$emit('update:modalStatus', false);
+                        this.$emit('closeAddModal', 'success');
                     }
                 } catch (error) {
                     console.log(error);

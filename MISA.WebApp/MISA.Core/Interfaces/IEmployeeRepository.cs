@@ -14,10 +14,24 @@ namespace MISA.Core.Interfaces
         /// </summary>
         /// <param name="employeeCode">Mã khách hàng</param>
         /// <returns>
-        /// - Đối tượng nếu tìm thấy
+        /// - True nếu tìm thấy, false nếu ko tìm thấy
         /// </returns>
         /// CreatedBy: Chiến Nobi (05/04/2021)
-        public bool GetByEmployeeCode(string employeeCode);
+        public Employee GetByEmployeeCode(string employeeCode);
+
+        /// <summary>
+        /// Hàm tìm nhân viên theo mã nhân viên và ID
+        /// </summary>
+        /// <param name="employeeCode">Mã nhân viên</param>
+        /// <param name="employeeId">ID nhân viên</param>
+        /// <returns></returns>
+        public Employee GetByEmployeeCode(string employeeCode, Guid employeeId);
+
+        /// <summary>
+        /// Trả về tổng số bản ghi của 1 bảng
+        /// </summary>
+        /// <returns></returns>
+        public int GetCountEmployee();
 
         /// <summary>
         /// Trả về dữ liệu thuộc 1 khoảng nào đó
@@ -30,5 +44,7 @@ namespace MISA.Core.Interfaces
         /// <returns>Danh sách bản ghi </returns>
         /// CreatedBy: Chiến Nobi (14/4/2021)
         public IEnumerable<Employee> Get(Object paging);
+
+        
     }
 }

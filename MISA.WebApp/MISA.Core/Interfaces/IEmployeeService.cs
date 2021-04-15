@@ -18,7 +18,7 @@ namespace MISA.Core.Interfaces
         public bool GetByEmployeeCode(string employeeCode);
 
         /// <summary>
-        /// Trả về dữ liệu thuộc 1 khoảng nào đó
+        /// Trả về dữ liệu phân trang
         /// </summary>
         /// <param name="paging">
         /// - Đối tượng có key: offset, limit

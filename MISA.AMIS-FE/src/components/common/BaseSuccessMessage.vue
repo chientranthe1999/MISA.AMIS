@@ -4,7 +4,7 @@
             <div class="success-message-icon"><i class="far fa-check-circle"></i></div>
             <div>
                 <p>Success</p>
-                <p>Thêm dữ liệu thành công</p>
+                <p>{{ message }}</p>
             </div>
         </div>
     </transition>
@@ -18,11 +18,16 @@
                 type: Boolean,
                 default: true,
             },
+
+            message: {
+                type: String,
+                default: '',
+            },
         },
-        mounted() {
+        updated() {
             setTimeout(() => {
                 this.$emit('update:isShow', false);
-            }, 2000);
+            }, 4000);
         },
     };
 </script>
@@ -51,9 +56,12 @@
         }
     }
 
-    .fade-enter-active,
+    .fade-enter-active {
+        transition: opacity 1s;
+    }
+
     .fade-leave-active {
-        transition: opacity 3s;
+        transition: opacity 2s;
     }
 
     .fade-enter,

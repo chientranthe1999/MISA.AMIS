@@ -13,7 +13,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Thông báo cho dev
         /// </summary>
-        public string DevMsg { get; set; } = "";
+        public List<string> DevMsg { get; set; } = new List<string>() { "" };
 
         /// <summary>
         /// Thông báo cho người dùng

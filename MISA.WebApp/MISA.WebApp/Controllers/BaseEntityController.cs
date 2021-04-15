@@ -70,10 +70,13 @@ namespace MISA.WebApp.Controllers
             else return BadRequest(res);
         }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Put(int id, [FromBody] string value)
-        //{
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Update([FromBody] T t, Guid id)
+        {
+            var res = _baseService.Update(t, id);
+            if (res.MisaCode == MISACode.ISVALID) return Ok(res);
+            else return BadRequest(res);
+        }
 
         /// <summary>
         /// Xóa bản ghi theo ID

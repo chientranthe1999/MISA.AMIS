@@ -2,13 +2,9 @@
     <!-- Content -->
     <div class="content">
         <!-- Confirm Delete -->
-        <BaseDeleteWarning
-            :isShow.sync="showDeleteWarning"
-            @agree="deleteEmployee"
-            :message="employeeDelete.EmployeeCode"
-        />
+        <BaseDeleteWarning :isShow.sync="showDeleteWarning" @agree="deleteEmployee" :message="message" />
 
-        <BaseSuccessMessage :isShow.sync="showSuccess" />
+        <BaseSuccessMessage :isShow.sync="showSuccess" :message="message" />
         <!-- Content top -->
         <div class="content__top">
             <div class="first-line d-center-flex">
@@ -26,12 +22,7 @@
             <!-- Loading Indicator -->
             <BaseLoader :isShow="isLoading" />
             <!-- Menu -->
-            <div
-                class="data-more-action"
-                v-if="showMenu"
-                :style="{ top: menuTop, right: menuRight }"
-                v-click-outside="closeMenu"
-            >
+            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }" v-click-outside="closeMenu">
                 <div class="action-list">Nhân bản</div>
                 <div class="action-list" @click="confirmDelete">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
@@ -66,10 +57,7 @@
                             <td class="last-col" style="width: 100px; min-width: 100px">
                                 <div class="d-center-flex user-action">
                                     <p @click="trOnClick(employee.EmployeeId)">Sửa</p>
-                                    <div
-                                        class="icon-swapper"
-                                        @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)"
-                                    >
+                                    <div class="icon-swapper" @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)">
                                         <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
@@ -104,12 +92,7 @@
             </div>
         </div>
 
-        <EmployeePopupAdd
-            :modalStatus.sync="modalStatus"
-            :employee="selectedEmployee"
-            ref="firstFocus"
-            @closeAddModal="closeAddModal"
-        />
+        <EmployeePopupAdd :modalStatus.sync="modalStatus" :employee="selectedEmployee" ref="firstFocus" @closeAddModal="closeAddModal" />
     </div>
     <!-- End content -->
 </template>
@@ -155,17 +138,17 @@
                     { titleCode: 'StateAccount', title: 'Trạng thái' },
                     { titleCode: 'Function', title: 'Chức năng' },
                 ],
-                // Delete Warning
+                // Show Delete Warning
                 showDeleteWarning: false,
-                // Success Message
+                // Show Success Message
                 showSuccess: false,
+
+                message: '',
             };
         },
 
         methods: {
-            /**
-             * Hiển thị modal Thêm khách hàng
-             */
+            // Hiển thị modal thêm khách hàng
             showModal() {
                 this.modalStatus = true;
                 // waiting for rendering and setfocus for first input
@@ -182,12 +165,8 @@
                     .getEmployeeById(employeeId)
                     .then((res) => {
                         this.selectedEmployee = res.data;
-                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(
-                            this.selectedEmployee.DateOfBirth
-                        );
-                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(
-                            this.selectedEmployee.IdentityDate
-                        );
+                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(this.selectedEmployee.DateOfBirth);
+                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(this.selectedEmployee.IdentityDate);
                         this.showModal();
                     })
                     .catch((e) => {
@@ -215,8 +194,9 @@
                 employeeApi.deleteEmployee(this.employeeDelete.EmployeeId).then((res) => {
                     this.isLoading = false;
                     if (res.status == 200) {
-                        console.log('hihi');
+                        this.message = 'Xóa dữ liệu thành công!!';
                         this.isLoading = false;
+                        this.showSuccess = true;
                         this.getData();
                     }
                 });
@@ -231,6 +211,7 @@
             confirmDelete() {
                 this.closeMenu();
                 this.showDeleteWarning = true;
+                this.message = `Bạn có chắc muốn xóa Nhân Viên ${this.employeeDelete.EmployeeCode} không?`;
             },
 
             // Lấy dữ liệu từ API
@@ -253,7 +234,9 @@
             // When close modal -> reset selected Employee to clear form
             closeAddModal(status) {
                 if (status == 'success') {
+                    this.message = 'Thêm dữ liệu thành công';
                     this.showSuccess = true;
+                    this.getData();
                 }
                 this.modalStatus = false;
                 this.selectedEmployee = {};

@@ -1,4 +1,5 @@
 ﻿using MISA.Core.Entities;
+using MISA.Core.Enums;
 using MISA.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,42 +24,87 @@ namespace MISA.Core.Services
         #endregion
 
         #region Method
-        public override bool Validate(Employee t)
+        public override bool ValidateAdd(Employee t)
         {
-            
             bool isValid = true;
             var isDuplicate = _employeeRepository.GetByEmployeeCode(t.EmployeeCode);
-       
 
-            _serviceResult.DevMsg = String.Empty;
-
-            // Check CustomerCode không được trống
+            // Check EmployeeCode không được trống
             if (String.IsNullOrEmpty(t.EmployeeCode))
             {
-                _serviceResult.DevMsg += Resouces.Message.EmptyCustomerCode;
+                _serviceResult.DevMsg.Add(Resouces.Message.EmptyCustomerCode);
                 isValid = false;
             }
 
-            //// Check xem trường CustomerGroupId không được trống
-            //if (String.IsNullOrEmpty(customerGroupId))
-            //{
-            //    _serviceResult.devMsg += ", " + Resouces.Message.EmptyCustomerGroupId;
-            //    isValid = false;
-            //}
-
             // Check trùng mã
-            if (isDuplicate)
+            if (isDuplicate != null)
             {
-                _serviceResult.DevMsg += ", " + Resouces.Message.DuplicateCustomerCode;
+                _serviceResult.DevMsg.Add(Resouces.Message.DuplicateCustomerCode);
                 isValid = false;
             }
             return isValid;
         }
 
-        public bool GetByEmployeeCode(string customerCode)
+        public override ServiceResult Update(Employee t, Guid id)
         {
-            var res = _employeeRepository.GetByEmployeeCode(customerCode);
-            return res;
+            // validate dữ liệu
+            var isValid = ValidateUpdate(t, id);
+
+            if (isValid == true)
+            {
+                t.EmployeeId = id;
+                _serviceResult.DevMsg.Add(Resouces.Message.AddSuccess);
+                _serviceResult.UserMsg = Resouces.Message.AddSuccess;
+                _serviceResult.Data = _employeeRepository.Update(t, id);
+                _serviceResult.MisaCode = MISACode.ISVALID;
+            }
+
+            else
+            {
+                _serviceResult.MisaCode = MISACode.NOTVALID;
+            }
+
+            return _serviceResult;
+        }
+
+
+        public override bool ValidateUpdate(Employee t, Guid id)
+        {
+            bool isValid = true;
+            var isDuplicate = _employeeRepository.GetByEmployeeCode(t.EmployeeCode, id);
+
+            // ID không được để trống
+            if (id == Guid.Empty)
+            {
+                _serviceResult.DevMsg.Add(Resouces.Message.EmptyID);
+                _serviceResult.UserMsg = Resouces.Message.UpdateError;
+                return false;
+            }
+
+            // Check EmployeeCode không được trống
+            if (String.IsNullOrEmpty(t.EmployeeCode))
+            {
+                _serviceResult.DevMsg.Add(Resouces.Message.EmptyCustomerCode);
+                isValid = false;
+            }
+
+            // Check trùng mã EmployeeCode
+            if (isDuplicate != null)
+            {
+                isValid = false;
+            }
+            return isValid;
+            
+        }
+
+        public bool GetByEmployeeCode(string employeeCode)
+        {
+            var res = _employeeRepository.GetByEmployeeCode(employeeCode);
+            if (res == null)
+            {
+                return false;
+            }
+            else return true;
         }
 
         public IEnumerable<Employee> Get(object paging)

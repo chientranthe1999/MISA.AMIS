@@ -4,7 +4,7 @@
             <div class="dialog">
                 <div class="dialog__infor">
                     <div class="dialog__infor-icon svg-icon svg-icon-48 svg-warning"></div>
-                    <p>Bạn có chắc muốn xóa Nhân Viên {{ message }} không ?</p>
+                    <p>{{ message }}</p>
                 </div>
                 <div class="break-line"></div>
                 <div class="dialog__footer">

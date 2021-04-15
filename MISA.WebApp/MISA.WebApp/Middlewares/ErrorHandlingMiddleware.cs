@@ -37,14 +37,13 @@ namespace MISA.CukCuk.Web.Middlewares
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var code = HttpStatusCode.InternalServerError;
-            var result = JsonConvert.SerializeObject(
-                new ServiceResult
-                {
-                    DevMsg = ex.Message,
-                    UserMsg = Core.Resouces.Message.ExceptionError,
-                    MisaCode = MISACode.EXCEPTION,
-                }
-            ) ;
+            var response = new ServiceResult();
+
+            response.DevMsg.Add(ex.Message);
+            response.UserMsg = Core.Resouces.Message.ExceptionError;
+            response.MisaCode = MISACode.EXCEPTION;
+
+            var result = JsonConvert.SerializeObject(response) ;
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
             return context.Response.WriteAsync(result);
