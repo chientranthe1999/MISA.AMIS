@@ -37,7 +37,7 @@
                             <div class="d-center-flex c-grid-col">
                                 <div class="input-swapper v-col-4">
                                     <div class="input-label">Mã <span>*</span></div>
-                                    <input type="text" name="" tabindex="1" v-model="employee.EmployeeCode" />
+                                    <input type="text" name="" tabindex="1" v-model="employee.EmployeeCode" ref="customerCode" />
                                 </div>
                                 <div class="input-swapper v-col-6">
                                     <div class="input-label">Tên <span>*</span></div>
@@ -229,12 +229,6 @@
                 this.showDateOfBirthCalender = false;
             },
         },
-
-        updated() {},
-
-        // created() {
-        //     this.getCustomerGroup();
-        // },
     };
 </script>
 

@@ -8,9 +8,6 @@ import Vue from 'vue';
 import BaseLoader from '@/components/common/BaseLoader';
 Vue.component('BaseLoader', BaseLoader);
 
-import BaseRatio from '@/components/common/BaseRatio';
-Vue.component('BaseRatio', BaseRatio);
-
 import BaseSuccessMessage from '@/components/common/BaseSuccessMessage';
 Vue.component('BaseSuccessMessage', BaseSuccessMessage);
 

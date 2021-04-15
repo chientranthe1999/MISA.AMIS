@@ -142,6 +142,14 @@
              */
             showModal() {
                 this.modalStatus = true;
+
+                this.$nextTick(() => {
+                    this.firstFocus();
+                });
+            },
+
+            firstFocus() {
+                this.$refs.customerCode.focus();
             },
 
             /**
