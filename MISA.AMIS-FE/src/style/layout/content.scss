@@ -17,6 +17,7 @@ $hdark: #e5e5e5;
         .second-line {
             color: color.$blue;
             cursor: pointer;
+            width: fit-content;
         }
         &-header {
             font-size: 24px;
@@ -31,6 +32,9 @@ $hdark: #e5e5e5;
             color: white;
             border-radius: 30px;
             font-weight: 600;
+        }
+        .btn-add:hover {
+            background-color: #35bf22;
         }
     }
     /*------------------ Content middle ------------------*/

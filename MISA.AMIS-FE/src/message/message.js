@@ -7,7 +7,7 @@ const ErrorMessage = {
     // Email không đúng định dạng
     errorEmailFormat: 'Email không đúng định dạng',
 
-    // Sai định dạng số điệnt thoại
+    // Sai định dạng số điện thoại
     errorPhoneNumberFormat: 'Sai định dạng số điện thoại',
 
     // Trùng mã customer

@@ -11,6 +11,9 @@ Vue.component('BaseLoader', BaseLoader);
 import BaseSuccessMessage from '@/components/common/BaseSuccessMessage';
 Vue.component('BaseSuccessMessage', BaseSuccessMessage);
 
+import BaseDeleteWarning from '@/components/common/BaseDeleteWarning';
+Vue.component('BaseDeleteWarning', BaseDeleteWarning);
+
 import Content from '@/components/layout/Content';
 Vue.component('Content', Content);
 

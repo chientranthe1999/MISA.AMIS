@@ -1171,7 +1171,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\trant\\.nuget\\packages\\": {}
+    "C:\\Users\\ttchien\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -1179,11 +1179,11 @@
       "projectUniqueName": "C:\\Code\\MISA.AMIS\\MISA.WebApp\\MISA.WebApp\\MISA.WebApp.csproj",
       "projectName": "MISA.WebApp",
       "projectPath": "C:\\Code\\MISA.AMIS\\MISA.WebApp\\MISA.WebApp\\MISA.WebApp.csproj",
-      "packagesPath": "C:\\Users\\trant\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ttchien\\.nuget\\packages\\",
       "outputPath": "C:\\Code\\MISA.AMIS\\MISA.WebApp\\MISA.WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\trant\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ttchien\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1243,7 +1243,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

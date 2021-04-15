@@ -10,7 +10,7 @@ namespace MISA.Core.Entities
     /// Đối tượng Phòng ban nhân viên
     /// </summary>
     /// CreatedBy: Chiến Nobi (13/04/2021)
-    public class EmployeeDepartment : BaseEntity
+    public class Department : BaseEntity
     {
         /// <summary>
         /// ID của phòng ban 
@@ -20,7 +20,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Tên phòng ban nhân viên
         /// </summary>
-        public string EmployeeDepartmentName { get; set; }
+        public string DepartmentName { get; set; }
 
         /// <summary>
         /// Mô tả đơn vị

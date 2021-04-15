@@ -28,7 +28,7 @@
         align-items: center;
         justify-content: center;
         z-index: 90;
-        background-color: #fff;
+        background-color: transparent;
 
         .loading-icon {
             width: 50px;

@@ -1,11 +1,19 @@
 <template>
     <!-- Content -->
     <div class="content">
+        <!-- Confirm Delete -->
+        <BaseDeleteWarning
+            :isShow.sync="showDeleteWarning"
+            @agree="deleteEmployee"
+            :message="employeeDelete.EmployeeCode"
+        />
+
+        <BaseSuccessMessage :isShow.sync="showSuccess" />
         <!-- Content top -->
         <div class="content__top">
             <div class="first-line d-center-flex">
                 <h3 class="content__top-header">Nhân viên</h3>
-                <div class="btn-add btn" @click="showModal">Thêm</div>
+                <div class="btn-add btn d-center-flex" @click="showModal"><p>Thêm</p></div>
             </div>
 
             <div class="second-line d-center-flex">
@@ -15,13 +23,19 @@
         </div>
         <!-- Content main -->
         <div class="content__main">
+            <!-- Loading Indicator -->
+            <BaseLoader :isShow="isLoading" />
             <!-- Menu -->
-            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }" v-click-outside="closeMenu">
+            <div
+                class="data-more-action"
+                v-if="showMenu"
+                :style="{ top: menuTop, right: menuRight }"
+                v-click-outside="closeMenu"
+            >
                 <div class="action-list">Nhân bản</div>
-                <div class="action-list">Xóa</div>
+                <div class="action-list" @click="confirmDelete">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
             </div>
-            <BaseLoader :isShow="isLoading" />
             <!-- Search box -->
             <div class="content-search-box d-center-flex search-box">
                 <input type="text" placeholder="Tìm theo mã, tên nhân viên" />
@@ -41,7 +55,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="(employee, i) in dataBinding" :key="i" @dblclick="trOnClick(employee.EmployeeId)">
+                        <tr v-for="(employee, i) in employees" :key="i" @dblclick="trOnClick(employee.EmployeeId)">
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeeCode }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.EmployeeName }}</td>
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeePosition }}</td>
@@ -52,7 +66,10 @@
                             <td class="last-col" style="width: 100px; min-width: 100px">
                                 <div class="d-center-flex user-action">
                                     <p @click="trOnClick(employee.EmployeeId)">Sửa</p>
-                                    <div class="icon-swapper" @click="showFunctionMenu">
+                                    <div
+                                        class="icon-swapper"
+                                        @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)"
+                                    >
                                         <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
@@ -87,7 +104,12 @@
             </div>
         </div>
 
-        <EmployeePopupAdd :modalStatus="modalStatus" :employee="selectedEmployee" @closeModal="hideModal" />
+        <EmployeePopupAdd
+            :modalStatus.sync="modalStatus"
+            :employee="selectedEmployee"
+            ref="firstFocus"
+            @closeAddModal="closeAddModal"
+        />
     </div>
     <!-- End content -->
 </template>
@@ -102,54 +124,54 @@
 
         data() {
             return {
-                dataList: '',
-
+                // Thanh loading
+                isLoading: true,
+                // Modal Thêm người dùng
                 modalStatus: false,
-
+                // Nhân viên được select
                 selectedEmployee: {},
-
+                // Menu Function
                 showMenu: false,
-
+                // List nhân viên được gọi từ Api
+                employees: [],
+                // Vị trí menu Top
                 menuTop: 0,
-
+                // Vị trí menu Bottom
                 menuRight: 0,
-
                 // Số lượng bản ghi trên 1 trang
                 pageSize: 20,
                 // offset của bản ghi
                 offsetActive: 1,
+                // lấy employeeId của bản ghi cần xóa
+                employeeDelete: {},
+                // Tiêu đề của bảng
+                rowTitle: [
+                    { titleCode: 'EmployeeCode', title: 'Mã nhân viên' },
+                    { titleCode: 'EmployeeName', title: 'Tên nhân viên' },
+                    { titleCode: 'EmployeePosition', title: 'Chức danh' },
+                    { titleCode: 'EmployeeDepartment', title: 'Tên đơn vị' },
+                    { titleCode: 'EmployeeAccountNumber', title: 'Số tài khoản' },
+                    { titleCode: 'BankName', title: 'Tên ngân hàng' },
+                    { titleCode: 'StateAccount', title: 'Trạng thái' },
+                    { titleCode: 'Function', title: 'Chức năng' },
+                ],
+                // Delete Warning
+                showDeleteWarning: false,
+                // Success Message
+                showSuccess: false,
             };
         },
 
-        props: {
-            dataBinding: Array,
-            rowTitle: Array,
-            isLoading: Boolean,
-            reload: Function,
-        },
-
         methods: {
-            /**
-             * Ẩn modal thêm khách hàng
-             */
-            hideModal() {
-                this.modalStatus = false;
-                this.selectedEmployee = {};
-            },
-
             /**
              * Hiển thị modal Thêm khách hàng
              */
             showModal() {
                 this.modalStatus = true;
-
+                // waiting for rendering and setfocus for first input
                 this.$nextTick(() => {
-                    this.firstFocus();
+                    this.$refs.firstFocus.$refs.firstFocus.focus();
                 });
-            },
-
-            firstFocus() {
-                this.$refs.customerCode.focus();
             },
 
             /**
@@ -160,8 +182,12 @@
                     .getEmployeeById(employeeId)
                     .then((res) => {
                         this.selectedEmployee = res.data;
-                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(this.selectedEmployee.DateOfBirth);
-                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(this.selectedEmployee.IdentityDate);
+                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(
+                            this.selectedEmployee.DateOfBirth
+                        );
+                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(
+                            this.selectedEmployee.IdentityDate
+                        );
                         this.showModal();
                     })
                     .catch((e) => {
@@ -169,20 +195,76 @@
                     });
             },
 
-            showFunctionMenu(e) {
+            // Hiển thị menu xóa, nhân bản, ngừng sử dụng
+            showFunctionMenu(employeeId, employeeCode, e) {
+                // Toggle menu
                 this.showMenu = !this.showMenu;
+                // Xác định vị trí của menu
                 var menuPosition = e.currentTarget.getBoundingClientRect();
                 this.menuTop = `${menuPosition.top - 114}px`;
                 this.menuRight = `${window.innerWidth - menuPosition.right - 55}px`;
-                console.log(e.target);
+                // Gán employeeId
+                this.employeeDelete.EmployeeId = employeeId;
+                this.employeeDelete.EmployeeCode = employeeCode;
             },
 
+            // Xóa khách hàng
+            deleteEmployee() {
+                this.showDeleteWarning = false;
+                this.isLoading = true;
+                employeeApi.deleteEmployee(this.employeeDelete.EmployeeId).then((res) => {
+                    this.isLoading = false;
+                    if (res.status == 200) {
+                        console.log('hihi');
+                        this.isLoading = false;
+                        this.getData();
+                    }
+                });
+            },
+
+            // Đóng Function Menu khi click ra ngoài
             closeMenu() {
                 this.showMenu = false;
+            },
+
+            // Khi ấn vào xóa, bật menu thông báo
+            confirmDelete() {
+                this.closeMenu();
+                this.showDeleteWarning = true;
+            },
+
+            // Lấy dữ liệu từ API
+            getData() {
+                this.isLoading = true;
+                employeeApi
+                    .getEmployees()
+                    .then((res) => {
+                        console.log(res);
+                        if (res.status == 200) {
+                            this.employees = res.data;
+                        }
+                        this.isLoading = false;
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    });
+            },
+
+            // When close modal -> reset selected Employee to clear form
+            closeAddModal(status) {
+                if (status == 'success') {
+                    this.showSuccess = true;
+                }
+                this.modalStatus = false;
+                this.selectedEmployee = {};
             },
         },
         components: {
             EmployeePopupAdd,
+        },
+
+        created() {
+            this.getData();
         },
     };
 </script>

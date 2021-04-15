@@ -22,12 +22,14 @@
     src: local('Open Sans Bold'), local('OpenSans-Bold'), url('./assets/font/notosans-bold.3ede5aff.woff2') format('woff2');
 }
 
+
 /*-------- CSS for page layout --------*/
 
 .right-swapper {
     float: left;
     width: calc(100% - 180px);
 }
+
 
 /*-------- CSS text-align --------*/
 
@@ -38,6 +40,7 @@
 .text-align-center {
     text-align: center;
 }
+
 
 /*-------- display CSS --------*/
 
@@ -62,6 +65,7 @@
     flex: 2;
 }
 
+
 /*-------- Input CSS --------*/
 
 .input {
@@ -79,6 +83,7 @@
 .input.error:focus {
     border-color: #ff4747;
 }
+
 
 /*-------- Search Box CSS --------*/
 
@@ -118,4 +123,14 @@
 
 input:focus {
     border-color: color.$main;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }

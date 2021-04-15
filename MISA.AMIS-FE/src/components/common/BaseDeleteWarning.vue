@@ -1,21 +1,19 @@
 <template>
-    <div class="dialog-swapper">
-        <div class="dialog">
-            <div id="close-btn"><i class="fas fa-times"></i></div>
-            <div class="dialog__close"></div>
-            <div class="dialog__header">
-                Xóa bản ghi 101
-            </div>
-            <div class="dialog__infor">
-                <div class="dialog__infor-icon"></div>
-                <p>Bạn có chắc muốn xóa bản ghi này không??</p>
-            </div>
-            <div class="dialog__footer">
-                <div class="dialog__footer-cancel">Hủy</div>
-                <div class="dialog__footer-agree">Đồng ý</div>
+    <transition name="fade">
+        <div class="dialog-swapper" v-if="isShow">
+            <div class="dialog">
+                <div class="dialog__infor">
+                    <div class="dialog__infor-icon svg-icon svg-icon-48 svg-warning"></div>
+                    <p>Bạn có chắc muốn xóa Nhân Viên {{ message }} không ?</p>
+                </div>
+                <div class="break-line"></div>
+                <div class="dialog__footer">
+                    <div class="dialog__footer-cancel" @click="cancel">Hủy</div>
+                    <div class="dialog__footer-agree" @click="agree">Đồng ý</div>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -27,13 +25,27 @@
                 type: String,
                 default: '',
             },
+
+            isShow: {
+                type: Boolean,
+                default: false,
+            },
+        },
+
+        methods: {
+            cancel() {
+                this.$emit('update:isShow', false);
+            },
+
+            agree() {
+                this.$emit('agree');
+            },
         },
     };
 </script>
 
 <style scoped lang="scss">
     .dialog-swapper {
-        display: none;
         position: fixed;
         top: 0;
         right: 0;
@@ -41,7 +53,7 @@
         left: 0;
         background-color: rgba(0, 0, 0, 0.5);
         font-size: 13px;
-        z-index: 3;
+        z-index: 10;
     }
 
     .dialog {
@@ -50,93 +62,63 @@
         top: 50%;
         transform: translate(50%, -50%);
         background-color: white;
-        width: fit-content;
         border-radius: 4px;
         padding-top: 24px;
         overflow: hidden;
-        width: 350px;
-
-        &__header {
-            padding: 0 24px;
-            margin-bottom: 24px;
-            color: #000;
-            font-weight: bold;
-            font-size: 15px;
-        }
+        width: 444px;
+        min-width: 444px;
+        padding: 32px;
 
         &__infor {
-            padding: 0 24px;
             display: flex;
             align-items: center;
-            margin-bottom: 24px;
-
-            &-icon {
-                margin-right: 10px;
-                height: 50px;
-                width: 50px;
-                background-color: #e5e5e5;
-                border-radius: 50%;
-            }
-
+            margin-bottom: 32px;
             > p {
                 flex: 1;
-                // word-break: ;
+                padding: 12px 0 0 16px;
+                color: #111111;
             }
+        }
+
+        .break-line {
+            border-top: 1px solid #b8bcc3;
+            margin-bottom: 20px;
         }
 
         &__footer {
-            padding: 0 24px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            height: 60px;
-            background-color: #e9ebee;
-
+            justify-content: space-between;
             > div {
-                height: 40px;
+                height: 36px;
                 border-radius: 4px;
-                line-height: 40px;
+                // line-height: 40px;
                 cursor: pointer;
                 width: 100px;
                 text-align: center;
                 font-size: 13px;
                 user-select: none;
+                padding: 8px 12px;
             }
 
             &-cancel {
-                margin-right: 16px;
                 color: #000;
+                font-weight: 600;
+                border: 1px solid #8d9096;
             }
 
             &-agree {
-                background-color: #019160;
+                background-color: #2ca01c;
                 color: #fff;
             }
 
             &-cancel:hover {
-                background-color: #bbbbbb;
+                background-color: #d2d3d6;
             }
 
             &-agree:hover {
-                background-color: #01b075;
+                background-color: #35bf22;
             }
         }
-    }
-
-    #close-btn {
-        height: 40px;
-        width: 40px;
-        text-align: center;
-        line-height: 40px;
-        font-size: 18px;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
-    #close-btn:hover {
-        background-color: #e5e5e5;
-        border-radius: 4px;
-        cursor: pointer;
     }
 </style>

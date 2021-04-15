@@ -58,8 +58,8 @@ namespace MISA.WebApp
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
 
-            //services.AddScoped<ICustomerGroupService, CustomerGroupService>();
-            //services.AddScoped<IEmployeeAccountBankRepository, CustomerGroupRepository>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 
         }
