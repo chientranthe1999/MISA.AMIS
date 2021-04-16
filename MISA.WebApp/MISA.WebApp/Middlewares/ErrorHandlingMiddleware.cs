@@ -34,6 +34,7 @@ namespace MISA.CukCuk.Web.Middlewares
             }
         }
 
+
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var code = HttpStatusCode.InternalServerError;

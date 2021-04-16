@@ -15,7 +15,6 @@
         background-color: #fff;
         overflow: hidden;
         width: 900px;
-        height: 625px;
         /*-------- Header--------*/
         &-header {
             height: 76px;
@@ -48,10 +47,10 @@
                         display: flex;
                         align-items: center;
                     }
-                    input[type='checkbox']:checked+.square {
+                    input[type='checkbox']:checked + .square {
                         border-color: #2ca01c;
                     }
-                    input[type='checkbox']:checked+.square:after {
+                    input[type='checkbox']:checked + .square:after {
                         content: '';
                         width: 18px;
                         height: 18px;
@@ -67,7 +66,7 @@
                 height: 100%;
                 padding: 12px;
                 justify-content: space-between;
-                >div {
+                > div {
                     cursor: pointer;
                 }
             }
@@ -101,7 +100,7 @@
                     font-weight: 700;
                     padding-bottom: 4px;
                     white-space: nowrap;
-                    >span {
+                    > span {
                         color: red;
                         font-size: 12px;
                     }
@@ -147,10 +146,10 @@
                         position: relative;
                         margin-right: 10px;
                     }
-                    input:checked+.circle {
+                    input:checked + .circle {
                         border-color: #2ca01c;
                     }
-                    input:checked+.circle::after {
+                    input:checked + .circle::after {
                         content: '';
                         display: inline-block;
                         width: 10px;
@@ -163,10 +162,10 @@
                         transform: translate(50%, -50%);
                     }
                 }
-                // format chọn đơn vị
+                // format chọn đơn vị (vị trí)
                 .input-suggest {
                     position: relative;
-                    input[type="text"] {
+                    input[type='text'] {
                         padding-right: 32px;
                     }
                     .show-more {
@@ -180,10 +179,13 @@
                         justify-content: center;
                         cursor: pointer;
                     }
-                    .show-more:hover {
+                    .show-more:hover,
+                    .show-more:focus {
                         background-color: #e0e0e0;
                         border: 1px solid #e0e0e0;
+                        outline: none;
                     }
+
                     .input-suggest-data {
                         position: absolute;
                         top: calc(100% + 2px);
@@ -209,7 +211,7 @@
             // Input bottom
             .bottom {
                 .c-grid-col {
-                    >div {
+                    > div {
                         padding-right: 6px;
                     }
                 }
@@ -247,7 +249,7 @@
                     &__content {
                         border: 1px solid color.$base-bd-color;
                         padding: 12px 10px 0 10px;
-                        height: 194px;
+                        height: 240px;
                     }
                 }
             }
@@ -279,11 +281,14 @@
                 background-color: color.$main;
                 color: white;
             }
-            .add-save-btn:hover {
+            .add-save-btn:hover,
+            .add-save-btn:focus {
                 background-color: #35bf22;
             }
             .cancel-btn:hover,
-            .save-btn:hover {
+            .save-btn:hover,
+            .cancel-btn:focus,
+            .save-btn:focus {
                 background-color: #d2d3d6;
             }
         }
@@ -308,10 +313,10 @@
         border-radius: 50%;
         position: relative;
     }
-    input:checked+.circle {
+    input:checked + .circle {
         border-color: #019160;
     }
-    input:checked+.circle::after {
+    input:checked + .circle::after {
         content: '';
         display: inline-block;
         width: 12px;
@@ -344,6 +349,10 @@
     .v-col-1-4 {
         width: 25%;
     }
+
+    .v-col-5 {
+        width: 50%;
+    }
 }
 
 // Customer Calender
@@ -353,7 +362,7 @@
     }
     .calender-icon {
         position: absolute;
-        top: 1px;
+        top: 2px;
         right: 1px;
         background-color: #fff;
         cursor: pointer;

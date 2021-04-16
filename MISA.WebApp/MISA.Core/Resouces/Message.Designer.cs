@@ -124,6 +124,15 @@ namespace MISA.Core.Resouces {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tên không được để trống.
+        /// </summary>
+        public static string EmptyCustomerName {
+            get {
+                return ResourceManager.GetString("EmptyCustomerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID ko được để trống.
         /// </summary>
         public static string EmptyID {

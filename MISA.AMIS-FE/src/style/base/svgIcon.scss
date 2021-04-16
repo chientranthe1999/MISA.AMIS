@@ -3,11 +3,13 @@
 */
 
 .svg-icon {
+    display: block;
     width: 24px;
     height: 24px;
     // Vì import vào file App.vue -> đường dẫn tính từ file App.vue
-    background-image: url(./assets/icon/Sprites.64af8f61.svg);
-    background-repeat: no-repeat;
+    mask: url(./assets/icon/Sprites.64af8f61.svg);
+    mask-repeat: no-repeat;
+    background-color: #a8a8a8;
 }
 
 .svg-icon-48 {
@@ -27,89 +29,90 @@
 
 // icon search
 .svg-search {
-    background-position: -992px -360px;
+    mask-position: -992px -360px;
 }
 
 // icon dấu 3 chám có vòng tròn
 .svg-ellipsis {
-    background-position: -568px -30px;
+    mask-position: -568px -30px;
 }
 
 // icon bánh răng cưa
 .svg-cog {
-    background-position: -675px -30px;
+    mask-position: -675px -30px;
 }
 
 // icon message
 .svg-message {
-    background-position: -899px -30px;
+    mask-position: -899px -30px;
 }
 
 .svg-help {
-    background-position: -731px -30px;
+    mask-position: -731px -30px;
 }
 
 .svg-notification {
-    background-position: -788px -30px;
+    mask-position: -788px -30px;
 }
 
 // chevron-down small
 .svg-s-chevron-down {
-    background-position: -1076px -32px;
+    mask-position: -1076px -32px;
 }
 
 // chevron-left small
 .svg-s-chevron-left {
-    background-position: -224px -360px;
+    mask-position: -224px -360px;
 }
 
 // chevron-down large
 .svg-l-chevron-down {
-    background-position: -1128px -360px;
+    mask-position: -1128px -360px;
 }
 
 .svg-s-arrow-blue-down {
-    background-position: -896px -359px;
+    mask-position: -896px -359px;
 }
 
 .svg-s-arrow-down {
-    background-position: -560px -359px;
+    mask-position: -560px -359px;
 }
 
 .svg-warning {
-    background-position: -592px -456px;
+    mask-position: -592px -456px;
 }
 
 .svg-toggle {
-    background-position: -843px -30px;
+    mask-position: -843px -30px;
 }
 
 .svg-close {
-    background-position: -144px -144px;
+    mask-position: -144px -144px;
 }
 
 .svg-checkbox-active {
-    background-position: -1224px -360px;
+    mask-position: -1224px -360px;
 }
 
 // calender icon
 .svg-calender {
-    background-position: -120px -306px;
+    mask-position: -120px -306px;
     width: 30px;
     height: 28px;
 }
 
 // Avt default
 .svg-avt-default {
+    background-image: url(./assets/icon/Sprites.64af8f61.svg) !important;
     background-position: -352px -894px;
 }
 
 // Icon dấu hỏi chấm có màu xanh background
 .svg-question {
-    background-position: -826px -456px;
+    mask-position: -826px -456px;
 }
 
 // Icon Error đỏ
 .svg-error {
-    background-position: -24px -954px;
+    mask-position: -24px -954px;
 }

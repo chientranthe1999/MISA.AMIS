@@ -56,7 +56,7 @@ $hdark: #e5e5e5;
         .user-action {
             justify-content: center;
             position: relative;
-            >p {
+            > p {
                 color: color.$blue;
                 font-weight: 700;
                 cursor: pointer;
@@ -84,7 +84,8 @@ $hdark: #e5e5e5;
             margin-top: 45px;
         }
         table {
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             width: 100%;
         }
         th,
@@ -140,14 +141,14 @@ $hdark: #e5e5e5;
             right: 0;
             z-index: 3;
         }
-        tr> :last-child {
+        tr > :last-child {
             position: sticky;
             position: -webkit-sticky;
             right: 0;
             z-index: 2;
-            border-left: 1px solid color.$t-bd-color;
+            border-left: 1px dotted color.$t-bd-color;
         }
-        tr:hover>td {
+        tr:hover > td {
             background-color: color.$row-hover;
         }
     }
@@ -189,12 +190,15 @@ $hdark: #e5e5e5;
                     margin-right: 16px;
                 }
                 .page-number {
-                    width: 20px;
-                    height: 20px;
-                    line-height: 20px;
-                    border: 1px solid #e0e0e0;
+                    padding-right: 6.5px;
+                    padding-left: 6.5px;
+                    // line-height: 20px;
                     text-align: center;
-                    margin-right: 8px;
+                    // margin-right: 8px;
+                }
+                .page-number.active {
+                    border: 1px solid #e0e0e0;
+                    font-weight: 700;
                 }
                 .next {
                     margin-left: 8px;

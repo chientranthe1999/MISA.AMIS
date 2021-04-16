@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="header__user d-center-flex">
-                <div class="user-avt svg-icon svg-avt-default"></div>
+                <div class="user-avt svg-avt-default"></div>
                 <div class="user-name">Trần Thế Chiến</div>
                 <div class="svg-icon svg-icon-14 svg-s-chevron-down"></div>
             </div>

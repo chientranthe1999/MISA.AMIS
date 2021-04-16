@@ -35,8 +35,47 @@
             height: 100%;
 
             .icon-swaper {
-                height: auto;
+                height: 100%;
                 width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                position: relative;
+
+                .svg-icon {
+                    background-color: #757575;
+                }
+            }
+
+            .icon-swaper:hover {
+                background-color: #000;
+                fill: red;
+            }
+
+            .icon-swaper:first-child:hover {
+                background-color: #2ca01c;
+            }
+
+            .icon-swaper:first-child:hover::after {
+                border-top-color: #2ca01c;
+            }
+
+            .icon-swaper:hover .svg-icon {
+                background-color: #fff;
+            }
+
+            .icon-swaper:hover:after {
+                content: '';
+                width: 0;
+                height: 0;
+                border-bottom: 8px solid transparent;
+                border-left: 22px solid transparent;
+                border-right: 22px solid transparent;
+                border-top: 8px solid #000;
+                position: absolute;
+                bottom: -16px;
+                left: 0;
             }
 
             .svg-icon {

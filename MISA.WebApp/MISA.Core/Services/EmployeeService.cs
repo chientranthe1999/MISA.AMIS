@@ -36,6 +36,13 @@ namespace MISA.Core.Services
                 isValid = false;
             }
 
+            // Check Tên không được trống
+            if (String.IsNullOrEmpty(t.EmployeeName))
+            {
+                _serviceResult.DevMsg.Add(Resouces.Message.EmptyCustomerName);
+                isValid = false;
+            }
+
             // Check trùng mã
             if (isDuplicate != null)
             {
@@ -97,6 +104,7 @@ namespace MISA.Core.Services
             
         }
 
+        // Check trùng mã Code khi Thêm
         public bool CheckAddEmployeeCode(string employeeCode)
         {
             var res = _employeeRepository.GetByEmployeeCode(employeeCode);
@@ -107,6 +115,7 @@ namespace MISA.Core.Services
             else return true;
         }
 
+        // Check trùng mã Code khi update
         public bool CheckUpdateEmployeeCode(string employeeCode, Guid id)
         {
             var res = _employeeRepository.GetByEmployeeCode(employeeCode, id);
@@ -121,6 +130,17 @@ namespace MISA.Core.Services
         public IEnumerable<Employee> Get(object paging)
         {
             return _employeeRepository.Get(paging);
+        }
+
+        public IEnumerable<Employee> Search(string value)
+        {
+            return _employeeRepository.Search(value);
+
+        }
+
+        public string GetMaxEmployeeCode()
+        {
+            return _employeeRepository.GetMaxEmployeeCode();
         }
 
         #endregion

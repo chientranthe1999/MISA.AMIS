@@ -22,19 +22,14 @@
             <!-- Loading Indicator -->
             <BaseLoader :isShow="isLoading" />
             <!-- Menu -->
-            <div
-                class="data-more-action"
-                v-if="showMenu"
-                :style="{ top: menuTop, right: menuRight }"
-                v-click-outside="closeMenu"
-            >
-                <div class="action-list" @click="trOnClick(employeeDelete.EmployeeId)">Nhân bản</div>
+            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }" v-click-outside="closeMenu">
+                <div class="action-list" @click="trOnClick(employeeDelete.EmployeeId, 'add')">Nhân bản</div>
                 <div class="action-list" @click="confirmDelete">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
             </div>
             <!-- Search box -->
             <div class="content-search-box d-center-flex search-box">
-                <input type="text" placeholder="Tìm theo mã, tên nhân viên" />
+                <input type="text" placeholder="Tìm theo mã, tên nhân viên" @input="searchTimeOut" v-model="searchValue" />
                 <div class="search-icon">
                     <div class="svg-icon svg-search svg-icon-16"></div>
                 </div>
@@ -50,22 +45,19 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr v-for="(employee, i) in employees" :key="i" @dblclick="trOnClick(employee.EmployeeId)">
+                    <tbody v-if="employees">
+                        <tr v-for="(employee, i) in employees" :key="i" @dblclick="trOnClick(employee.EmployeeId, 'update')">
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeeCode }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.EmployeeName }}</td>
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeePosition }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.DepartmentName }}</td>
-                            <td style="width: 150px; min-width: 150px">{{ employee.BankAccountNumber }}</td>
+                            <td style="width: 150px; min-width: 150px" class="text-align-right">{{ employee.BankAccountNumber }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.BankName }}</td>
                             <td style="width: 180px; min-width: 180px">{{ employee.StateAccount }}</td>
                             <td class="last-col" style="width: 100px; min-width: 100px">
                                 <div class="d-center-flex user-action">
-                                    <p @click="trOnClick(employee.EmployeeId)">Sửa</p>
-                                    <div
-                                        class="icon-swapper"
-                                        @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)"
-                                    >
+                                    <p @click="trOnClick(employee.EmployeeId, 'update')">Sửa</p>
+                                    <div class="icon-swapper" @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)">
                                         <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
@@ -91,7 +83,7 @@
 
                 <div class="pagination d-center-flex">
                     <div class="pre">Trước</div>
-                    <div class="page-number">1</div>
+                    <div class="page-number active">1</div>
                     <div class="page-number">2</div>
                     <div class="page-number">3</div>
                     <div class="page-number">4</div>
@@ -160,6 +152,10 @@
                 message: '',
                 // Form Mode của format
                 formMode: '',
+
+                timer: '',
+
+                searchValue: '',
             };
         },
 
@@ -177,19 +173,15 @@
             /**
              * Khi click vào tr -> Hiển thị thông tin chi tiết khách hàng
              */
-            trOnClick(employeeId) {
-                this.showMenu = false;
+            trOnClick(employeeId, formMode) {
+                this.closeMenu();
                 employeeApi
                     .getEmployeeById(employeeId)
                     .then((res) => {
                         this.selectedEmployee = res.data;
-                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(
-                            this.selectedEmployee.DateOfBirth
-                        );
-                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(
-                            this.selectedEmployee.IdentityDate
-                        );
-                        this.formMode = 'update';
+                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(this.selectedEmployee.DateOfBirth);
+                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(this.selectedEmployee.IdentityDate);
+                        this.formMode = formMode;
                         this.modalStatus = true;
                         // waiting for rendering and setfocus for first input
                         this.$nextTick(() => {
@@ -197,7 +189,7 @@
                         });
                     })
                     .catch((e) => {
-                        console.log(e.currentTarget.classList);
+                        console.log(e);
                     });
             },
 
@@ -254,9 +246,9 @@
                 employeeApi
                     .getEmployees()
                     .then((res) => {
-                        console.log(res);
                         if (res.status == 200) {
                             this.employees = res.data;
+                            console.log(this.employees);
                         }
                         this.isLoading = false;
                     })
@@ -278,6 +270,26 @@
                 }
                 this.modalStatus = false;
                 this.selectedEmployee = {};
+            },
+
+            // Hàm search delay
+            searchTimeOut() {
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                }
+                this.timer = setTimeout(() => {
+                    if (this.searchValue == '') {
+                        this.getData();
+                    } else {
+                        this.isLoading = true;
+                        console.log('hihi');
+                        employeeApi.searchEmployee(this.searchValue).then((res) => {
+                            this.employees = res.data;
+                            this.isLoading = false;
+                        });
+                    }
+                }, 1000);
             },
         },
         components: {

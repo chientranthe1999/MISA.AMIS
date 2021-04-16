@@ -44,11 +44,27 @@ namespace MISA.WebApp.Controllers
         }
 
         [HttpGet("page")]
-        public IEnumerable<Employee> Get([FromQuery] int offset, [FromQuery] int limmit)
+        public IEnumerable<Employee> Get([FromQuery] int offset, [FromRoute] int limmit)
         {
             var paging = new { offset = offset, limmit = limmit };
-            return  _employeeService.Get(paging);
-           
+            return _employeeService.Get(paging);
+
+        }
+
+        [HttpGet("search/{value}")]
+        public IEnumerable<Employee> Search(string value)
+        {
+            var res = _employeeService.Search(value);
+            return res;
+
+        }
+
+        [HttpGet("codemax")]
+        public string GetMaxEmployeeCode()
+        {
+            var res = _employeeService.GetMaxEmployeeCode();
+            return res;
+
         }
         #endregion
 

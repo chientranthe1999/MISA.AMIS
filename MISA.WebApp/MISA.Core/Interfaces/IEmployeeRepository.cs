@@ -45,6 +45,20 @@ namespace MISA.Core.Interfaces
         /// CreatedBy: Chiến Nobi (14/4/2021)
         public IEnumerable<Employee> Get(Object paging);
 
-        
+        /// <summary>
+        /// Hàm search theo mã nhân viên hoặc theo tên
+        /// </summary>
+        /// <param name="value">Mã nhân viên hoặc tên nhân viên</param>
+        /// <returns>Danh sách đối tượng</returns>
+        /// CreatedBy: Chiến Nobi (14/4/2021)
+        public IEnumerable<Employee> Search(string value);
+
+        /// <summary>
+        /// Lấy mã nhân viên lớn nhất
+        /// </summary>
+        /// <returns>Mã nhân viên lớn nhất</returns>
+        /// CreatedBy: Chiến Nobi (14/4/2021)
+        public string GetMaxEmployeeCode();
+
     }
 }
