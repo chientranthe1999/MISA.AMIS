@@ -44,15 +44,48 @@ const employeeApi = {
         return res;
     },
     // Sửa thông tin khách hàng
+    updateEmployee: async(employee) => {
+        try {
+            var url = baseUrl + '/' + employee.EmployeeId;
+            var res = await axios.put(url, employee);
+            return res;
+        } catch (err) {
+            console.log(err);
+        }
+    },
 
     // Xóa khách hàng
     deleteEmployee: async(employeeId) => {
-        var url = baseUrl + '/' + employeeId;
-        var res = await axios.delete(url);
-        return res;
+        try {
+            var url = baseUrl + '/' + employeeId;
+            var res = await axios.delete(url);
+            return res;
+        } catch (error) {
+            console.log(error);
+        }
     },
 
-    // Xóa nhiều khách hàng
+    // Check trùng mã khách hàng lúc update
+    checkEmployeeCodeUpdate: async(employeeCode, employeeId) => {
+        try {
+            var url = baseUrl + '/' + employeeCode + '/' + employeeId;
+            var res = await axios.get(url);
+            return res;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    // Check trùng mã lúc thêm mới
+    checkEmployeeCodeAdd: async(employeeCode) => {
+        try {
+            var url = baseUrl + '/by/' + employeeCode;
+            var res = await axios.get(url);
+            return res;
+        } catch (error) {
+            console.log(error);
+        }
+    },
 };
 
 export { employeeApi };

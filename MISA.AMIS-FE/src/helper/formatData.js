@@ -6,6 +6,9 @@
 const DataFormater = {
     inputDateFormat: (dateValue) => {
         try {
+            if (dateValue == null) {
+                return dateValue;
+            }
             var dateTime = new Date(dateValue);
             let year = dateTime.getFullYear();
             let month = dateTime.getMonth() + 1;

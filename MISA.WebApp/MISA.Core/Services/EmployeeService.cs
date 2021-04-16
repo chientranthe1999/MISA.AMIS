@@ -97,7 +97,7 @@ namespace MISA.Core.Services
             
         }
 
-        public bool GetByEmployeeCode(string employeeCode)
+        public bool CheckAddEmployeeCode(string employeeCode)
         {
             var res = _employeeRepository.GetByEmployeeCode(employeeCode);
             if (res == null)
@@ -107,11 +107,21 @@ namespace MISA.Core.Services
             else return true;
         }
 
+        public bool CheckUpdateEmployeeCode(string employeeCode, Guid id)
+        {
+            var res = _employeeRepository.GetByEmployeeCode(employeeCode, id);
+            if (res == null)
+            {
+                return false;
+            }
+            else return true;
+        }
+
+
         public IEnumerable<Employee> Get(object paging)
         {
             return _employeeRepository.Get(paging);
         }
-
 
         #endregion
     }

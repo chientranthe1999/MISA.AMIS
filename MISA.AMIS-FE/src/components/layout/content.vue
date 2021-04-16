@@ -22,8 +22,13 @@
             <!-- Loading Indicator -->
             <BaseLoader :isShow="isLoading" />
             <!-- Menu -->
-            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }" v-click-outside="closeMenu">
-                <div class="action-list">Nhân bản</div>
+            <div
+                class="data-more-action"
+                v-if="showMenu"
+                :style="{ top: menuTop, right: menuRight }"
+                v-click-outside="closeMenu"
+            >
+                <div class="action-list" @click="trOnClick(employeeDelete.EmployeeId)">Nhân bản</div>
                 <div class="action-list" @click="confirmDelete">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
             </div>
@@ -50,14 +55,17 @@
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeeCode }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.EmployeeName }}</td>
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeePosition }}</td>
-                            <td style="width: 250px; min-width: 250px">{{ employee.EmployeeDepartment }}</td>
-                            <td style="width: 150px; min-width: 150px">{{ employee.EmployeeAccountNumber }}</td>
+                            <td style="width: 250px; min-width: 250px">{{ employee.DepartmentName }}</td>
+                            <td style="width: 150px; min-width: 150px">{{ employee.BankAccountNumber }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.BankName }}</td>
                             <td style="width: 180px; min-width: 180px">{{ employee.StateAccount }}</td>
                             <td class="last-col" style="width: 100px; min-width: 100px">
                                 <div class="d-center-flex user-action">
                                     <p @click="trOnClick(employee.EmployeeId)">Sửa</p>
-                                    <div class="icon-swapper" @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)">
+                                    <div
+                                        class="icon-swapper"
+                                        @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)"
+                                    >
                                         <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
@@ -92,7 +100,13 @@
             </div>
         </div>
 
-        <EmployeePopupAdd :modalStatus.sync="modalStatus" :employee="selectedEmployee" ref="firstFocus" @closeAddModal="closeAddModal" />
+        <EmployeePopupAdd
+            :modalStatus.sync="modalStatus"
+            :employee="selectedEmployee"
+            ref="firstFocus"
+            @closeAddModal="closeAddModal"
+            :formMode="formMode"
+        />
     </div>
     <!-- End content -->
 </template>
@@ -142,14 +156,17 @@
                 showDeleteWarning: false,
                 // Show Success Message
                 showSuccess: false,
-
+                // Thông báo cho người dùng
                 message: '',
+                // Form Mode của format
+                formMode: '',
             };
         },
 
         methods: {
             // Hiển thị modal thêm khách hàng
             showModal() {
+                this.formMode = 'add';
                 this.modalStatus = true;
                 // waiting for rendering and setfocus for first input
                 this.$nextTick(() => {
@@ -161,16 +178,26 @@
              * Khi click vào tr -> Hiển thị thông tin chi tiết khách hàng
              */
             trOnClick(employeeId) {
+                this.showMenu = false;
                 employeeApi
                     .getEmployeeById(employeeId)
                     .then((res) => {
                         this.selectedEmployee = res.data;
-                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(this.selectedEmployee.DateOfBirth);
-                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(this.selectedEmployee.IdentityDate);
-                        this.showModal();
+                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(
+                            this.selectedEmployee.DateOfBirth
+                        );
+                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(
+                            this.selectedEmployee.IdentityDate
+                        );
+                        this.formMode = 'update';
+                        this.modalStatus = true;
+                        // waiting for rendering and setfocus for first input
+                        this.$nextTick(() => {
+                            this.$refs.firstFocus.$refs.firstFocus.focus();
+                        });
                     })
                     .catch((e) => {
-                        console.log(e);
+                        console.log(e.currentTarget.classList);
                     });
             },
 
@@ -185,6 +212,8 @@
                 // Gán employeeId
                 this.employeeDelete.EmployeeId = employeeId;
                 this.employeeDelete.EmployeeCode = employeeCode;
+
+                e.currentTarget.classList.add('active');
             },
 
             // Xóa khách hàng
@@ -205,6 +234,11 @@
             // Đóng Function Menu khi click ra ngoài
             closeMenu() {
                 this.showMenu = false;
+                var activeIcon = document.querySelectorAll('.icon-swapper.active');
+
+                activeIcon.forEach((activeElement) => {
+                    activeElement.classList.remove('active');
+                });
             },
 
             // Khi ấn vào xóa, bật menu thông báo
@@ -233,8 +267,12 @@
 
             // When close modal -> reset selected Employee to clear form
             closeAddModal(status) {
-                if (status == 'success') {
+                if (status == 201) {
                     this.message = 'Thêm dữ liệu thành công';
+                    this.showSuccess = true;
+                    this.getData();
+                } else if (status == 200) {
+                    this.message = 'Cập nhật dữ liệu thành công';
                     this.showSuccess = true;
                     this.getData();
                 }

@@ -29,10 +29,17 @@ namespace MISA.WebApp.Controllers
         #endregion
 
         #region Method
-        [HttpGet("by")]
-        public IActionResult GetByEmployeeCode([FromQuery] string code)
+        [HttpGet("by/{code}")]
+        public IActionResult GetByEmployeeCode(string code)
         {
-            var res = _employeeService.GetByEmployeeCode(code);
+            var res = _employeeService.CheckAddEmployeeCode(code);
+            return Ok(res);
+        }
+
+        [HttpGet("{code}/{id}")]
+        public IActionResult GetByEmployeeCode(string code, Guid id)
+        {
+            var res = _employeeService.CheckUpdateEmployeeCode(code, id);
             return Ok(res);
         }
 

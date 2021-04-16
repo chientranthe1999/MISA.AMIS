@@ -23,12 +23,12 @@ const Validator = {
     },
 
     /**
-     *
+     * CheckEmployeeCode ko được để trùng
      * @param {*} customerCode
      * @returns
      */
 
-    validateCustomerCode: async (customerCode) => {
+    validateCustomerCode: async(customerCode) => {
         var res = await employeeApi.checkExistCustomerCode(customerCode);
         if (res.data) return false;
         else return true;

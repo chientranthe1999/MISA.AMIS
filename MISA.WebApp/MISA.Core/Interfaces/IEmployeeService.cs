@@ -13,9 +13,17 @@ namespace MISA.Core.Interfaces
         /// Lấy nhân viên bằng mã nhân viên
         /// </summary>
         /// <param name="employeeCode">Mã nhân viên</param>
-        /// <returns>Đối tượng nhân viên hoặc null</returns>
+        /// <returns>true hoặc false</returns>
         /// CreatedBy: Chiến Nobi (14/4/2021)
-        public bool GetByEmployeeCode(string employeeCode);
+        public bool CheckUpdateEmployeeCode(string employeeCode, Guid id);
+        
+        /// <summary>
+        /// Lấy nhân viên bằng mã nhân viên
+        /// </summary>
+        /// <param name="employeeCode">Mã nhân viên</param>
+        /// <returns>true hoặc false</returns>
+        /// CreatedBy: Chiến Nobi (14/4/2021)
+        public bool CheckAddEmployeeCode(string employeeCode);
 
         /// <summary>
         /// Trả về dữ liệu phân trang

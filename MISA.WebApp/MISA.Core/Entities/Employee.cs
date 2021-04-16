@@ -61,7 +61,7 @@ namespace MISA.Core.Entities
         /// Ngày cấp
         /// </summary>
         [Required]
-        public DateTime IdentityDate { get; set; }
+        public DateTime? IdentityDate { get; set; }
 
         /// <summary>
         /// Nơi cấp mã số chứng minh
