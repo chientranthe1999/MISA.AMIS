@@ -9,13 +9,13 @@ var baseUrl = 'https://localhost:44388/api/v1/Employees';
  */
 const employeeApi = {
     // Lấy danh sách khách hàng
-    getEmployees: async () => {
+    getEmployees: async() => {
         var res = await axios.get(baseUrl);
         return res;
     },
 
     // Lấy phân trang khách hàng
-    getEmployeesPage: async (offset, limmit) => {
+    getEmployeesPage: async(offset, limmit) => {
         var page = {
             offset: offset,
             limmit: limmit,
@@ -25,26 +25,26 @@ const employeeApi = {
     },
 
     // Check trùng mã khách hàng
-    checkExistEmployeeCode: async (customerCode) => {
+    checkExistEmployeeCode: async(customerCode) => {
         var url = `${baseUrl}/by?code=${customerCode}`;
         var res = await axios.get(url);
         return res;
     },
 
     // Thêm mới khách hàng
-    addNewEmployee: async (body) => {
+    addNewEmployee: async(body) => {
         var res = await axios.post(baseUrl, body);
         return res;
     },
 
     // Get thông tin nhân viên by employeeId
-    getEmployeeById: async (employeeId) => {
+    getEmployeeById: async(employeeId) => {
         var url = baseUrl + '/' + employeeId;
         var res = await axios.get(url);
         return res;
     },
     // Sửa thông tin khách hàng
-    updateEmployee: async (employee) => {
+    updateEmployee: async(employee) => {
         try {
             var url = baseUrl + '/' + employee.EmployeeId;
             var res = await axios.put(url, employee);
@@ -55,7 +55,7 @@ const employeeApi = {
     },
 
     // Xóa khách hàng
-    deleteEmployee: async (employeeId) => {
+    deleteEmployee: async(employeeId) => {
         try {
             var url = baseUrl + '/' + employeeId;
             var res = await axios.delete(url);
@@ -66,7 +66,7 @@ const employeeApi = {
     },
 
     // Check trùng mã khách hàng lúc update
-    checkEmployeeCodeUpdate: async (employeeCode, employeeId) => {
+    checkEmployeeCodeUpdate: async(employeeCode, employeeId) => {
         try {
             var url = baseUrl + '/' + employeeCode + '/' + employeeId;
             var res = await axios.get(url);
@@ -77,7 +77,7 @@ const employeeApi = {
     },
 
     // Check trùng mã lúc thêm mới
-    checkEmployeeCodeAdd: async (employeeCode) => {
+    checkEmployeeCodeAdd: async(employeeCode) => {
         try {
             var url = baseUrl + '/by/' + employeeCode;
             var res = await axios.get(url);
@@ -88,7 +88,7 @@ const employeeApi = {
     },
 
     // Search employee
-    searchEmployee: async (value) => {
+    searchEmployee: async(value) => {
         try {
             var url = baseUrl + '/search/' + value;
             var res = await axios.get(url);
@@ -96,7 +96,25 @@ const employeeApi = {
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+
+    // Lấy codemax và trả về mã tự tăng
+    // codeAutoIncrease: async() => {
+    //     try {
+    //         var url = baseUrl + '/codemax';
+    //         var res = await axios.get(url);
+    //         var codeMax = res.data;
+    //         var prefix = codeMax.match(/[a-zA-Z]+/g)[0];
+    //         var number = codeMax.match(/\d+/g)[0];
+    //         var rezoNumber = numberInt.toString.le
+    //         var numberStringLength = number.length;
+    //         var numberInt = parseInt(number);
+    //         var nextNumber = numberInt + 1;
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // },
 };
 
 export { employeeApi };

@@ -5,7 +5,7 @@ using MISA.Core.Interfaces;
 namespace MISA.WebApp.Controllers
 {
     /// <summary>
-    /// API Danh mục Nhóm khách hàng
+    /// API Danh mục Vị trí khách hàng
     /// </summary>
     /// CretedBy: Chiến Nobi (07/04/2021)
     public class DepartmentController : BaseEntityController<Department>

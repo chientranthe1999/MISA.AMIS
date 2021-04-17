@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces
 {
+    /// <summary>
+    /// Interface chung cho các service
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// CreatedBy: Chiến Nobi (05/04/2021)
     public interface IBaseService<T>
     {
         /// <summary>

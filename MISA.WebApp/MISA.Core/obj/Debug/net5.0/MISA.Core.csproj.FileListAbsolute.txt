@@ -26,3 +26,17 @@ C:\Code\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.CoreCo
 C:\Code\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.dll
 C:\Code\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\ref\MISA.Core.dll
 C:\Code\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.pdb
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\bin\Debug\net5.0\MISA.Core.deps.json
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\bin\Debug\net5.0\MISA.Core.dll
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\bin\Debug\net5.0\ref\MISA.Core.dll
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\bin\Debug\net5.0\MISA.Core.pdb
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.csprojAssemblyReference.cache
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.Resouces.Message.resources
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.GenerateResource.cache
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfoInputs.cache
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfo.cs
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.CoreCompileInputs.cache
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.dll
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\ref\MISA.Core.dll
+D:\MISA.AMIS\MISA.WebApp\MISA.Core\obj\Debug\net5.0\MISA.Core.pdb

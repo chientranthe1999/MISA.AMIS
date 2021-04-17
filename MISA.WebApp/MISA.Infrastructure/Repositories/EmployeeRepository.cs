@@ -45,14 +45,14 @@ namespace MISA.Infrastructure.Repositories
 
         public IEnumerable<Employee> Search(string value)
         {
-            var sql = $"Select * From Employee Where EmployeeCode LIKE \"%{value}%\" OR EmployeeName = \"%{value}%\" ";
+            var sql = $"Select * From Employee Where EmployeeCode LIKE \"%{value}%\" OR EmployeeName LIKE \"%{value}%\" ";
             var res = _dbConnection.Query<Employee>(sql, commandType: CommandType.Text);
             return res;
         }
 
         public string GetMaxEmployeeCode()
         {
-            var res = _dbConnection.Execute("Proc_GetEmployeeCodeMax", commandType: CommandType.StoredProcedure).ToString();
+            var res = _dbConnection.QueryFirstOrDefault<string>("Proc_GetEmployeeCodeMax", commandType: CommandType.StoredProcedure);
             return res;
         }
     }

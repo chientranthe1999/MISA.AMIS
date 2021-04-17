@@ -92,9 +92,13 @@
                                                 class="data-list"
                                                 v-for="(department, i) in listDepartment"
                                                 :key="i"
-                                                @click="changeDepartment(department.DepartmentName, department.DepartmentId)"
+                                                @click="
+                                                    changeDepartment(department.DepartmentName, department.DepartmentId)
+                                                "
                                                 tabindex="1"
-                                                @keyup.13="changeDepartment(department.DepartmentName, department.DepartmentId)"
+                                                @keyup.13="
+                                                    changeDepartment(department.DepartmentName, department.DepartmentId)
+                                                "
                                             >
                                                 {{ department.DepartmentName }}
                                             </div>
@@ -124,7 +128,10 @@
                                                 <span class="svg-icon svg-calender"></span>
                                             </div>
 
-                                            <BaseDatePicker :dateTime.sync="employee.DateOfBirth" :isShow.sync="showDateOfBirthCalender" />
+                                            <BaseDatePicker
+                                                :dateTime.sync="employee.DateOfBirth"
+                                                :isShow.sync="showDateOfBirthCalender"
+                                            />
                                         </div>
                                     </div>
                                     <!-- Giới tính -->
@@ -132,13 +139,35 @@
                                         <div class="input-label">Giới tính</div>
                                         <div class="d-center-flex gender">
                                             <label for="female">
-                                                <input type="radio" name="gender" id="female" value="0" v-model="employee.Gender" tabindex="1" />
-                                                <span class="circle" tabindex="1" @keyup.13="employee.Gender = 0"></span>
+                                                <input
+                                                    type="radio"
+                                                    name="gender"
+                                                    id="female"
+                                                    value="0"
+                                                    v-model="employee.Gender"
+                                                    tabindex="1"
+                                                />
+                                                <span
+                                                    class="circle"
+                                                    tabindex="1"
+                                                    @keyup.13="employee.Gender = 0"
+                                                ></span>
                                                 <span class="input-lable">Nam</span>
                                             </label>
                                             <label for="male">
-                                                <input type="radio" name="gender" id="male" value="1" v-model="employee.Gender" tabindex="1" />
-                                                <span class="circle" tabindex="1" @keyup.13="employee.Gender = 1"></span>
+                                                <input
+                                                    type="radio"
+                                                    name="gender"
+                                                    id="male"
+                                                    value="1"
+                                                    v-model="employee.Gender"
+                                                    tabindex="1"
+                                                />
+                                                <span
+                                                    class="circle"
+                                                    tabindex="1"
+                                                    @keyup.13="employee.Gender = 1"
+                                                ></span>
                                                 <span class="input-lable">Nữ</span>
                                             </label>
                                         </div>
@@ -164,7 +193,10 @@
                                                 <span class="svg-icon svg-calender"></span>
                                             </div>
 
-                                            <BaseDatePicker :dateTime.sync="employee.IdentityDate" :isShow.sync="showIndentityDateCalender" />
+                                            <BaseDatePicker
+                                                :dateTime.sync="employee.IdentityDate"
+                                                :isShow.sync="showIndentityDateCalender"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -177,10 +209,6 @@
                         <!-- Input bottom  -->
                         <div class="bottom">
                             <div class="tab-input">
-                                <div class="tab-input__title">
-                                    <div class="title-list active">Liên hệ</div>
-                                    <div class="title-list">Tài khoản ngân hàng</div>
-                                </div>
                                 <div class="tab-input__content">
                                     <div class="input-swapper">
                                         <div class="input-label">Địa chỉ</div>
@@ -190,11 +218,23 @@
                                     <div class="c-grid-col">
                                         <div class="input-swapper">
                                             <div class="input-label v-col-1-4">ĐT di động</div>
-                                            <input type="text" name="" tabindex="1" v-model="employee.PhoneNumber" style="width: 204.5px;" />
+                                            <input
+                                                type="text"
+                                                name=""
+                                                tabindex="1"
+                                                v-model="employee.PhoneNumber"
+                                                style="width: 204.5px;"
+                                            />
                                         </div>
                                         <div class="input-swapper">
                                             <div class="input-label v-col-1-4" style="width: 204.5px;">ĐT cố định</div>
-                                            <input type="text" name="" v-model="employee.TeleNumber" tabindex="1" style="width: 204.5px;" />
+                                            <input
+                                                type="text"
+                                                name=""
+                                                v-model="employee.TelephoneNumber"
+                                                tabindex="1"
+                                                style="width: 204.5px;"
+                                            />
                                         </div>
                                         <div class="input-swapper">
                                             <div class="input-label v-col-1-4">Email</div>
@@ -204,20 +244,30 @@
 
                                     <div class="c-grid-col">
                                         <div class="input-swapper">
-                                            <div class="input-label v-col-1-4">Số tài khoản ngân hàng</div>
-                                            <input type="text" name="" tabindex="1" v-model="employee.BankAccountNumber" style="width: 204.5px;" />
+                                            <div class="input-label v-col-1-4">Tài khoản ngân hàng</div>
+                                            <input
+                                                type="text"
+                                                name=""
+                                                tabindex="1"
+                                                v-model="employee.BankAccountNumber"
+                                                style="width: 204.5px;"
+                                            />
                                         </div>
                                         <div class="input-swapper">
-                                            <div class="input-label v-col-1-4" style="width: 204.5px;">Tên ngân hàng</div>
-                                            <input type="text" name="" v-model="employee.BankName" tabindex="1" style="width: 204.5px;" />
+                                            <div class="input-label v-col-1-4" style="width: 204.5px;">
+                                                Tên ngân hàng
+                                            </div>
+                                            <input
+                                                type="text"
+                                                name=""
+                                                v-model="employee.BankName"
+                                                tabindex="1"
+                                                style="width: 204.5px;"
+                                            />
                                         </div>
                                         <div class="input-swapper">
                                             <div class="input-label v-col-1-4">Chi nhánh</div>
                                             <input type="text" name="" tabindex="1" v-model="employee.BankBranchName" />
-                                        </div>
-                                        <div class="input-swapper" style="padding-right: 0;">
-                                            <div class="input-label v-col-1-4">Tỉnh thành phố ngân hàng</div>
-                                            <input type="text" name="" tabindex="1" v-model="employee.BankProvinceName" />
                                         </div>
                                     </div>
                                 </div>
@@ -229,13 +279,32 @@
                     <!-- Button -->
                     <div class="popup__content-btn d-flex">
                         <div class="btn-left">
-                            <div class="btn cancel-btn" tabindex="1" @click="deleteErrorWhenClose" @keyup.13="deleteErrorWhenClose">
+                            <div
+                                class="btn cancel-btn"
+                                tabindex="1"
+                                @click="deleteErrorWhenClose"
+                                @keyup.13="deleteErrorWhenClose"
+                            >
                                 Hủy
                             </div>
                         </div>
                         <div class="btn-right d-flex">
-                            <div class="btn save-btn" title="Cất (Ctr + S)" tabindex="1" @click="onSaveClick" @keyup.13="onSaveClick">Cất</div>
-                            <div class="btn add-save-btn" title="Cất và thêm" tabindex="1" @click="onSaveClick" @keyup.13="onSaveClick">
+                            <div
+                                class="btn save-btn"
+                                title="Cất (Ctr + S)"
+                                tabindex="1"
+                                @click="onSaveClick"
+                                @keyup.13="onSaveClick"
+                            >
+                                Cất
+                            </div>
+                            <div
+                                class="btn add-save-btn"
+                                title="Cất và thêm"
+                                tabindex="1"
+                                @click="onSaveClick"
+                                @keyup.13="onSaveClick"
+                            >
                                 Cất và thêm
                             </div>
                         </div>
@@ -342,20 +411,22 @@
 
                             // Khi form mode là Sửa
                         } else {
-                            employeeApi.checkEmployeeCodeUpdate(this.employee.EmployeeCode, this.employee.EmployeeId).then((res) => {
-                                if (res.data) {
-                                    this.errorMessage = 'Mã khách hàng bị trùng';
-                                    this.showLoading = false;
-                                    this.showError == true;
-                                } else {
-                                    employeeApi.updateEmployee(this.employee).then((response) => {
+                            employeeApi
+                                .checkEmployeeCodeUpdate(this.employee.EmployeeCode, this.employee.EmployeeId)
+                                .then((res) => {
+                                    if (res.data) {
+                                        this.errorMessage = 'Mã khách hàng bị trùng';
                                         this.showLoading = false;
-                                        if (response.status == 200) {
-                                            this.$emit('closeAddModal', 200);
-                                        }
-                                    });
-                                }
-                            });
+                                        this.showError == true;
+                                    } else {
+                                        employeeApi.updateEmployee(this.employee).then((response) => {
+                                            this.showLoading = false;
+                                            if (response.status == 200) {
+                                                this.$emit('closeAddModal', 200);
+                                            }
+                                        });
+                                    }
+                                });
                         }
                     } else {
                         this.showError = true;
@@ -412,7 +483,7 @@
             checkRequiredWhenSave() {
                 if (this.$refs.firstFocus.value == '') {
                     this.$refs.firstFocus.classList.add('value-error');
-                    this.errorMessage = 'Mã khách hàng ko được để trống';
+                    this.errorMessage = 'Mã nhân viên ko được để trống';
                     return false;
                 }
 

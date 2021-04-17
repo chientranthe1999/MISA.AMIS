@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces
 {
+    /// <summary>
+    /// Interface chung cho các đối tượng tương tác với database
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// CreatedBy: Chiến Nobi (05/04/2021)
     public interface IBaseRepository<T>
     {
         /// <summary>

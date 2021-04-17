@@ -22,14 +22,24 @@
             <!-- Loading Indicator -->
             <BaseLoader :isShow="isLoading" />
             <!-- Menu -->
-            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }" v-click-outside="closeMenu">
+            <div
+                class="data-more-action"
+                v-if="showMenu"
+                :style="{ top: menuTop, right: menuRight }"
+                v-click-outside="closeMenu"
+            >
                 <div class="action-list" @click="trOnClick(employeeDelete.EmployeeId, 'add')">Nhân bản</div>
                 <div class="action-list" @click="confirmDelete">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
             </div>
             <!-- Search box -->
             <div class="content-search-box d-center-flex search-box">
-                <input type="text" placeholder="Tìm theo mã, tên nhân viên" @input="searchTimeOut" v-model="searchValue" />
+                <input
+                    type="text"
+                    placeholder="Tìm theo mã, tên nhân viên"
+                    @input="searchTimeOut"
+                    v-model="searchValue"
+                />
                 <div class="search-icon">
                     <div class="svg-icon svg-search svg-icon-16"></div>
                 </div>
@@ -46,18 +56,27 @@
                     </thead>
 
                     <tbody v-if="employees">
-                        <tr v-for="(employee, i) in employees" :key="i" @dblclick="trOnClick(employee.EmployeeId, 'update')">
+                        <tr
+                            v-for="(employee, i) in employees"
+                            :key="i"
+                            @dblclick="trOnClick(employee.EmployeeId, 'update')"
+                        >
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeeCode }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.EmployeeName }}</td>
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeePosition }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.DepartmentName }}</td>
-                            <td style="width: 150px; min-width: 150px" class="text-align-right">{{ employee.BankAccountNumber }}</td>
+                            <td style="width: 150px; min-width: 150px" class="text-align-right">
+                                {{ employee.BankAccountNumber }}
+                            </td>
                             <td style="width: 250px; min-width: 250px">{{ employee.BankName }}</td>
                             <td style="width: 180px; min-width: 180px">{{ employee.StateAccount }}</td>
                             <td class="last-col" style="width: 100px; min-width: 100px">
                                 <div class="d-center-flex user-action">
                                     <p @click="trOnClick(employee.EmployeeId, 'update')">Sửa</p>
-                                    <div class="icon-swapper" @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)">
+                                    <div
+                                        class="icon-swapper"
+                                        @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)"
+                                    >
                                         <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
@@ -179,8 +198,12 @@
                     .getEmployeeById(employeeId)
                     .then((res) => {
                         this.selectedEmployee = res.data;
-                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(this.selectedEmployee.DateOfBirth);
-                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(this.selectedEmployee.IdentityDate);
+                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(
+                            this.selectedEmployee.DateOfBirth
+                        );
+                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(
+                            this.selectedEmployee.IdentityDate
+                        );
                         this.formMode = formMode;
                         this.modalStatus = true;
                         // waiting for rendering and setfocus for first input
@@ -237,7 +260,7 @@
             confirmDelete() {
                 this.closeMenu();
                 this.showDeleteWarning = true;
-                this.message = `Bạn có chắc muốn xóa Nhân Viên ${this.employeeDelete.EmployeeCode} không?`;
+                this.message = 'Bạn có chắc muốn xóa Nhân Viên <' + `${this.employeeDelete.EmployeeCode}` + '> không?';
             },
 
             // Lấy dữ liệu từ API
