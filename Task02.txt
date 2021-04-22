@@ -1,0 +1,9 @@
+- Base Component
+	+ 
+- Vue Router
+- Debug
+
+
+- Database Query (2 bảng)
+
+- Vuex
