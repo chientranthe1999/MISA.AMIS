@@ -2,9 +2,9 @@
     <!-- Content -->
     <div class="content">
         <!-- Confirm Delete -->
-        <BaseDeleteWarning :isShow="showDeleteWarning" @agree="deleteEmployee" :message="message" />
+        <BaseDeleteWarning :isShow.sync="showDeleteWarning" @agree="deleteEmployee" :message="message" />
 
-        <BaseSuccessMessage :isShow="showSuccess" :message="message" />
+        <BaseSuccessMessage :isShow.sync="showSuccess" :message="message" />
         <!-- Content top -->
         <div class="content__top">
             <div class="first-line d-center-flex">
@@ -20,16 +20,26 @@
         <!-- Content main -->
         <div class="content__main">
             <!-- Loading Indicator -->
-            <BaseLoader :isShow="showLoading" />
+            <BaseLoader :isShow="isLoading" />
             <!-- Menu -->
-            <div class="data-more-action" v-if="showMenu" :style="{ top: menuTop, right: menuRight }" v-click-outside="closeMenu">
+            <div
+                class="data-more-action"
+                v-if="showMenu"
+                :style="{ top: menuTop, right: menuRight }"
+                v-click-outside="closeMenu"
+            >
                 <div class="action-list" @click="trOnClick(employeeDelete.EmployeeId, 'add')">Nhân bản</div>
                 <div class="action-list" @click="confirmDelete">Xóa</div>
                 <div class="action-list">Ngừng sử dụng</div>
             </div>
             <!-- Search box -->
             <div class="content-search-box d-center-flex search-box">
-                <input type="text" placeholder="Tìm theo mã, tên nhân viên" @input="searchTimeOut" v-model="searchValue" />
+                <input
+                    type="text"
+                    placeholder="Tìm theo mã, tên nhân viên"
+                    @input="searchTimeOut"
+                    v-model="searchValue"
+                />
                 <div class="search-icon">
                     <div class="svg-icon svg-search svg-icon-16"></div>
                 </div>
@@ -45,8 +55,12 @@
                         </tr>
                     </thead>
 
-                    <tbody v-if="$store.state.employee.employees">
-                        <tr v-for="(employee, i) in $store.state.employee.employees" :key="i" @dblclick="trOnClick(employee.EmployeeId, 'update')">
+                    <tbody v-if="employees">
+                        <tr
+                            v-for="(employee, i) in employees"
+                            :key="i"
+                            @dblclick="trOnClick(employee.EmployeeId, 'update')"
+                        >
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeeCode }}</td>
                             <td style="width: 250px; min-width: 250px">{{ employee.EmployeeName }}</td>
                             <td style="width: 150px; min-width: 150px">{{ employee.EmployeePosition }}</td>
@@ -59,7 +73,10 @@
                             <td class="last-col" style="width: 100px; min-width: 100px">
                                 <div class="d-center-flex user-action">
                                     <p @click="trOnClick(employee.EmployeeId, 'update')">Sửa</p>
-                                    <div class="icon-swapper" @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)">
+                                    <div
+                                        class="icon-swapper"
+                                        @click="showFunctionMenu(employee.EmployeeId, employee.EmployeeCode, $event)"
+                                    >
                                         <div class="svg-icon svg-icon-16 svg-s-arrow-blue-down"></div>
                                     </div>
                                 </div>
@@ -109,13 +126,14 @@
     import EmployeePopupAdd from '../popup/EmployeePopupAdd';
     import { employeeApi } from '@/api/employeeApi';
     import { DataFormater } from '@/helper/formatData';
-    import { mapActions, mapState, mapMutations } from 'vuex';
 
     export default {
         name: 'Content',
 
         data() {
             return {
+                // Thanh loading
+                isLoading: true,
                 // Modal Thêm người dùng
                 modalStatus: false,
                 // Nhân viên được select
@@ -123,6 +141,7 @@
                 // Menu Function
                 showMenu: false,
                 // List nhân viên được gọi từ Api
+                employees: [],
                 // Vị trí menu Top
                 menuTop: 0,
                 // Vị trí menu Bottom
@@ -144,7 +163,13 @@
                     { titleCode: 'StateAccount', title: 'Trạng thái' },
                     { titleCode: 'Function', title: 'Chức năng' },
                 ],
-
+                // Show Delete Warning
+                showDeleteWarning: false,
+                // Show Success Message
+                showSuccess: false,
+                // Thông báo cho người dùng
+                message: '',
+                // Form Mode của format
                 formMode: '',
 
                 timer: '',
@@ -154,9 +179,6 @@
         },
 
         methods: {
-            ...mapActions('employee', ['getEmployees', 'deleteEmployee']),
-
-            ...mapMutations('employee', ['setDeleteEmployee']),
             // Hiển thị modal thêm khách hàng
             showModal() {
                 this.formMode = 'add';
@@ -176,8 +198,12 @@
                     .getEmployeeById(employeeId)
                     .then((res) => {
                         this.selectedEmployee = res.data;
-                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(this.selectedEmployee.DateOfBirth);
-                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(this.selectedEmployee.IdentityDate);
+                        this.selectedEmployee.DateOfBirth = DataFormater.inputDateFormat(
+                            this.selectedEmployee.DateOfBirth
+                        );
+                        this.selectedEmployee.IdentityDate = DataFormater.inputDateFormat(
+                            this.selectedEmployee.IdentityDate
+                        );
                         this.formMode = formMode;
                         this.modalStatus = true;
                         // waiting for rendering and setfocus for first input
@@ -201,15 +227,8 @@
                 // Gán employeeId
                 this.employeeDelete.EmployeeId = employeeId;
                 this.employeeDelete.EmployeeCode = employeeCode;
-                this.setDeleteEmployee({ employeeId, employeeCode });
-                e.currentTarget.classList.add('active');
-            },
 
-            // Bật thông báo xác nhận xóa
-            confirmDelete: () => {
-                this.closeMenu();
-                this.showDeleteWarning = true;
-                this.message = 'Bạn có chắc muốn xóa Nhân Viên <' + this.employeeDelete.EmployeeCode + '> không?';
+                e.currentTarget.classList.add('active');
             },
 
             // Xóa khách hàng
@@ -237,6 +256,13 @@
                 });
             },
 
+            // Khi ấn vào xóa, bật menu thông báo
+            confirmDelete() {
+                this.closeMenu();
+                this.showDeleteWarning = true;
+                this.message = 'Bạn có chắc muốn xóa Nhân Viên <' + `${this.employeeDelete.EmployeeCode}` + '> không?';
+            },
+
             // Lấy dữ liệu từ API
             getData() {
                 this.isLoading = true;
@@ -245,6 +271,7 @@
                     .then((res) => {
                         if (res.status == 200) {
                             this.employees = res.data;
+                            console.log(this.employees);
                         }
                         this.isLoading = false;
                     })
@@ -276,9 +303,10 @@
                 }
                 this.timer = setTimeout(() => {
                     if (this.searchValue == '') {
-                        this.getEmployees();
+                        this.getData();
                     } else {
                         this.isLoading = true;
+                        console.log('hihi');
                         employeeApi.searchEmployee(this.searchValue).then((res) => {
                             this.employees = res.data;
                             this.isLoading = false;
@@ -291,12 +319,8 @@
             EmployeePopupAdd,
         },
 
-        computed: {
-            ...mapState('employee', ['employees', 'showLoading', 'message', 'showSuccess, showDeleteWarning']),
-        },
-
         created() {
-            this.getEmployees();
+            this.getData();
         },
     };
 </script>

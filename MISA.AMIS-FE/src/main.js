@@ -4,12 +4,10 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import '@/global';
 import vuetify from '@/plugins/vuetify';
-import store from '@/store/store';
 
 Vue.config.productionTip = false;
 
 new Vue({
     vuetify,
-    store,
     render: (h) => h(App),
 }).$mount('#app');
