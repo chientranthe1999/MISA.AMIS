@@ -12,17 +12,6 @@
 <script>
     export default {
         name: 'Employee',
-        data() {
-            return {
-                employeeList: [],
-
-                limmit: 20,
-
-                offset: 0,
-
-                pageNumber: 1,
-            };
-        },
     };
 </script>
 

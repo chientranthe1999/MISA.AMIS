@@ -11,7 +11,8 @@ const ErrorMessage = {
     errorPhoneNumberFormat: 'Sai định dạng số điện thoại',
 
     // Trùng mã customer
-    duplicateCustomerCode: 'Mã khách hàng đã tồn tại',
+    duplicateCustomerCode: 'Mã nhân viên đã tồn tại',
 };
+
 
 export { ErrorMessage };
