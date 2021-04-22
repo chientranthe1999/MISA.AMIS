@@ -49,6 +49,7 @@
 
 .svg-help {
     mask-position: -731px -30px;
+    background-color: #757575;
 }
 
 .svg-notification {
@@ -79,7 +80,10 @@
 }
 
 .svg-warning {
-    mask-position: -592px -456px;
+    background-image: url(./assets/icon/Sprites.64af8f61.svg) !important;
+    background-position: -592px -456px;
+    width: 48px;
+    height: 48px;
 }
 
 .svg-toggle {
@@ -88,6 +92,7 @@
 
 .svg-close {
     mask-position: -144px -144px;
+    background-color: #757575;
 }
 
 .svg-checkbox-active {
@@ -109,10 +114,12 @@
 
 // Icon dấu hỏi chấm có màu xanh background
 .svg-question {
-    mask-position: -826px -456px;
+    background-image: url(./assets/icon/Sprites.64af8f61.svg) !important;
+    background-position: -826px -456px;
 }
 
 // Icon Error đỏ
 .svg-error {
-    mask-position: -24px -954px;
+    background-image: url(./assets/icon/Sprites.64af8f61.svg) !important;
+    background-position: -24px -954px;
 }

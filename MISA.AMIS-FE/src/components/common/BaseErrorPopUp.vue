@@ -3,7 +3,7 @@
         <div class="dialog-swapper" v-if="isShow">
             <div class="dialog">
                 <div class="dialog__infor">
-                    <div class="dialog__infor-icon svg-icon svg-icon-48 svg-error"></div>
+                    <div class="dialog__infor-icon svg-icon-48 svg-error"></div>
                     <p>{{ message }}</p>
                 </div>
                 <div class="break-line"></div>
